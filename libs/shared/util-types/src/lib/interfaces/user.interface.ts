@@ -1,3 +1,4 @@
+import { RoleType } from '../enums';
 import { IBaseEntity } from './base-entity.interface';
 
 export interface IUser extends IBaseEntity {
@@ -6,6 +7,7 @@ export interface IUser extends IBaseEntity {
   firstName: string | null;
   lastName: string | null;
   avatar: string | null;
+  role: RoleType;
 }
 
 /**
@@ -20,3 +22,11 @@ export type ISerializedUser = Omit<
   createdAt: string;
   updatedAt: string;
 };
+
+/**
+ * `id`, `createdAt`, and `updatedAt` are all auto-populated. All other fields are 
+ * "required" - but the names and avatar can accept `null`. 
+ */
+export type ICreateUser = Omit<IUser, keyof IBaseEntity>;
+
+export type IUpdateUser = Partial<ICreateUser>;
