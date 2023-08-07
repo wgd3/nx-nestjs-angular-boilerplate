@@ -15,9 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@server/util-common": ["libs/server/util-common/src/index.ts"],
-      "@shared/util-constants": ["libs/shared/util-constants/src/index.ts"],
-      "@shared/util-interfaces": ["libs/shared/util-interfaces/src/index.ts"]
+      "@libs/server/util-common": ["libs/server/util-common/src/index.ts"],
+      "@libs/shared/util-constants": ["libs/shared/util-constants/src/index.ts"],
+      "@libs/shared/util-interfaces": ["libs/shared/util-interfaces/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

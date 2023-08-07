@@ -1,1 +1,1 @@
-export * from './lib/util-constants';
+export * from './lib/config.constants';
