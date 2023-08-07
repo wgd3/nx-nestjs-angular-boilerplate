@@ -1,4 +1,4 @@
-import { IBaseEntity } from '@libs/shared/util-interfaces';
+import { IBaseEntity } from '@libs/shared/util-types';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class BaseDto implements IBaseEntity {

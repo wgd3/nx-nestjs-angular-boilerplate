@@ -6,12 +6,12 @@ import {
 } from 'typeorm';
 import { instanceToPlain } from 'class-transformer';
 import { BaseDto } from '../dto/base.dto';
-import { IBaseEntity, Uuid } from '@libs/shared/util-interfaces';
+import { IBaseEntity, Uuid } from '@libs/shared/util-types';
 import { Constructor } from '../types';
 
 /**
  * Class intended to be extended by any ORM entity in the application.
- * 
+ *
  * Credit to https://github.com/NarHakobyan/awesome-nest-boilerplate/blob/e70667eac4421fb462ca2d0ad4ddb670242293f7/src/common/abstract.entity.ts
  */
 export class BaseOrmEntity<DTO extends BaseDto = BaseDto, Options = never>
