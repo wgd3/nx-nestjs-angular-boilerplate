@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@libs/server/feat-auth": ["libs/server/feat-auth/src/index.ts"],
       "@libs/server/util-common": ["libs/server/util-common/src/index.ts"],
       "@libs/shared/util-constants": [
         "libs/shared/util-constants/src/index.ts"
