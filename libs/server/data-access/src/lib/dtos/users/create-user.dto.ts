@@ -1,14 +1,20 @@
-import { IsEmail, IsOptional, IsStrongPassword, MaxLength } from 'class-validator';
+import {
+  IsEmail,
+  IsOptional,
+  IsStrongPassword,
+  MaxLength,
+} from 'class-validator';
 
 import { BaseDto } from '@libs/server/util-common';
 import {
-    PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH, PASSWORD_MIN_NUMBER, PASSWORD_MIN_SYMBOL,
-    PASSWORD_MIN_UPPERCASE
+  PASSWORD_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+  PASSWORD_MIN_NUMBER,
+  PASSWORD_MIN_SYMBOL,
+  PASSWORD_MIN_UPPERCASE,
 } from '@libs/shared/util-constants';
 import { ICreateUser, RoleType } from '@libs/shared/util-types';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-
-
 
 export class CreateUserDto extends BaseDto implements ICreateUser {
   @ApiProperty()

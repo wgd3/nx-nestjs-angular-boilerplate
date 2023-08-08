@@ -24,8 +24,8 @@ export type ISerializedUser = Omit<
 };
 
 /**
- * `id`, `createdAt`, and `updatedAt` are all auto-populated. All other fields are 
- * "required" - but the names and avatar can accept `null`. 
+ * `id`, `createdAt`, and `updatedAt` are all auto-populated. All other fields are
+ * "required" - but the names and avatar can accept `null`.
  */
 export type ICreateUser = Omit<IUser, keyof IBaseEntity>;
 

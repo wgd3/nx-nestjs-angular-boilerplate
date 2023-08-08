@@ -5,3 +5,4 @@ export * from './lib/loggers';
 export * from './lib/types';
 export * from './lib/constants';
 export * from './lib/filters';
+export * from './lib/config';

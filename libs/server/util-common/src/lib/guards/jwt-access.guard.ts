@@ -3,7 +3,6 @@ import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { SKIP_AUTH_KEY } from '../constants';
 
-
 @Injectable()
 export class JwtAccessTokenGuard extends AuthGuard('jwt-access') {
   constructor(private reflector: Reflector) {
