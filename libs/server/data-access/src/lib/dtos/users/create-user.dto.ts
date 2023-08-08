@@ -1,11 +1,12 @@
 import {
   IsEmail,
   IsOptional,
+  IsString,
   IsStrongPassword,
+  IsUrl,
   MaxLength,
 } from 'class-validator';
 
-import { BaseDto } from '@libs/server/util-common';
 import {
   PASSWORD_MAX_LENGTH,
   PASSWORD_MIN_LENGTH,
@@ -14,14 +15,25 @@ import {
   PASSWORD_MIN_UPPERCASE,
 } from '@libs/shared/util-constants';
 import { ICreateUser, RoleType } from '@libs/shared/util-types';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import {
+  ApiHideProperty,
+  ApiProperty,
+  ApiPropertyOptional,
+} from '@nestjs/swagger';
 
-export class CreateUserDto extends BaseDto implements ICreateUser {
-  @ApiProperty()
+export class CreateUserDto implements ICreateUser {
+  @ApiProperty({
+    type: String,
+    example: 'wallace@thefullstack.engineer',
+  })
   @IsEmail()
   email!: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    type: String,
+    description: `Password must contain: ${PASSWORD_MIN_LENGTH} characters, ${PASSWORD_MIN_NUMBER} number(s), ${PASSWORD_MIN_UPPERCASE} uppercase letter(s), and ${PASSWORD_MIN_SYMBOL} symbol(s)`,
+    example: 'Password1!',
+  })
   @IsStrongPassword(
     {
       minLength: PASSWORD_MIN_LENGTH,
@@ -36,18 +48,21 @@ export class CreateUserDto extends BaseDto implements ICreateUser {
   @MaxLength(PASSWORD_MAX_LENGTH)
   password!: string;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ type: String })
   @IsOptional()
+  @IsString()
   firstName!: string | null;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ type: String })
   @IsOptional()
+  @IsString()
   lastName!: string | null;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ type: String })
   @IsOptional()
+  @IsUrl()
   avatar!: string | null;
 
-  @ApiPropertyOptional({ enum: RoleType })
-  role!: RoleType;
+  @ApiHideProperty()
+  role: RoleType = RoleType.USER;
 }

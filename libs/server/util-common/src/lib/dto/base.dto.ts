@@ -11,7 +11,7 @@ export class BaseDto implements IBaseEntity {
   @ApiProperty()
   updatedAt!: Date;
 
-  constructor(entity: IBaseEntity) {
+  constructor(entity: IBaseEntity, opts?: any) {
     this.id = entity.id;
     this.createdAt = entity.createdAt;
     this.updatedAt = entity.updatedAt;
