@@ -3,8 +3,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { UserOrmEntity } from '@libs/server/data-access';
 import { ServerFeatUserService } from '@libs/server/feat-user';
 import { ENV_JWT_SECRET } from '@libs/shared/util-constants';
-import { RoleType, TokenType, Uuid } from '@libs/shared/util-types';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 
@@ -23,16 +22,23 @@ export class JwtAccessStrategy extends PassportStrategy(
     });
   }
 
+  /**
+   * Called by @nestjs/passport automatically
+   *
+   * TODO: first arg is the JWT payload - need to create interface for payload
+   * TODO: can other args be passed to `validate()`?
+   */
   async validate(
-    userId: Uuid,
-    role: RoleType,
-    tokenType: TokenType
+    payload: any
+    // role: RoleType,
+    // tokenType: TokenType
   ): Promise<UserOrmEntity> {
-    if (tokenType !== TokenType.ACCESS_TOKEN) {
-      throw new UnauthorizedException();
-    }
+    Logger.debug(`Validating user ${JSON.stringify(payload, null, 2)}`);
 
-    const user = await this.userService.findUser({ id: userId, role: role });
+    const user = await this.userService.findUser({
+      id: payload.sub,
+      role: payload.role,
+    });
 
     if (!user) {
       throw new UnauthorizedException();
