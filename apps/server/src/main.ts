@@ -30,6 +30,7 @@ async function bootstrap() {
   app.enableVersioning({
     type: VersioningType.URI,
     prefix: 'v',
+    defaultVersion: '1',
   });
 
   const reflector = app.get(Reflector);
@@ -46,14 +47,14 @@ async function bootstrap() {
     })
   );
 
-  if (configService.get(ENV_ENABLE_SWAGGER)) {
-    setupSwagger(app);
-  }
-
   const globalPrefix = configService.get(ENV_API_PREFIX);
   app.setGlobalPrefix(globalPrefix);
 
   const port = configService.get(ENV_SERVER_PORT);
+
+  if (configService.get(ENV_ENABLE_SWAGGER)) {
+    setupSwagger(app);
+  }
 
   await app.listen(port);
   Logger.log(

@@ -1,8 +1,9 @@
-import { ArgumentsHost, Catch, HttpStatus, Logger } from '@nestjs/common';
-import { BaseExceptionFilter, Reflector } from '@nestjs/core';
 import { Response } from 'express';
 import { STATUS_CODES } from 'http';
 import { QueryFailedError } from 'typeorm';
+
+import { ArgumentsHost, Catch, HttpStatus, Logger } from '@nestjs/common';
+import { BaseExceptionFilter, Reflector } from '@nestjs/core';
 
 export function isQueryFailedError(
   thrownValue: unknown
@@ -36,6 +37,7 @@ export class QueryFailedFilter extends BaseExceptionFilter {
       ? HttpStatus.CONFLICT
       : HttpStatus.INTERNAL_SERVER_ERROR;
 
+    // TODO: Update this to not return the DB-generated message
     const invalidKey = exception.message.split(':').pop()?.trim();
 
     response.status(status).json({

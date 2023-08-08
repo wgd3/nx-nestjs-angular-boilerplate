@@ -1,14 +1,17 @@
 import { Exclude } from 'class-transformer';
 import { Column, Entity, VirtualColumn } from 'typeorm';
 
-import { BaseOrmEntity, UseDto } from '@libs/server/util-common';
+import { BaseOrmEntity } from '@libs/server/util-common';
 import { IUser, RoleType } from '@libs/shared/util-types';
 
-import { CreateUserDto } from '../../dtos/users/create-user.dto';
+import { UserDto } from '../../dtos';
 
 @Entity({ name: 'users' })
-@UseDto(CreateUserDto)
-export class UserOrmEntity extends BaseOrmEntity<any, any> implements IUser {
+// @UseDto(UserDto)
+export class UserOrmEntity
+  extends BaseOrmEntity<UserDto, any>
+  implements IUser
+{
   @Column({ unique: true, type: String })
   email!: string;
 
@@ -27,7 +30,7 @@ export class UserOrmEntity extends BaseOrmEntity<any, any> implements IUser {
 
   @VirtualColumn({
     query: (alias) =>
-      `SELECT CONCAT(${alias}.first_name, ' ', ${alias}.last_name)`,
+      `SELECT CONCAT(${alias}."firstName", ' ', ${alias}."lastName")`,
   })
   fullName!: string;
 
