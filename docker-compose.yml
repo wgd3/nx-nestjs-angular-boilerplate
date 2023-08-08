@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # server:
+  #   container_name: server
+  #   image: server
+  #   ports:
+  #     - 3333:3333
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - ENVIRONMENT=docker
+  #     - DATABASE_HOST=postgres # this has to match the name of the database service being used!
+  # healthcheck:
+  #   test: wget localhost:3333/api/health -q -O - > /dev/null 2>&1
+  #   interval: 10s
+  #   timeout: 5s
+  #   retries: 3
+  #   start_period: 30s
+  # depends_on:
+  #   postgres:
+  #     condition: service_healthy
+
+  db:
+    container_name: postgres
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    # explicitly set because the .env variable names don't match
+    # what is expected in the container
+    environment:
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./tmp/pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', "su -c 'pg_isready -U postgres' postgres"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
