@@ -40,7 +40,6 @@ export class UserOrmEntitySubscriber
   }
 
   async beforeUpdate({ entity, databaseEntity }: UpdateEvent<UserOrmEntity>) {
-    // FIXME check event.databaseEntity.password
     if (
       entity &&
       entity['password'] &&

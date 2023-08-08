@@ -13,7 +13,7 @@ import {
   ENV_JWT_REFRESH_EXPIRATION_TIME,
   ENV_JWT_SECRET,
 } from '@libs/shared/util-constants';
-import { IUser } from '@libs/shared/util-types';
+import { IUser, Uuid } from '@libs/shared/util-types';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
@@ -78,5 +78,13 @@ export class ServerFeatAuthService {
 
   async registerUser(dto: CreateUserDto): Promise<void> {
     await this.userService.createUser(dto);
+  }
+
+  async getMe(userId: Uuid) {
+    const user = await this.userService.findUser({ id: userId });
+    if (!user) {
+      throw new UserNotFoundException();
+    }
+    return user;
   }
 }

@@ -1,9 +1,20 @@
 import {
   CreateUserDto,
   TokenResponseDto,
+  UserDto,
   UserLoginDto,
 } from '@libs/server/data-access';
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Auth, ReqUserId } from '@libs/server/util-common';
+import { RoleType, Uuid } from '@libs/shared/util-types';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Logger,
+  Post,
+} from '@nestjs/common';
 import {
   ApiOkResponse,
   ApiTags,
@@ -42,5 +53,14 @@ export class ServerFeatAuthController {
   @ApiUnprocessableEntityResponse()
   async register(@Body() dto: CreateUserDto): Promise<void> {
     return this.authService.registerUser(dto);
+  }
+
+  @Get('me')
+  @HttpCode(HttpStatus.OK)
+  @Auth([RoleType.USER, RoleType.ADMIN])
+  @ApiOkResponse({ type: UserDto })
+  async getCurrentUser(@ReqUserId() userId: Uuid): Promise<UserDto> {
+    Logger.debug(`Looking up user with ID: ${userId}`);
+    return this.authService.getMe(userId);
   }
 }

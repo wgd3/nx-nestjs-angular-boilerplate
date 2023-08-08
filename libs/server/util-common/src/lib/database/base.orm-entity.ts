@@ -1,12 +1,14 @@
+import { instanceToPlain } from 'class-transformer';
 import {
   BaseEntity as BaseTypeormEntity,
   CreateDateColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { instanceToPlain } from 'class-transformer';
-import { BaseDto } from '../dto/base.dto';
+
 import { IBaseEntity, Uuid } from '@libs/shared/util-types';
+
+import { BaseDto } from '../dto/base.dto';
 import { Constructor } from '../types';
 
 /**
@@ -31,7 +33,7 @@ export class BaseOrmEntity<DTO extends BaseDto = BaseDto, Options = never>
   })
   updatedAt!: Date;
 
-  private dtoClass?: Constructor<DTO, [BaseOrmEntity, Options?]>;
+  private dtoClass?: Constructor<DTO, [BaseOrmEntity]>;
 
   toJSON() {
     return instanceToPlain(this);
@@ -43,6 +45,6 @@ export class BaseOrmEntity<DTO extends BaseDto = BaseDto, Options = never>
         `You need to use @UseDto on class (${this.constructor.name}) be able to call toDto function`
       );
     }
-    return new this.dtoClass(this, options);
+    return new this.dtoClass(this);
   }
 }

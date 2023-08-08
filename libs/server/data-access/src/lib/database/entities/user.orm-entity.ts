@@ -9,7 +9,7 @@ import { UserDto } from '../../dtos';
 @Entity({ name: 'users' })
 // @UseDto(UserDto)
 export class UserOrmEntity
-  extends BaseOrmEntity<UserDto, any>
+  extends BaseOrmEntity<UserDto, object>
   implements IUser
 {
   @Column({ unique: true, type: String })
