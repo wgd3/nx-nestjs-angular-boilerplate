@@ -4,7 +4,7 @@ import { UUIDParam } from '@libs/server/util-common';
 import { Uuid } from '@libs/shared/util-types';
 import { ApiTags } from '@nestjs/swagger';
 
-@Controller({path: 'users', version: '1'})
+@Controller({ path: 'users', version: '1' })
 @ApiTags('Users')
 export class ServerFeatUserController {
   constructor(private userService: ServerFeatUserService) {}

@@ -12,14 +12,13 @@ import { RolesGuard } from '../guards/role.guard';
 import { JwtAccessTokenGuard } from '../guards/jwt-access.guard';
 
 /**
- * Automatically apply certain Swagger decorators, auth decorators, and 
+ * Automatically apply certain Swagger decorators, auth decorators, and
  * token/role guards to any controller method.
  */
 export function Auth(
   roles: RoleType[] = [],
   opts?: Partial<{ public: boolean }>
 ): MethodDecorator {
-
   return applyDecorators(
     SetMetadata(ROLES_REQUEST_KEY, roles),
     SetMetadata(SKIP_AUTH_KEY, opts?.public),

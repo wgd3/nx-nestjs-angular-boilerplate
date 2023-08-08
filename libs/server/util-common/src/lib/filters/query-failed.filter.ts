@@ -17,11 +17,14 @@ export function isQueryFailedError(
  */
 @Catch(QueryFailedError)
 export class QueryFailedFilter extends BaseExceptionFilter {
-    constructor(public reflector: Reflector) {
-        super();
-    }
-    
-  public override catch(exception: QueryFailedError & { constraint?: string }, host: ArgumentsHost) {
+  constructor(public reflector: Reflector) {
+    super();
+  }
+
+  public override catch(
+    exception: QueryFailedError & { constraint?: string },
+    host: ArgumentsHost
+  ) {
     Logger.debug(JSON.stringify(exception, null, 2));
     Logger.error(exception.message);
 
@@ -33,14 +36,14 @@ export class QueryFailedFilter extends BaseExceptionFilter {
       ? HttpStatus.CONFLICT
       : HttpStatus.INTERNAL_SERVER_ERROR;
 
-      const invalidKey = exception.message.split(':').pop()?.trim();
+    const invalidKey = exception.message.split(':').pop()?.trim();
 
-      response.status(status).json({
-        error: STATUS_CODES[status],
-        message: exception.constraint
-          ? `Value for '${invalidKey}' already exists, try again`
-          : undefined,
-      });
+    response.status(status).json({
+      error: STATUS_CODES[status],
+      message: exception.constraint
+        ? `Value for '${invalidKey}' already exists, try again`
+        : undefined,
+    });
 
     // if (exception.message.includes('UNIQUE')) {
     //   const invalidKey = exception.message.split(':').pop()?.trim();
