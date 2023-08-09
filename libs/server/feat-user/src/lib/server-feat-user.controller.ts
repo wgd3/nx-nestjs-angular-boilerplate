@@ -15,7 +15,12 @@ export class ServerFeatUserController {
     return this.userService.getUsers();
   }
 
-  @Get('id')
+  /**
+   * TODO: make sure the userId in URL matches ID in token OR that requesting user is an admin
+   * @param userId
+   * @returns
+   */
+  @Get(':id')
   async getUser(@UUIDParam('id') userId: Uuid) {
     return this.userService.getUser();
   }
