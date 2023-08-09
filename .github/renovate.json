@@ -24,8 +24,7 @@
     },
     {
       "matchConfidence": ["high", "very high"],
-      "groupName": "high merge confidence",
-      "automerge": true
+      "groupName": "high merge confidence"
     },
     {
       "matchPackagePatterns": ["^@nx"],
