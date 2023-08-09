@@ -19,6 +19,7 @@ import {
   ENV_JWT_ACCESS_EXPIRATION_TIME,
   ENV_JWT_REFRESH_EXPIRATION_TIME,
   ENV_JWT_SECRET,
+  ENV_SENTRY_DSN,
   ENV_SERVER_HOST,
   ENV_SERVER_PORT,
   ENV_SWAGGER_JSON_FILE,
@@ -45,6 +46,7 @@ export const validationSchema = Joi.object({
   [ENV_CORS_ORIGINS]: Joi.string().default('*'),
   [ENV_SERVER_HOST]: Joi.string().default('localhost'),
   [ENV_SERVER_PORT]: Joi.number().default(3333),
+  [ENV_SENTRY_DSN]: Joi.string().optional(),
 
   // auth config
   [ENV_JWT_SECRET]: Joi.string().min(16).required(),

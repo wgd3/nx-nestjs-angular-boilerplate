@@ -7,10 +7,12 @@ import {
   TypeormConfigService,
   validationSchema,
 } from '@libs/server/util-common';
-import { Module } from '@nestjs/common';
+import { ENV_ENVIRONMENT, ENV_SENTRY_DSN } from '@libs/shared/util-constants';
+import { HttpException, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { SentryInterceptor, SentryModule } from '@ntegral/nestjs-sentry';
 
 @Module({
   imports: [
@@ -24,6 +26,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       useClass: TypeormConfigService,
       inject: [ConfigService],
     }),
+    SentryModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (cfg: ConfigService) => ({
+        dsn: cfg.get(ENV_SENTRY_DSN),
+        environment: cfg.get(ENV_ENVIRONMENT),
+        enabled: !!cfg.get(ENV_SENTRY_DSN),
+      }),
+    }),
     ServerFeatAuthModule,
     ServerFeatUserModule,
   ],
@@ -32,6 +43,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     {
       provide: APP_FILTER,
       useClass: QueryFailedFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useFactory: () =>
+        new SentryInterceptor({
+          filters: [
+            {
+              type: HttpException,
+              filter: (exception: HttpException) =>
+                exception.getStatus() >= 500,
+            },
+          ],
+        }),
     },
   ],
 })
