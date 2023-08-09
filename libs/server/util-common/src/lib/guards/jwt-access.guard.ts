@@ -1,8 +1,14 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import {
+  ExecutionContext,
+  ForbiddenException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 
 import { SKIP_AUTH_KEY } from '../constants';
+import { TokenExpiredException } from '../exceptions';
 
 @Injectable()
 export class JwtAccessTokenGuard extends AuthGuard('jwt-access') {
@@ -18,16 +24,13 @@ export class JwtAccessTokenGuard extends AuthGuard('jwt-access') {
     return skipAuth ?? super.canActivate(ctx);
   }
 
-  // override handleRequest(err: any, user: any, info: any) {
-  //   if (info instanceof TokenExpiredError) {
-  //     throw new ForbiddenException(
-  //       'tokenExpired',
-  //       StatusCodesList.TokenExpired
-  //     );
-  //   }
-  //   if (err || !user) {
-  //     throw err || new UnauthorizedException();
-  //   }
-  //   return user;
-  // }
+  override handleRequest(err: any, user: any, info: any) {
+    if (info instanceof TokenExpiredException) {
+      throw new ForbiddenException();
+    }
+    if (err || !user) {
+      throw err || new UnauthorizedException();
+    }
+    return user;
+  }
 }
