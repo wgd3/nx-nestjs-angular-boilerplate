@@ -31,9 +31,9 @@
 
 ### Miscellaneous
 
-- [ ] Add Sentry error reporting support
+- [x] Add Sentry error reporting support
 - [ ] Winston logging
-- [ ] Terminus health checks
+- [x] Terminus health checks
 
 ## Documentation
 

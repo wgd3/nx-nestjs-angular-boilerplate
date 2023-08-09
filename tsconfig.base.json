@@ -17,6 +17,7 @@
     "paths": {
       "@libs/server/data-access": ["libs/server/data-access/src/index.ts"],
       "@libs/server/feat-auth": ["libs/server/feat-auth/src/index.ts"],
+      "@libs/server/feat-health": ["libs/server/feat-health/src/index.ts"],
       "@libs/server/feat-user": ["libs/server/feat-user/src/index.ts"],
       "@libs/server/util-common": ["libs/server/util-common/src/index.ts"],
       "@libs/shared/util-constants": [

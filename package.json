@@ -20,6 +20,7 @@
     "@nestjs/passport": "^10.0.0",
     "@nestjs/platform-express": "^10.0.2",
     "@nestjs/swagger": "^7.1.7",
+    "@nestjs/terminus": "^10.0.1",
     "@nestjs/typeorm": "^10.0.0",
     "@ntegral/nestjs-sentry": "^4.0.0",
     "@nx/angular": "16.6.0",

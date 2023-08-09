@@ -1,4 +1,5 @@
 import { ServerFeatAuthModule } from '@libs/server/feat-auth';
+import { ServerFeatureHealthModule } from '@libs/server/feat-health';
 import { ServerFeatUserModule } from '@libs/server/feat-user';
 import {
   appConfig,
@@ -11,6 +12,7 @@ import { ENV_ENVIRONMENT, ENV_SENTRY_DSN } from '@libs/shared/util-constants';
 import { HttpException, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { TerminusModule } from '@nestjs/terminus';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SentryInterceptor, SentryModule } from '@ntegral/nestjs-sentry';
 
@@ -35,8 +37,10 @@ import { SentryInterceptor, SentryModule } from '@ntegral/nestjs-sentry';
         enabled: !!cfg.get(ENV_SENTRY_DSN),
       }),
     }),
+    TerminusModule.forRoot(),
     ServerFeatAuthModule,
     ServerFeatUserModule,
+    ServerFeatureHealthModule,
   ],
   controllers: [],
   providers: [
