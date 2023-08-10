@@ -13,6 +13,18 @@ import {
   ENV_DATABASE_SYNCHRONIZE,
   ENV_DATABASE_TYPE,
   ENV_DATABASE_USERNAME,
+  ENV_EMAIL_DEBUG,
+  ENV_EMAIL_DEFAULT_EMAIL,
+  ENV_EMAIL_DEFAULT_NAME,
+  ENV_EMAIL_ENABLED,
+  ENV_EMAIL_HOST,
+  ENV_EMAIL_IGNORE_TLS,
+  ENV_EMAIL_PASSWORD,
+  ENV_EMAIL_PORT,
+  ENV_EMAIL_REQUIRE_TLS,
+  ENV_EMAIL_SECURE,
+  ENV_EMAIL_TEMPLATE_DIR,
+  ENV_EMAIL_USER,
   ENV_ENABLE_SWAGGER,
   ENV_ENVIRONMENT,
   ENV_GENERATE_SWAGGER_JSON,
@@ -92,6 +104,64 @@ export const validationSchema = Joi.object({
   }),
   [ENV_DATABASE_LOGGING_ENABLED]: Joi.boolean().optional().default(false),
   [ENV_DATABASE_SYNCHRONIZE]: Joi.boolean().default(true),
+
+  // mailer config
+  [ENV_EMAIL_ENABLED]: Joi.boolean().default(false),
+  [ENV_EMAIL_HOST]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_EMAIL_PORT]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.number().required(),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_EMAIL_USER]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_EMAIL_PASSWORD]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_EMAIL_TEMPLATE_DIR]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_EMAIL_IGNORE_TLS]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.boolean().required().default(false),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_EMAIL_REQUIRE_TLS]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.boolean().required().default(true),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_EMAIL_SECURE]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.boolean().required().default(true),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_EMAIL_DEBUG]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.boolean().required().default(false),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_EMAIL_DEFAULT_EMAIL]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_EMAIL_DEFAULT_NAME]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
 
   // social config
   [ENV_SOCIAL_GOOGLE_ENABLED]: Joi.boolean().optional().default(false),
