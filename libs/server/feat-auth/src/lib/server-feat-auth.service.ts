@@ -14,12 +14,13 @@ import {
   ENV_JWT_SECRET,
 } from '@libs/shared/util-constants';
 import { IUser, Uuid } from '@libs/shared/util-types';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class ServerFeatAuthService {
+  private logger = new Logger(ServerFeatAuthService.name);
   constructor(
     private jwtService: JwtService,
     private userService: ServerFeatUserService,
@@ -40,9 +41,14 @@ export class ServerFeatAuthService {
     });
   }
 
-  async generateRefreshToken(data: Pick<IUser, 'id'>): Promise<string> {
+  async generateRefreshToken(
+    data: Pick<IUser, 'id' | 'email' | 'role'>
+  ): Promise<string> {
     return await this.jwtService.signAsync(
-      {},
+      {
+        email: data.email,
+        role: data.role,
+      },
       {
         expiresIn: this.configService.get(ENV_JWT_REFRESH_EXPIRATION_TIME),
         subject: data.id,
@@ -86,5 +92,19 @@ export class ServerFeatAuthService {
       throw new UserNotFoundException();
     }
     return user;
+  }
+
+  async refreshTokens(userId: string, refreshToken: string) {
+    this.logger.debug(
+      `Refreshing tokens using refresh token:\n${refreshToken}`
+    );
+    if (!userId || refreshToken == '') {
+      throw new UnauthorizedException();
+    }
+
+    // TODO: update this once UserOrmEntity has a refreshToken property
+
+    const user = await this.userService.getUser(userId);
+    return await this.getTokens(user);
   }
 }

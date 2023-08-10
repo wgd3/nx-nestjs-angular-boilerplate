@@ -1,11 +1,17 @@
+import { Request } from 'express';
+
 import {
   CreateUserDto,
   TokenResponseDto,
   UserDto,
   UserLoginDto,
 } from '@libs/server/data-access';
-import { Auth, ReqUserId } from '@libs/server/util-common';
-import { RoleType, Uuid } from '@libs/shared/util-types';
+import {
+  Auth,
+  JwtRefreshTokenGuard,
+  ReqUserId,
+} from '@libs/server/util-common';
+import { IRequestUserData, RoleType, Uuid } from '@libs/shared/util-types';
 import {
   Body,
   Controller,
@@ -14,8 +20,11 @@ import {
   HttpStatus,
   Logger,
   Post,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOkResponse,
   ApiTags,
   ApiUnprocessableEntityResponse,
@@ -29,6 +38,7 @@ import { ServerFeatAuthService } from './server-feat-auth.service';
 })
 @ApiTags('Authentication')
 export class ServerFeatAuthController {
+  private logger = new Logger('AuthController');
   constructor(private authService: ServerFeatAuthService) {}
 
   @Post('email/login')
@@ -62,5 +72,14 @@ export class ServerFeatAuthController {
   async getCurrentUser(@ReqUserId() userId: Uuid): Promise<UserDto> {
     Logger.debug(`Looking up user with ID: ${userId}`);
     return this.authService.getMe(userId);
+  }
+
+  @Get('refresh')
+  @ApiBearerAuth()
+  @UseGuards(JwtRefreshTokenGuard)
+  async refresh(@Req() req: Request): Promise<TokenResponseDto> {
+    const user = req.user as IRequestUserData & { refreshToken: string };
+    this.logger.debug(`Refreshing token for ${user.email}`);
+    return this.authService.refreshTokens(user.id, user.refreshToken);
   }
 }

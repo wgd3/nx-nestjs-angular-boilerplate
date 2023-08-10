@@ -7,11 +7,11 @@ import {
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 
-import { SKIP_AUTH_KEY } from '../constants';
+import { SKIP_AUTH_KEY, STRATEGY_JWT_ACCESS } from '../constants';
 import { TokenExpiredException } from '../exceptions';
 
 @Injectable()
-export class JwtAccessTokenGuard extends AuthGuard('jwt-access') {
+export class JwtAccessTokenGuard extends AuthGuard(STRATEGY_JWT_ACCESS) {
   constructor(private reflector: Reflector) {
     super();
   }
