@@ -1,3 +1,11 @@
+---
+name: "\U0001F41B Bug Report"
+about: "If something isn't working as expected \U0001F914."
+title: ''
+labels: 'i: bug, i: needs triage'
+assignees: ''
+---
+
 Issue tracker is **ONLY** used for reporting bugs. New features should be discussed on our slack channel. Please use [stackoverflow](https://stackoverflow.com) for supporting issues.
 
 <!--- Provide a general summary of the issue in the Title above -->
