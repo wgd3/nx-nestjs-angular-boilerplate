@@ -10,8 +10,9 @@ import { ServerFeatUserService } from '@libs/server/feat-user';
 import { UserNotFoundException } from '@libs/server/util-common';
 import {
   ENV_JWT_ACCESS_EXPIRATION_TIME,
+  ENV_JWT_ACCESS_SECRET,
   ENV_JWT_REFRESH_EXPIRATION_TIME,
-  ENV_JWT_SECRET,
+  ENV_JWT_REFRESH_SECRET,
 } from '@libs/shared/util-constants';
 import { IUser, Uuid } from '@libs/shared/util-types';
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
@@ -37,7 +38,7 @@ export class ServerFeatAuthService {
     return await this.jwtService.signAsync(payload, {
       expiresIn: this.configService.get(ENV_JWT_ACCESS_EXPIRATION_TIME),
       subject: data.id,
-      secret: this.configService.get(ENV_JWT_SECRET),
+      secret: this.configService.get(ENV_JWT_ACCESS_SECRET),
     });
   }
 
@@ -52,7 +53,7 @@ export class ServerFeatAuthService {
       {
         expiresIn: this.configService.get(ENV_JWT_REFRESH_EXPIRATION_TIME),
         subject: data.id,
-        secret: this.configService.get(ENV_JWT_SECRET),
+        secret: this.configService.get(ENV_JWT_REFRESH_SECRET),
       }
     );
   }
@@ -95,9 +96,6 @@ export class ServerFeatAuthService {
   }
 
   async refreshTokens(userId: string, refreshToken: string) {
-    this.logger.debug(
-      `Refreshing tokens using refresh token:\n${refreshToken}`
-    );
     if (!userId || refreshToken == '') {
       throw new UnauthorizedException();
     }

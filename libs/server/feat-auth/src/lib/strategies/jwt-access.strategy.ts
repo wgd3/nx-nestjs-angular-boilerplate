@@ -2,7 +2,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { ServerFeatUserService } from '@libs/server/feat-user';
 import { STRATEGY_JWT_ACCESS } from '@libs/server/util-common';
-import { ENV_JWT_SECRET } from '@libs/shared/util-constants';
+import { ENV_JWT_ACCESS_SECRET } from '@libs/shared/util-constants';
 import { IJwtPayload, IRequestUserData } from '@libs/shared/util-types';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -19,7 +19,7 @@ export class JwtAccessStrategy extends PassportStrategy(
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: configService.get(ENV_JWT_SECRET),
+      secretOrKey: configService.get(ENV_JWT_ACCESS_SECRET),
     });
   }
 

@@ -24,14 +24,10 @@ export class JwtRefreshTokenGuard extends AuthGuard(STRATEGY_JWT_REFRESH) {
   ): boolean | Promise<boolean> | Observable<boolean> {
     // Add your custom authentication logic here
     // for example, call super.logIn(request) to establish a session.
-    this.logger.debug(`calling canActivate`);
     return super.canActivate(context);
   }
 
   override handleRequest(err: any, user: any, info: any) {
-    this.logger.debug(
-      `handling request, user: ${JSON.stringify(user, null, 2)}`
-    );
     if (info instanceof TokenExpiredException) {
       throw new ForbiddenException();
     }
