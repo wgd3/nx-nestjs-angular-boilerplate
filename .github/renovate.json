@@ -10,7 +10,6 @@
     "monorepo:jest",
     "group:monorepos"
   ],
-  "automergeType": "pr",
   "semanticCommitScope": "deps",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
