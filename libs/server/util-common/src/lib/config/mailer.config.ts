@@ -32,16 +32,18 @@ export interface IMailerConfig {
 }
 
 export const mailerConfig = registerAs(CONFIG_NAMESPACE_MAILER, () => ({
-  enabled: process.env[ENV_EMAIL_ENABLED],
-  host: process.env[ENV_EMAIL_HOST],
-  port: process.env[ENV_EMAIL_PORT],
-  user: process.env[ENV_EMAIL_USER],
-  password: process.env[ENV_EMAIL_PASSWORD],
-  templateDir: process.env[ENV_EMAIL_TEMPLATE_DIR],
-  ignoreTls: process.env[ENV_EMAIL_IGNORE_TLS],
-  secure: process.env[ENV_EMAIL_SECURE],
-  requireTls: process.env[ENV_EMAIL_REQUIRE_TLS],
-  debug: process.env[ENV_EMAIL_DEBUG],
-  defaultName: process.env[ENV_EMAIL_DEFAULT_NAME],
-  defaultEmail: process.env[ENV_EMAIL_DEFAULT_EMAIL],
+  enabled: process.env[ENV_EMAIL_ENABLED] === 'true',
+  host: process.env[ENV_EMAIL_HOST] ?? '',
+  port: process.env[ENV_EMAIL_PORT]
+    ? parseInt(process.env[ENV_EMAIL_PORT])
+    : 587,
+  user: process.env[ENV_EMAIL_USER] ?? '',
+  password: process.env[ENV_EMAIL_PASSWORD] ?? '',
+  templateDir: process.env[ENV_EMAIL_TEMPLATE_DIR] ?? '',
+  ignoreTls: !!process.env[ENV_EMAIL_IGNORE_TLS] ?? false,
+  secure: !!process.env[ENV_EMAIL_SECURE] ?? true,
+  requireTls: !!process.env[ENV_EMAIL_REQUIRE_TLS] ?? true,
+  debug: !!process.env[ENV_EMAIL_DEBUG] ?? false,
+  defaultName: process.env[ENV_EMAIL_DEFAULT_NAME] ?? '',
+  defaultEmail: process.env[ENV_EMAIL_DEFAULT_EMAIL] ?? '',
 }));

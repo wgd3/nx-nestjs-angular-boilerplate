@@ -1,31 +1,38 @@
 import * as Handlebars from 'handlebars';
 import * as fs from 'node:fs/promises';
-import * as nodemailer from 'nodemailer';
+import { createTransport, SendMailOptions, Transporter } from 'nodemailer';
 
-import { IMailerConfig } from '@libs/server/util-common';
-import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { mailerConfig } from '@libs/server/util-common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
+import { ConfigType } from '@nestjs/config';
+
+import SMTPTransport = require('nodemailer/lib/smtp-transport');
 
 @Injectable()
 export class ServerUtilMailerService {
-  private readonly transporter: nodemailer.Transporter | undefined;
+  private readonly transporter!: Transporter;
   private logger = new Logger('MailerService');
 
-  constructor(private readonly cfgService: ConfigService<IMailerConfig>) {
-    if (cfgService.get('enabled', { infer: true })) {
+  constructor(
+    @Inject(mailerConfig.KEY)
+    private readonly cfgService: ConfigType<typeof mailerConfig>
+  ) {
+    if (cfgService.enabled) {
       this.logger.debug(`Configuring nodemailer`);
-      this.transporter = nodemailer.createTransport({
-        host: cfgService.get('host', { infer: true }),
-        port: cfgService.get('port', { infer: true }),
-        ignoreTLS: cfgService.get('ignoreTls', { infer: true }),
-        secure: cfgService.get('secure', { infer: true }),
-        requireTLS: cfgService.get('requireTls', { infer: true }),
+      const options: SMTPTransport.Options = {
+        host: cfgService.host,
+        port: cfgService.port,
+        ignoreTLS: cfgService.ignoreTls,
+        secure: cfgService.secure,
+        requireTLS: cfgService.requireTls,
         auth: {
-          user: cfgService.get('user', { infer: true }),
-          pass: cfgService.get('password', { infer: true }),
+          user: cfgService.user,
+          pass: cfgService.password,
         },
-        debug: cfgService.get('debug', { infer: true }),
-      });
+        debug: cfgService.debug,
+        logger: true,
+      };
+      this.transporter = createTransport(options);
     } else {
       this.logger.debug(`nodemailer is disabled, skipping configuration`);
     }
@@ -35,7 +42,7 @@ export class ServerUtilMailerService {
     templatePath,
     context,
     ...mailOptions
-  }: nodemailer.SendMailOptions & {
+  }: SendMailOptions & {
     templatePath: string;
     context: Record<string, unknown>;
   }): Promise<void> {
@@ -51,11 +58,7 @@ export class ServerUtilMailerService {
       ...mailOptions,
       from: mailOptions.from
         ? mailOptions.from
-        : `"${this.cfgService.get('defaultName', {
-            infer: true,
-          })}" <${this.cfgService.get('defaultEmail', {
-            infer: true,
-          })}>`,
+        : `"${this.cfgService.defaultName}" <${this.cfgService.defaultEmail}>`,
       html: mailOptions.html ? mailOptions.html : html,
     });
   }

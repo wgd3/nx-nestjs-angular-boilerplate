@@ -106,7 +106,7 @@ export const validationSchema = Joi.object({
   [ENV_DATABASE_SYNCHRONIZE]: Joi.boolean().default(true),
 
   // mailer config
-  [ENV_EMAIL_ENABLED]: Joi.boolean().optional().default(false),
+  [ENV_EMAIL_ENABLED]: Joi.boolean().default(false),
   [ENV_EMAIL_HOST]: Joi.when(ENV_EMAIL_ENABLED, {
     is: true,
     then: Joi.string().required(),
