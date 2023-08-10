@@ -13,6 +13,7 @@ import { ServerFeatAuthController } from './server-feat-auth.controller';
 import { ServerFeatAuthService } from './server-feat-auth.service';
 import { JwtAccessStrategy } from './strategies/jwt-access.strategy';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
+import { GoogleAuthModule } from './google-auth/google-auth.module';
 
 const jwtStrategies: Provider[] = [JwtAccessStrategy, JwtRefreshStrategy];
 
@@ -30,6 +31,7 @@ const jwtStrategies: Provider[] = [JwtAccessStrategy, JwtRefreshStrategy];
       }),
       inject: [ConfigService],
     }),
+    GoogleAuthModule,
   ],
   controllers: [ServerFeatAuthController],
   providers: [...jwtStrategies, ServerFeatAuthService],
