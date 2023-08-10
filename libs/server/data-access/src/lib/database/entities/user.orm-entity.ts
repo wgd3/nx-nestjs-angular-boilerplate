@@ -2,7 +2,7 @@ import { Exclude } from 'class-transformer';
 import { Column, Entity, VirtualColumn } from 'typeorm';
 
 import { BaseOrmEntity } from '@libs/server/util-common';
-import { IUser, RoleType } from '@libs/shared/util-types';
+import { IUserEntity, RoleType } from '@libs/shared/util-types';
 
 import { UserDto } from '../../dtos';
 
@@ -10,7 +10,7 @@ import { UserDto } from '../../dtos';
 // @UseDto(UserDto)
 export class UserOrmEntity
   extends BaseOrmEntity<UserDto, object>
-  implements IUser
+  implements IUserEntity
 {
   @Column({ unique: true, type: String })
   email!: string;
@@ -40,4 +40,8 @@ export class UserOrmEntity
     default: RoleType.USER,
   })
   role!: RoleType;
+
+  @Column({ nullable: true, type: String })
+  @Exclude({ toPlainOnly: true })
+  refreshToken!: string | null;
 }

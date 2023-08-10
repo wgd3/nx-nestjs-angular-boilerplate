@@ -14,8 +14,13 @@ import {
   ENV_JWT_REFRESH_EXPIRATION_TIME,
   ENV_JWT_REFRESH_SECRET,
 } from '@libs/shared/util-constants';
-import { IUser, Uuid } from '@libs/shared/util-types';
-import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { IUserEntity, Uuid } from '@libs/shared/util-types';
+import {
+  ForbiddenException,
+  Injectable,
+  Logger,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 
@@ -29,7 +34,7 @@ export class ServerFeatAuthService {
   ) {}
 
   async generateAccessToken(
-    data: Pick<IUser, 'id' | 'email' | 'role'>
+    data: Pick<IUserEntity, 'id' | 'email' | 'role'>
   ): Promise<string> {
     const payload = {
       email: data.email,
@@ -43,9 +48,9 @@ export class ServerFeatAuthService {
   }
 
   async generateRefreshToken(
-    data: Pick<IUser, 'id' | 'email' | 'role'>
+    data: Pick<IUserEntity, 'id' | 'email' | 'role'>
   ): Promise<string> {
-    return await this.jwtService.signAsync(
+    const token = await this.jwtService.signAsync(
       {
         email: data.email,
         role: data.role,
@@ -56,15 +61,18 @@ export class ServerFeatAuthService {
         secret: this.configService.get(ENV_JWT_REFRESH_SECRET),
       }
     );
+    await this.updateUserRefreshToken(data.id, token);
+    return token;
   }
 
   async getTokens(
-    data: Pick<IUser, 'id' | 'email' | 'role'>
+    data: Pick<IUserEntity, 'id' | 'email' | 'role'>
   ): Promise<TokenResponseDto> {
     const [accessToken, refreshToken] = await Promise.all([
       await this.generateAccessToken(data),
       await this.generateRefreshToken(data),
     ]);
+
     return new TokenResponseDto({ accessToken, refreshToken });
   }
 
@@ -100,9 +108,19 @@ export class ServerFeatAuthService {
       throw new UnauthorizedException();
     }
 
-    // TODO: update this once UserOrmEntity has a refreshToken property
-
     const user = await this.userService.getUser(userId);
+    const tokensMatch = await bcrypt.compare(
+      refreshToken,
+      user.refreshToken ?? ''
+    );
+    if (!tokensMatch) {
+      throw new ForbiddenException(`Invalid refresh token`);
+    }
     return await this.getTokens(user);
+  }
+
+  async updateUserRefreshToken(userId: string, refreshToken: string) {
+    const hashed = await bcrypt.hash(refreshToken, 10);
+    await this.userService.updateUser(userId, { refreshToken: hashed });
   }
 }

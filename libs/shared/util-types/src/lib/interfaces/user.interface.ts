@@ -1,13 +1,14 @@
 import { RoleType } from '../enums';
 import { IBaseEntity } from './base-entity.interface';
 
-export interface IUser extends IBaseEntity {
+export interface IUserEntity extends IBaseEntity {
   email: string;
   password: string;
   firstName: string | null;
   lastName: string | null;
   avatar: string | null;
   role: RoleType;
+  refreshToken: string | null;
 }
 
 /**
@@ -15,9 +16,9 @@ export interface IUser extends IBaseEntity {
  * can not be sent over the network (serialized to strings), and we want to exclude certain
  * properties from the response.
  */
-export type ISerializedUser = Omit<
-  IUser,
-  'createdAt' | 'updatedAt' | 'password'
+export type IUser = Omit<
+  IUserEntity,
+  'createdAt' | 'updatedAt' | 'password' | 'refreshToken'
 > & {
   createdAt: string;
   updatedAt: string;
@@ -27,6 +28,6 @@ export type ISerializedUser = Omit<
  * `id`, `createdAt`, and `updatedAt` are all auto-populated. All other fields are
  * "required" - but the names and avatar can accept `null`.
  */
-export type ICreateUser = Omit<IUser, keyof IBaseEntity>;
+export type ICreateUser = Omit<IUserEntity, keyof IBaseEntity | 'refreshToken'>;
 
 export type IUpdateUser = Partial<ICreateUser>;
