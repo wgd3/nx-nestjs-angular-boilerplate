@@ -2,7 +2,11 @@ import { Exclude } from 'class-transformer';
 import { Column, Entity, VirtualColumn } from 'typeorm';
 
 import { BaseOrmEntity } from '@libs/server/util-common';
-import { IUserEntity, RoleType } from '@libs/shared/util-types';
+import {
+  IUserEntity,
+  RoleType,
+  SocialAuthProviderType,
+} from '@libs/shared/util-types';
 
 import { UserDto } from '../../dtos';
 
@@ -15,9 +19,9 @@ export class UserOrmEntity
   @Column({ unique: true, type: String })
   email!: string;
 
-  @Column()
+  @Column({ nullable: true, type: String })
   @Exclude({ toPlainOnly: true })
-  password!: string;
+  password!: string | null;
 
   @Column({ nullable: true, type: String })
   firstName!: string | null;
@@ -44,4 +48,19 @@ export class UserOrmEntity
   @Column({ nullable: true, type: String })
   @Exclude({ toPlainOnly: true })
   refreshToken!: string | null;
+
+  @Column({
+    type: 'simple-enum',
+    enum: SocialAuthProviderType,
+    nullable: true,
+  })
+  @Exclude({ toPlainOnly: true })
+  socialProvider!: SocialAuthProviderType | null;
+
+  @Column({
+    type: String,
+    nullable: true,
+  })
+  @Exclude({ toPlainOnly: true })
+  socialId!: string | null;
 }

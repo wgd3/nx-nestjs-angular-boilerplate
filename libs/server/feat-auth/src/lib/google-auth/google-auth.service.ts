@@ -46,6 +46,7 @@ export class GoogleAuthService {
       email: data.email,
       firstName: data.given_name,
       lastName: data.family_name,
+      avatar: data.picture,
     };
   }
 }

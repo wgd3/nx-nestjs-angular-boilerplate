@@ -1,14 +1,20 @@
-import { RoleType } from '../enums';
+import { RoleType, SocialAuthProviderType } from '../enums';
 import { IBaseEntity } from './base-entity.interface';
 
 export interface IUserEntity extends IBaseEntity {
   email: string;
-  password: string;
+  password: string | null;
   firstName: string | null;
   lastName: string | null;
   avatar: string | null;
   role: RoleType;
   refreshToken: string | null;
+  socialProvider: SocialAuthProviderType | null;
+
+  /**
+   * Provider-specified user ID
+   */
+  socialId: string | null;
 }
 
 /**
@@ -18,7 +24,12 @@ export interface IUserEntity extends IBaseEntity {
  */
 export type IUser = Omit<
   IUserEntity,
-  'createdAt' | 'updatedAt' | 'password' | 'refreshToken'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'password'
+  | 'refreshToken'
+  | 'socialProvider'
+  | 'socialId'
 > & {
   createdAt: string;
   updatedAt: string;

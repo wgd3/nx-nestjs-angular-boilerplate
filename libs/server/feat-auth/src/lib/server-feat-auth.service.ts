@@ -19,6 +19,7 @@ import {
   ITokenResponse,
   IUserEntity,
   RoleType,
+  SocialAuthProviderType,
   Uuid,
 } from '@libs/shared/util-types';
 import {
@@ -88,7 +89,7 @@ export class ServerFeatAuthService {
 
     const isPasswordValid = await bcrypt.compare(
       userLoginDto.password,
-      user.password
+      user.password ?? ''
     );
 
     if (!isPasswordValid) {
@@ -132,7 +133,7 @@ export class ServerFeatAuthService {
   }
 
   async validateSocialUser(
-    provider: string,
+    provider: SocialAuthProviderType,
     data: ISocialPayload
   ): Promise<ITokenResponse> {
     if (!data.email) {
@@ -157,6 +158,11 @@ export class ServerFeatAuthService {
       firstName: data.firstName ?? null,
       role: RoleType.USER,
       avatar: null,
+      password: null,
+      socialProvider: provider,
+      socialId: data.id,
     });
+
+    return this.getTokens(user);
   }
 }

@@ -3,4 +3,5 @@ export interface ISocialPayload {
   firstName?: string;
   lastName?: string;
   email?: string;
+  avatar?: string;
 }
