@@ -10,6 +10,7 @@ import {
   TypeormConfigService,
   validationSchema,
 } from '@libs/server/util-common';
+import { ServerUtilMailerModule } from '@libs/server/util-mailer';
 import { ENV_ENVIRONMENT, ENV_SENTRY_DSN } from '@libs/shared/util-constants';
 import { HttpException, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -43,6 +44,7 @@ import { SentryInterceptor, SentryModule } from '@ntegral/nestjs-sentry';
     ServerFeatAuthModule,
     ServerFeatUserModule,
     ServerFeatureHealthModule,
+    ServerUtilMailerModule,
   ],
   controllers: [],
   providers: [
