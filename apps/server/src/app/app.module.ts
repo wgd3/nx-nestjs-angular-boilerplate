@@ -5,6 +5,7 @@ import {
   appConfig,
   dbConfig,
   googleConfig,
+  mailerConfig,
   QueryFailedFilter,
   TypeormConfigService,
   validationSchema,
@@ -22,7 +23,7 @@ import { SentryInterceptor, SentryModule } from '@ntegral/nestjs-sentry';
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
-      load: [appConfig, dbConfig, googleConfig],
+      load: [appConfig, dbConfig, googleConfig, mailerConfig],
       validationSchema,
     }),
     TypeOrmModule.forRootAsync({
