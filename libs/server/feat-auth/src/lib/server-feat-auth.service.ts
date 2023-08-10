@@ -14,12 +14,19 @@ import {
   ENV_JWT_REFRESH_EXPIRATION_TIME,
   ENV_JWT_REFRESH_SECRET,
 } from '@libs/shared/util-constants';
-import { IUserEntity, Uuid } from '@libs/shared/util-types';
+import {
+  ISocialPayload,
+  ITokenResponse,
+  IUserEntity,
+  RoleType,
+  Uuid,
+} from '@libs/shared/util-types';
 import {
   ForbiddenException,
   Injectable,
   Logger,
   UnauthorizedException,
+  UnprocessableEntityException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
@@ -122,5 +129,34 @@ export class ServerFeatAuthService {
   async updateUserRefreshToken(userId: string, refreshToken: string) {
     const hashed = await bcrypt.hash(refreshToken, 10);
     await this.userService.updateUser(userId, { refreshToken: hashed });
+  }
+
+  async validateSocialUser(
+    provider: string,
+    data: ISocialPayload
+  ): Promise<ITokenResponse> {
+    if (!data.email) {
+      throw new UnprocessableEntityException(
+        `Profile from ${provider} does not include an email. An email address is required in order to create an account!`
+      );
+    }
+    let user = await this.userService.findByUsernameOrEmail({
+      email: data.email,
+    });
+
+    if (user) {
+      return this.getTokens(user);
+    }
+    this.logger.debug(
+      `No user found! Creating new user based on profile from ${provider}`
+    );
+
+    user = await this.userService.createUser({
+      email: data.email,
+      lastName: data.lastName ?? null,
+      firstName: data.firstName ?? null,
+      role: RoleType.USER,
+      avatar: null,
+    });
   }
 }
