@@ -4,8 +4,8 @@
 
 ### Authentication and Authorization
 
-- [ ] Incorporate social logins
-  - [ ] Google
+- [x] Incorporate social logins
+  - [x] Google
   - [ ] Apple
 - [x] Add refresh token support
   - [x] track current refresh token in database
