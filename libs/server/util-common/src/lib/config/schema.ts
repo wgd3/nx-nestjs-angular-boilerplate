@@ -17,8 +17,9 @@ import {
   ENV_ENVIRONMENT,
   ENV_GENERATE_SWAGGER_JSON,
   ENV_JWT_ACCESS_EXPIRATION_TIME,
+  ENV_JWT_ACCESS_SECRET,
   ENV_JWT_REFRESH_EXPIRATION_TIME,
-  ENV_JWT_SECRET,
+  ENV_JWT_REFRESH_SECRET,
   ENV_SENTRY_DSN,
   ENV_SERVER_HOST,
   ENV_SERVER_PORT,
@@ -49,7 +50,8 @@ export const validationSchema = Joi.object({
   [ENV_SENTRY_DSN]: Joi.string().optional(),
 
   // auth config
-  [ENV_JWT_SECRET]: Joi.string().min(16).required(),
+  [ENV_JWT_ACCESS_SECRET]: Joi.string().min(16).required(),
+  [ENV_JWT_REFRESH_SECRET]: Joi.string().min(16).required(),
   [ENV_JWT_ACCESS_EXPIRATION_TIME]: Joi.string().default('3600s'),
   [ENV_JWT_REFRESH_EXPIRATION_TIME]: Joi.string().default('86400s'),
 

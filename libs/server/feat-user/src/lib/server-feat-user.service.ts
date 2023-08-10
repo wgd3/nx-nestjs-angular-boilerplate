@@ -1,12 +1,8 @@
 import { FindOptionsWhere, Repository } from 'typeorm';
 
 import { CreateUserDto, UserOrmEntity } from '@libs/server/data-access';
-import { RoleType } from '@libs/shared/util-types';
-import {
-  Injectable,
-  NotFoundException,
-  NotImplementedException,
-} from '@nestjs/common';
+import { IUserEntity, RoleType, Uuid } from '@libs/shared/util-types';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -48,8 +44,8 @@ export class ServerFeatUserService {
     return user;
   }
 
-  getUser() {
-    throw new NotImplementedException();
+  async getUser(userId: Uuid) {
+    return await this.userRepo.findOneOrFail({ where: { id: userId } });
   }
 
   async getUsers() {
@@ -68,5 +64,9 @@ export class ServerFeatUserService {
     }
 
     return user;
+  }
+
+  async updateUser(userId: Uuid, data: Partial<IUserEntity>) {
+    await this.userRepo.save({ id: userId, ...data });
   }
 }

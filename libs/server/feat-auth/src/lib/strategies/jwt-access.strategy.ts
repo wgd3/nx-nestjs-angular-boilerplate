@@ -1,8 +1,9 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
-import { UserOrmEntity } from '@libs/server/data-access';
 import { ServerFeatUserService } from '@libs/server/feat-user';
-import { ENV_JWT_SECRET } from '@libs/shared/util-constants';
+import { STRATEGY_JWT_ACCESS } from '@libs/server/util-common';
+import { ENV_JWT_ACCESS_SECRET } from '@libs/shared/util-constants';
+import { IJwtPayload, IRequestUserData } from '@libs/shared/util-types';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
@@ -10,7 +11,7 @@ import { PassportStrategy } from '@nestjs/passport';
 @Injectable()
 export class JwtAccessStrategy extends PassportStrategy(
   Strategy,
-  'jwt-access'
+  STRATEGY_JWT_ACCESS
 ) {
   constructor(
     private configService: ConfigService,
@@ -18,7 +19,7 @@ export class JwtAccessStrategy extends PassportStrategy(
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: configService.get(ENV_JWT_SECRET),
+      secretOrKey: configService.get(ENV_JWT_ACCESS_SECRET),
     });
   }
 
@@ -28,7 +29,7 @@ export class JwtAccessStrategy extends PassportStrategy(
    * request to assemble a `user` property.
    *
    */
-  async validate(payload: any): Promise<UserOrmEntity> {
+  async validate(payload: IJwtPayload): Promise<IRequestUserData> {
     const user = await this.userService.findUser({
       id: payload.sub,
       role: payload.role,
@@ -38,6 +39,10 @@ export class JwtAccessStrategy extends PassportStrategy(
       throw new UnauthorizedException();
     }
 
-    return user;
+    return {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    };
   }
 }

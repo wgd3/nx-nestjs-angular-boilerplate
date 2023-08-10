@@ -1,42 +1,54 @@
+import { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
-import { UserOrmEntity } from '@libs/server/data-access';
 import { ServerFeatUserService } from '@libs/server/feat-user';
-import { ENV_JWT_SECRET } from '@libs/shared/util-constants';
-import { RoleType, TokenType, Uuid } from '@libs/shared/util-types';
-import { UnauthorizedException } from '@nestjs/common';
+import { STRATEGY_JWT_REFRESH } from '@libs/server/util-common';
+import { ENV_JWT_REFRESH_SECRET } from '@libs/shared/util-constants';
+import { IJwtPayload, IRequestUserData } from '@libs/shared/util-types';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 
-export class JwtAccessStrategy extends PassportStrategy(
+@Injectable()
+export class JwtRefreshStrategy extends PassportStrategy(
   Strategy,
-  'jwt-access'
+  STRATEGY_JWT_REFRESH
 ) {
+  private logger = new Logger(JwtRefreshStrategy.name);
   constructor(
     private configService: ConfigService,
     private userService: ServerFeatUserService
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: configService.get(ENV_JWT_SECRET),
+      secretOrKey: configService.get(ENV_JWT_REFRESH_SECRET),
+      passReqToCallback: true,
     });
   }
 
   async validate(
-    userId: Uuid,
-    role: RoleType,
-    tokenType: TokenType
-  ): Promise<UserOrmEntity> {
-    if (tokenType !== TokenType.REFRESH_TOKEN) {
-      throw new UnauthorizedException();
-    }
-
-    const user = await this.userService.findUser({ id: userId, role: role });
+    req: Request,
+    payload: IJwtPayload
+  ): Promise<IRequestUserData & { refreshToken: string }> {
+    const refreshToken =
+      req.get('Authorization')?.replace('Bearer', '').trim() ?? '';
+    this.logger.debug(
+      `Validating refresh token for ${payload.email}\n${refreshToken}`
+    );
+    const user = await this.userService.findUser({
+      id: payload.sub,
+      role: payload.role,
+    });
 
     if (!user) {
       throw new UnauthorizedException();
     }
 
-    return user;
+    return {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+      refreshToken,
+    };
   }
 }

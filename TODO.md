@@ -7,9 +7,9 @@
 - [ ] Incorporate social logins
   - [ ] Google
   - [ ] Apple
-- [ ] Add refresh token support
-  - [ ] track current refresh token in database
-  - [ ] add `/auth/email/refresh` route to refresh access token
+- [x] Add refresh token support
+  - [x] track current refresh token in database
+  - [x] add `/auth/email/refresh` route to refresh access token
 - [ ] 2FA support
 
 ### User Management

@@ -22,6 +22,6 @@ export class ServerFeatUserController {
    */
   @Get(':id')
   async getUser(@UUIDParam('id') userId: Uuid) {
-    return this.userService.getUser();
+    return this.userService.getUser(userId);
   }
 }
