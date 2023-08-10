@@ -23,6 +23,9 @@ import {
   ENV_SENTRY_DSN,
   ENV_SERVER_HOST,
   ENV_SERVER_PORT,
+  ENV_SOCIAL_GOOGLE_CLIENT_ID,
+  ENV_SOCIAL_GOOGLE_CLIENT_SECRET,
+  ENV_SOCIAL_GOOGLE_ENABLED,
   ENV_SWAGGER_JSON_FILE,
 } from '@libs/shared/util-constants';
 
@@ -89,4 +92,17 @@ export const validationSchema = Joi.object({
   }),
   [ENV_DATABASE_LOGGING_ENABLED]: Joi.boolean().optional().default(false),
   [ENV_DATABASE_SYNCHRONIZE]: Joi.boolean().default(true),
+
+  // social config
+  [ENV_SOCIAL_GOOGLE_ENABLED]: Joi.boolean().optional().default(false),
+  [ENV_SOCIAL_GOOGLE_CLIENT_ID]: Joi.when(ENV_SOCIAL_GOOGLE_ENABLED, {
+    is: true,
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_SOCIAL_GOOGLE_CLIENT_SECRET]: Joi.when(ENV_SOCIAL_GOOGLE_ENABLED, {
+    is: true,
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
 });

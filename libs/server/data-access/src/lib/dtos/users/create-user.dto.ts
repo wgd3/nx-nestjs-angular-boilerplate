@@ -1,10 +1,12 @@
 import {
   IsEmail,
+  IsEnum,
   IsOptional,
   IsString,
   IsStrongPassword,
   IsUrl,
   MaxLength,
+  ValidateIf,
 } from 'class-validator';
 
 import {
@@ -14,7 +16,11 @@ import {
   PASSWORD_MIN_SYMBOL,
   PASSWORD_MIN_UPPERCASE,
 } from '@libs/shared/util-constants';
-import { ICreateUser, RoleType } from '@libs/shared/util-types';
+import {
+  ICreateUser,
+  RoleType,
+  SocialAuthProviderType,
+} from '@libs/shared/util-types';
 import {
   ApiHideProperty,
   ApiProperty,
@@ -46,7 +52,8 @@ export class CreateUserDto implements ICreateUser {
     }
   )
   @MaxLength(PASSWORD_MAX_LENGTH)
-  password!: string;
+  @ValidateIf((o) => o.socialProvider === null)
+  password!: string | null;
 
   @ApiPropertyOptional({ type: String })
   @IsOptional()
@@ -65,4 +72,13 @@ export class CreateUserDto implements ICreateUser {
 
   @ApiHideProperty()
   role: RoleType = RoleType.USER;
+
+  @ApiHideProperty()
+  @IsEnum(SocialAuthProviderType)
+  @IsOptional()
+  socialProvider!: SocialAuthProviderType | null;
+
+  @ApiHideProperty()
+  @IsOptional()
+  socialId!: string | null;
 }

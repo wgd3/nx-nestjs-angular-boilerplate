@@ -4,6 +4,7 @@ import { ServerFeatUserModule } from '@libs/server/feat-user';
 import {
   appConfig,
   dbConfig,
+  googleConfig,
   QueryFailedFilter,
   TypeormConfigService,
   validationSchema,
@@ -21,7 +22,7 @@ import { SentryInterceptor, SentryModule } from '@ntegral/nestjs-sentry';
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
-      load: [appConfig, dbConfig],
+      load: [appConfig, dbConfig, googleConfig],
       validationSchema,
     }),
     TypeOrmModule.forRootAsync({
