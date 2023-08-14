@@ -1,4 +1,4 @@
-import { Global, Module } from '@nestjs/common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { ServerUtilMailerService } from './server-util-mailer.service';
@@ -10,4 +10,13 @@ import { ServerUtilMailerService } from './server-util-mailer.service';
   providers: [ServerUtilMailerService],
   exports: [ServerUtilMailerService],
 })
-export class ServerUtilMailerModule {}
+export class ServerUtilMailerModule {
+  /**
+   * NOTE: Potentially use `register()` to handle Mailer service configuration?
+   */
+  static register(opts: Record<string, unknown>): DynamicModule {
+    return {
+      module: ServerUtilMailerModule,
+    };
+  }
+}
