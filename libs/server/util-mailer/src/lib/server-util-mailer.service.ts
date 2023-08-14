@@ -6,8 +6,9 @@ import { mailerConfig } from '@libs/server/util-common';
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 
-import SMTPTransport = require('nodemailer/lib/smtp-transport');
+import { IBaseEmailContext } from '../templates/contexts';
 
+import SMTPTransport = require('nodemailer/lib/smtp-transport');
 @Injectable()
 export class ServerUtilMailerService {
   private readonly transporter!: Transporter;
@@ -44,14 +45,47 @@ export class ServerUtilMailerService {
     ...mailOptions
   }: SendMailOptions & {
     templatePath: string;
-    context: Record<string, unknown>;
+    context: Record<string, unknown> | IBaseEmailContext;
   }): Promise<void> {
     let html: string | undefined;
     if (templatePath) {
-      const template = await fs.readFile(templatePath, 'utf-8');
-      html = Handlebars.compile(template, {
-        strict: true,
-      })(context);
+      // TODO this is a cheater way to handle partials
+      ['style', 'header', 'footer', 'layout'].forEach(async (partialName) => {
+        const partialFile =
+          __dirname + '/assets/templates/partials/' + partialName + '.hbs';
+        try {
+          const partial = await fs.readFile(partialFile, 'utf-8');
+          Handlebars.registerPartial(partialName, partial);
+        } catch (err) {
+          this.logger.error(`Error while registering email partial`, err);
+        }
+      });
+
+      try {
+        const template = await fs.readFile(templatePath, 'utf-8');
+        html = Handlebars.compile(template, {
+          strict: true,
+        })(context);
+      } catch (err) {
+        this.logger.error(`Error while registering email template`, err);
+      }
+
+      if (this.cfgService.debug) {
+        const used = [];
+        const unused = [];
+
+        for (const name in Handlebars.partials) {
+          const partial = Handlebars.partials[name];
+          if (typeof partial === 'function') {
+            used.push(name);
+          } else {
+            unused.push(name);
+          }
+        }
+
+        console.log('Used partials: ' + used);
+        console.log('Unused partials: ' + unused);
+      }
     }
 
     await this.transporter?.sendMail({

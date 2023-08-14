@@ -26,6 +26,7 @@ import {
   ForbiddenException,
   Injectable,
   Logger,
+  NotFoundException,
   UnauthorizedException,
   UnprocessableEntityException,
 } from '@nestjs/common';
@@ -164,5 +165,19 @@ export class ServerFeatAuthService {
     });
 
     return this.getTokens(user);
+  }
+
+  async verifyUserEmail(email: string, code: string) {
+    const user = await this.userService.findByUsernameOrEmail({ email });
+    if (!user) {
+      throw new NotFoundException();
+    }
+    if (code !== user.verificationHash) {
+      throw new UnauthorizedException();
+    }
+    this.logger.debug(`User ${email} has now been verified!`);
+    user.isEmailVerified = true;
+    user.verificationHash = null;
+    await user.save();
   }
 }

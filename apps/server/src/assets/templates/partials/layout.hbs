@@ -4,7 +4,7 @@
 	<meta name="viewport" content="width=device-width" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>{{ title }}</title>
-	{{> libs/server/util-mailer/src/templates/partials/style }}
+	{{> style }}
   </head>
   <body class="">
 	<span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
@@ -14,7 +14,7 @@
 		<td class="container">
 		  <div class="content">
 
-			{{> libs/server/util-mailer/src/templates/partials/header }}
+			{{> header }}
 
 			<!-- START CENTERED WHITE CONTAINER -->
 			<table role="presentation" class="main">
@@ -57,7 +57,7 @@
 			<!-- END CENTERED WHITE CONTAINER -->
 
 			<!-- START FOOTER -->
-			{{> libs/server/util-mailer/src/templates/partials/footer }}
+			{{> footer }}
 			<!-- END FOOTER -->
 
 		  </div>

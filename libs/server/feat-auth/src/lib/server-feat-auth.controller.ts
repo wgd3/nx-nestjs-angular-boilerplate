@@ -20,6 +20,7 @@ import {
   HttpStatus,
   Logger,
   Post,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -63,6 +64,15 @@ export class ServerFeatAuthController {
   @ApiUnprocessableEntityResponse()
   async register(@Body() dto: CreateUserDto): Promise<void> {
     return this.authService.registerUser(dto);
+  }
+
+  @Get('email/verify')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async verifyEmail(
+    @Query('code') code: string,
+    @Query('email') email: string
+  ): Promise<void> {
+    return await this.authService.verifyUserEmail(email, code);
   }
 
   @Get('me')

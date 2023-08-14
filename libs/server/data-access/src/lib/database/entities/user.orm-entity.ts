@@ -63,4 +63,18 @@ export class UserOrmEntity
   })
   @Exclude({ toPlainOnly: true })
   socialId!: string | null;
+
+  @Column({
+    nullable: false,
+    type: Boolean,
+    default: false,
+  })
+  isEmailVerified!: boolean;
+
+  @Column({
+    type: String,
+    nullable: true,
+  })
+  @Exclude({ toPlainOnly: true })
+  verificationHash!: string | null;
 }

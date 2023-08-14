@@ -5,6 +5,7 @@ import type {
   UpdateEvent,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import * as crypto from 'crypto';
 import { MD5 } from 'crypto-js';
 import { EventSubscriber } from 'typeorm';
 
@@ -33,9 +34,17 @@ export class UserOrmEntitySubscriber
       );
     }
 
+    // default to gravatars
     if (!event.entity.avatar && event.entity.email) {
       const emailHash = MD5(event.entity.email).toString();
       event.entity.avatar = `https://www.gravatar.com/avatar/${emailHash}`;
+    }
+
+    // set up a verification hash if the user is using local auth instead
+    // of social auth
+    if (!event.entity.socialProvider) {
+      const hash = crypto.randomBytes(64).toString('hex');
+      event.entity.verificationHash = hash;
     }
   }
 

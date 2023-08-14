@@ -9,12 +9,15 @@ export interface IUserEntity extends IBaseEntity {
   avatar: string | null;
   role: RoleType;
   refreshToken: string | null;
-  socialProvider: SocialAuthProviderType | null;
 
   /**
    * Provider-specified user ID
    */
   socialId: string | null;
+  socialProvider: SocialAuthProviderType | null;
+
+  isEmailVerified: boolean;
+  verificationHash: string | null;
 }
 
 /**
@@ -30,6 +33,7 @@ export type IUser = Omit<
   | 'refreshToken'
   | 'socialProvider'
   | 'socialId'
+  | 'verificationHash'
 > & {
   createdAt: string;
   updatedAt: string;
@@ -39,6 +43,9 @@ export type IUser = Omit<
  * `id`, `createdAt`, and `updatedAt` are all auto-populated. All other fields are
  * "required" - but the names and avatar can accept `null`.
  */
-export type ICreateUser = Omit<IUserEntity, keyof IBaseEntity | 'refreshToken'>;
+export type ICreateUser = Omit<
+  IUserEntity,
+  keyof IBaseEntity | 'refreshToken' | 'verificationHash' | 'isEmailVerified'
+>;
 
 export type IUpdateUser = Partial<ICreateUser>;
