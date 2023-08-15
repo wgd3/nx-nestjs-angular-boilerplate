@@ -57,6 +57,10 @@
       matchPackageNames: ['@types/jest'],
       groupName: 'jest monorepo',
     },
+    {
+      matchPackageNames: ['^eslint'],
+      groupName: 'eslint monorepo',
+    },
     // labelling for package version level
     {
       matchUpdateTypes: ['major'],
