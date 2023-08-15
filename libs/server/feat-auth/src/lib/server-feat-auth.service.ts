@@ -15,13 +15,13 @@ import {
   ENV_JWT_REFRESH_SECRET,
 } from '@libs/shared/util-constants';
 import {
+  AuthProviderType,
   IForgotPasswordPayload,
   IResetPasswordPayload,
   ISocialPayload,
   ITokenResponse,
   IUserEntity,
   RoleType,
-  SocialAuthProviderType,
   Uuid,
 } from '@libs/shared/util-types';
 import {
@@ -136,7 +136,7 @@ export class ServerFeatAuthService {
   }
 
   async validateSocialUser(
-    provider: SocialAuthProviderType,
+    provider: AuthProviderType,
     data: ISocialPayload
   ): Promise<ITokenResponse> {
     if (!data.email) {

@@ -51,10 +51,14 @@ export class ServerUtilMailerService {
     if (templatePath) {
       // TODO this is a cheater way to handle partials
       ['style', 'header', 'footer', 'layout'].forEach(async (partialName) => {
-        const partialFile =
+        const partialPath =
           __dirname + '/assets/templates/partials/' + partialName + '.hbs';
+        this.logger.debug(
+          `Registering partial ${partialName} from path: ${partialPath}`
+        );
+
         try {
-          const partial = await fs.readFile(partialFile, 'utf-8');
+          const partial = await fs.readFile(partialPath, 'utf-8');
           Handlebars.registerPartial(partialName, partial);
         } catch (err) {
           this.logger.error(`Error while registering email partial`, err);
@@ -83,8 +87,8 @@ export class ServerUtilMailerService {
           }
         }
 
-        console.log('Used partials: ' + used);
-        console.log('Unused partials: ' + unused);
+        this.logger.debug('Used partials: ' + used);
+        this.logger.debug('Unused partials: ' + unused);
       }
     }
 

@@ -17,9 +17,9 @@ import {
   PASSWORD_MIN_UPPERCASE,
 } from '@libs/shared/util-constants';
 import {
+  AuthProviderType,
   ICreateUser,
   RoleType,
-  SocialAuthProviderType,
 } from '@libs/shared/util-types';
 import {
   ApiHideProperty,
@@ -73,10 +73,12 @@ export class CreateUserDto implements ICreateUser {
   @ApiHideProperty()
   role: RoleType = RoleType.USER;
 
-  @ApiHideProperty()
-  @IsEnum(SocialAuthProviderType)
-  @IsOptional()
-  socialProvider!: SocialAuthProviderType | null;
+  @ApiProperty({
+    enum: AuthProviderType,
+    default: AuthProviderType.EMAIL,
+  })
+  @IsEnum(AuthProviderType)
+  socialProvider!: AuthProviderType;
 
   @ApiHideProperty()
   @IsOptional()

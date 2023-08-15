@@ -3,9 +3,9 @@ import { Column, Entity, VirtualColumn } from 'typeorm';
 
 import { BaseOrmEntity } from '@libs/server/util-common';
 import {
+  AuthProviderType,
   IUserEntity,
   RoleType,
-  SocialAuthProviderType,
 } from '@libs/shared/util-types';
 
 import { UserDto } from '../../dtos';
@@ -51,11 +51,12 @@ export class UserOrmEntity
 
   @Column({
     type: 'simple-enum',
-    enum: SocialAuthProviderType,
-    nullable: true,
+    enum: AuthProviderType,
+    nullable: false,
+    default: AuthProviderType.EMAIL,
   })
   @Exclude({ toPlainOnly: true })
-  socialProvider!: SocialAuthProviderType | null;
+  socialProvider!: AuthProviderType;
 
   @Column({
     type: String,

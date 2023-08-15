@@ -1,4 +1,4 @@
-import { RoleType, SocialAuthProviderType } from '../enums';
+import { AuthProviderType, RoleType } from '../enums';
 import { IBaseEntity } from './base-entity.interface';
 
 export interface IUserEntity extends IBaseEntity {
@@ -14,7 +14,7 @@ export interface IUserEntity extends IBaseEntity {
    * Provider-specified user ID
    */
   socialId: string | null;
-  socialProvider: SocialAuthProviderType | null;
+  socialProvider: AuthProviderType;
 
   isEmailVerified: boolean;
   verificationHash: string | null;
