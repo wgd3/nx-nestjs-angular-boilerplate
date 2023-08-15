@@ -1,16 +1,31 @@
+import * as crypto from 'crypto';
 import { FindOptionsWhere, Repository } from 'typeorm';
 
 import { CreateUserDto, UserOrmEntity } from '@libs/server/data-access';
 import {
+  IResetPasswordEmailContext,
   IVerifyEmailContext,
   ServerUtilMailerService,
 } from '@libs/server/util-mailer';
-import { IUserEntity, RoleType, Uuid } from '@libs/shared/util-types';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  IForgotPasswordPayload,
+  IResetPasswordPayload,
+  IUserEntity,
+  RoleType,
+  Uuid,
+} from '@libs/shared/util-types';
+import {
+  Injectable,
+  Logger,
+  NotFoundException,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ServerFeatUserService {
+  private readonly logger = new Logger(ServerFeatUserService.name);
+
   constructor(
     @InjectRepository(UserOrmEntity)
     private userRepo: Repository<UserOrmEntity>,
@@ -87,5 +102,51 @@ export class ServerFeatUserService {
 
   async updateUser(userId: Uuid, data: Partial<IUserEntity>) {
     await this.userRepo.save({ id: userId, ...data });
+  }
+
+  async forgotPassword(dto: IForgotPasswordPayload) {
+    const user = await this.userRepo.findOne({ where: { email: dto.email } });
+    if (!user) {
+      this.logger.debug(
+        `User ${dto.email} does not exist, skipping Forgot Password email`
+      );
+      return;
+    }
+    const hash = crypto.randomBytes(64).toString('hex');
+    user.verificationHash = hash;
+    await user.save();
+    const context: IResetPasswordEmailContext = {
+      passwordResetLink: `http://localhost:3000/api/v1/auth/email/reset-password?code=${hash}`,
+      title: 'Reset Your Password',
+      username: user.firstName ?? user.email,
+    };
+    await this.emailService.sendMail({
+      templatePath: 'dist/apps/server/assets/templates/reset-password.hbs',
+      context,
+      to: user.email,
+      subject: 'Reset Your Password',
+    });
+  }
+
+  async resetPassword(dto: IResetPasswordPayload & { code: string }) {
+    const user = await this.userRepo.findOne({
+      where: { email: dto.email },
+    });
+    if (!user) {
+      this.logger.debug(
+        `User ${dto.email} does not exist, no password to reset!`
+      );
+      throw new UnprocessableEntityException(`Unable to reset password`);
+    }
+    if (user.verificationHash !== dto.code) {
+      this.logger.error(
+        `User ${dto.email} is trying to reset their password with an invalid verification code!`
+      );
+      throw new UnprocessableEntityException(`Verification code is not valid`);
+    }
+    this.logger.log(`Updating password for user ${dto.email}`);
+    user.password = dto.password;
+    user.verificationHash = null;
+    await user.save();
   }
 }

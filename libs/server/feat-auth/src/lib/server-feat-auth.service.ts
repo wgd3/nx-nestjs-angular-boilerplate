@@ -15,6 +15,8 @@ import {
   ENV_JWT_REFRESH_SECRET,
 } from '@libs/shared/util-constants';
 import {
+  IForgotPasswordPayload,
+  IResetPasswordPayload,
   ISocialPayload,
   ITokenResponse,
   IUserEntity,
@@ -179,5 +181,13 @@ export class ServerFeatAuthService {
     user.isEmailVerified = true;
     user.verificationHash = null;
     await user.save();
+  }
+
+  async forgotPassword(dto: IForgotPasswordPayload) {
+    return this.userService.forgotPassword(dto);
+  }
+
+  async resetPassword(dto: IResetPasswordPayload & { code: string }) {
+    return this.userService.resetPassword(dto);
   }
 }
