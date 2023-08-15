@@ -180,6 +180,7 @@ export class ServerFeatAuthService {
     this.logger.debug(`User ${email} has now been verified!`);
     user.isEmailVerified = true;
     user.verificationHash = null;
+    user.emailVerifiedOn = new Date();
     await user.save();
   }
 

@@ -78,4 +78,11 @@ export class UserOrmEntity
   })
   @Exclude({ toPlainOnly: true })
   verificationHash!: string | null;
+
+  @Column({
+    type: 'timestamp',
+    nullable: true,
+  })
+  @Exclude({ toPlainOnly: true })
+  emailVerifiedOn!: Date | null;
 }

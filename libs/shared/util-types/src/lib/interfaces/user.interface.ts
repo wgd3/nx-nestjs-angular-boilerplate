@@ -17,6 +17,7 @@ export interface IUserEntity extends IBaseEntity {
   socialProvider: AuthProviderType;
 
   isEmailVerified: boolean;
+  emailVerifiedOn: Date | null;
   verificationHash: string | null;
 }
 
@@ -34,6 +35,7 @@ export type IUser = Omit<
   | 'socialProvider'
   | 'socialId'
   | 'verificationHash'
+  | 'emailVerifiedOn'
 > & {
   createdAt: string;
   updatedAt: string;
@@ -45,7 +47,11 @@ export type IUser = Omit<
  */
 export type ICreateUser = Omit<
   IUserEntity,
-  keyof IBaseEntity | 'refreshToken' | 'verificationHash' | 'isEmailVerified'
+  | keyof IBaseEntity
+  | 'refreshToken'
+  | 'verificationHash'
+  | 'isEmailVerified'
+  | 'emailVerifiedOn'
 >;
 
 export type IUpdateUser = Partial<ICreateUser>;

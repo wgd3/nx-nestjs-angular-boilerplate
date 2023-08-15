@@ -10,6 +10,7 @@ import { MD5 } from 'crypto-js';
 import { EventSubscriber } from 'typeorm';
 
 import { AuthProviderType } from '@libs/shared/util-types';
+import { Logger } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 
 import { UserOrmEntity } from '../entities/user.orm-entity';
@@ -18,6 +19,7 @@ import { UserOrmEntity } from '../entities/user.orm-entity';
 export class UserOrmEntitySubscriber
   implements EntitySubscriberInterface<UserOrmEntity>
 {
+  private readonly logger = new Logger(UserOrmEntitySubscriber.name);
   constructor(@InjectDataSource() readonly dataSource: DataSource) {
     // allows for auto-injection in the TypeORM module instead of
     // specifying the `subscribers` property in `TypeORM.forRoot()`
@@ -50,6 +52,7 @@ export class UserOrmEntitySubscriber
   }
 
   async beforeUpdate({ entity, databaseEntity }: UpdateEvent<UserOrmEntity>) {
+    // check for password updates
     if (
       entity &&
       entity['password'] &&

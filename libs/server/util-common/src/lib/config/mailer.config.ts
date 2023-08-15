@@ -5,6 +5,7 @@ import {
   ENV_EMAIL_ENABLED,
   ENV_EMAIL_HOST,
   ENV_EMAIL_IGNORE_TLS,
+  ENV_EMAIL_PARTIALS_DIR,
   ENV_EMAIL_PASSWORD,
   ENV_EMAIL_PORT,
   ENV_EMAIL_REQUIRE_TLS,
@@ -29,6 +30,7 @@ export interface IMailerConfig {
   debug: boolean;
   defaultName: string;
   defaultEmail: string;
+  partialsDir: string;
 }
 
 export const mailerConfig = registerAs(CONFIG_NAMESPACE_MAILER, () => ({
@@ -46,4 +48,5 @@ export const mailerConfig = registerAs(CONFIG_NAMESPACE_MAILER, () => ({
   debug: !!process.env[ENV_EMAIL_DEBUG] ?? false,
   defaultName: process.env[ENV_EMAIL_DEFAULT_NAME] ?? '',
   defaultEmail: process.env[ENV_EMAIL_DEFAULT_EMAIL] ?? '',
+  partialsDir: process.env[ENV_EMAIL_PARTIALS_DIR] ?? '',
 }));
