@@ -2,20 +2,25 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
+    "docker:enableMajor",
     "monorepo:nrwl",
     "monorepo:nest",
     "monorepo:angular",
     "monorepo:angular-cli",
     "monorepo:angular-eslint",
     "monorepo:jest",
-    "group:monorepos"
+    "group:monorepos",
+    ":semanticCommits",
+    ":enablePreCommit",
+    ":automergeDigest",
+    ":automergeBranch",
+    "helpers:pinGitHubActionDigests"
   ],
   "semanticCommitScope": "deps",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
-  "recreateWhen": "always",
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch"],
