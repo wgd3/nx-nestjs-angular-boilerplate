@@ -17,19 +17,17 @@
     "helpers:pinGitHubActionDigests"
   ],
   "semanticCommitScope": "deps",
+  "assignees": ["wgd3"],
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchCurrentVersion": "!/^0/",
-      "automerge": true
-    },
-    {
-      "matchConfidence": ["high", "very high"],
-      "groupName": "high merge confidence"
+      "description": "Automatically merge minor and patch-level updates",
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": true,
+      "automergeType": "branch"
     },
     {
       "matchPackagePatterns": ["^@nx"],
