@@ -9,6 +9,8 @@ import * as crypto from 'crypto';
 import { MD5 } from 'crypto-js';
 import { EventSubscriber } from 'typeorm';
 
+import { AuthProviderType } from '@libs/shared/util-types';
+import { Logger } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 
 import { UserOrmEntity } from '../entities/user.orm-entity';
@@ -17,6 +19,7 @@ import { UserOrmEntity } from '../entities/user.orm-entity';
 export class UserOrmEntitySubscriber
   implements EntitySubscriberInterface<UserOrmEntity>
 {
+  private readonly logger = new Logger(UserOrmEntitySubscriber.name);
   constructor(@InjectDataSource() readonly dataSource: DataSource) {
     // allows for auto-injection in the TypeORM module instead of
     // specifying the `subscribers` property in `TypeORM.forRoot()`
@@ -42,13 +45,14 @@ export class UserOrmEntitySubscriber
 
     // set up a verification hash if the user is using local auth instead
     // of social auth
-    if (!event.entity.socialProvider) {
+    if (event.entity.socialProvider === AuthProviderType.EMAIL) {
       const hash = crypto.randomBytes(64).toString('hex');
       event.entity.verificationHash = hash;
     }
   }
 
   async beforeUpdate({ entity, databaseEntity }: UpdateEvent<UserOrmEntity>) {
+    // check for password updates
     if (
       entity &&
       entity['password'] &&

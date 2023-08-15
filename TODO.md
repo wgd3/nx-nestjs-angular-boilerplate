@@ -14,10 +14,10 @@
 
 ### User Management
 
-- [ ] add `isEmailVerified` property
-- [ ] add email support
-  - [ ] account verification
-  - [ ] password reset
+- [x] add `isEmailVerified` property
+- [x] add email support
+  - [x] account verification
+  - [x] password reset
 - [ ] Switch to true RBAC
 
 ### API

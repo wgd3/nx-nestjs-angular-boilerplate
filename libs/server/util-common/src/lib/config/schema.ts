@@ -19,6 +19,7 @@ import {
   ENV_EMAIL_ENABLED,
   ENV_EMAIL_HOST,
   ENV_EMAIL_IGNORE_TLS,
+  ENV_EMAIL_PARTIALS_DIR,
   ENV_EMAIL_PASSWORD,
   ENV_EMAIL_PORT,
   ENV_EMAIL_REQUIRE_TLS,
@@ -128,6 +129,11 @@ export const validationSchema = Joi.object({
     otherwise: Joi.optional(),
   }),
   [ENV_EMAIL_TEMPLATE_DIR]: Joi.when(ENV_EMAIL_ENABLED, {
+    is: true,
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
+  [ENV_EMAIL_PARTIALS_DIR]: Joi.when(ENV_EMAIL_ENABLED, {
     is: true,
     then: Joi.string().required(),
     otherwise: Joi.optional(),

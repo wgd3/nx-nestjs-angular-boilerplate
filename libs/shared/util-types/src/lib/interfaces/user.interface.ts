@@ -1,4 +1,4 @@
-import { RoleType, SocialAuthProviderType } from '../enums';
+import { AuthProviderType, RoleType } from '../enums';
 import { IBaseEntity } from './base-entity.interface';
 
 export interface IUserEntity extends IBaseEntity {
@@ -14,9 +14,10 @@ export interface IUserEntity extends IBaseEntity {
    * Provider-specified user ID
    */
   socialId: string | null;
-  socialProvider: SocialAuthProviderType | null;
+  socialProvider: AuthProviderType;
 
   isEmailVerified: boolean;
+  emailVerifiedOn: Date | null;
   verificationHash: string | null;
 }
 
@@ -34,6 +35,7 @@ export type IUser = Omit<
   | 'socialProvider'
   | 'socialId'
   | 'verificationHash'
+  | 'emailVerifiedOn'
 > & {
   createdAt: string;
   updatedAt: string;
@@ -45,7 +47,11 @@ export type IUser = Omit<
  */
 export type ICreateUser = Omit<
   IUserEntity,
-  keyof IBaseEntity | 'refreshToken' | 'verificationHash' | 'isEmailVerified'
+  | keyof IBaseEntity
+  | 'refreshToken'
+  | 'verificationHash'
+  | 'isEmailVerified'
+  | 'emailVerifiedOn'
 >;
 
 export type IUpdateUser = Partial<ICreateUser>;

@@ -1,8 +1,5 @@
 import { SkipAuth } from '@libs/server/util-common';
-import {
-  ITokenResponse,
-  SocialAuthProviderType,
-} from '@libs/shared/util-types';
+import { AuthProviderType, ITokenResponse } from '@libs/shared/util-types';
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -26,7 +23,7 @@ export class GoogleAuthController {
   async login(@Body() dto: GoogleAuthLoginDto): Promise<ITokenResponse> {
     const user = await this.googleService.getProfileByToken(dto);
     return await this.authService.validateSocialUser(
-      SocialAuthProviderType.GOOGLE,
+      AuthProviderType.GOOGLE,
       user
     );
   }
