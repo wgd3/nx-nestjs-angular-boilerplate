@@ -3,5 +3,5 @@
 
 branch="$(git rev-parse --abbrev-ref HEAD)"
 if [ "$branch" = "main" ]; then
-    npx --no-install commitlint -V --edit "$1"
+    (exec < /dev/tty && node_modules/.bin/cz --hook) || true < /dev/null
 fi

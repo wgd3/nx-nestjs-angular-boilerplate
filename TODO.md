@@ -45,4 +45,4 @@
 - [ ] Dockerfile
 - [ ] Kubernetes manifests
 - [ ] Update README with project details/acknowledgements
-- [ ] Add Husky and lint-staged support
+- [x] Add Husky and lint-staged support
