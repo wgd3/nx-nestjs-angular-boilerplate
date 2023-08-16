@@ -19,6 +19,7 @@
   - [x] account verification
   - [x] password reset
 - [ ] Switch to true RBAC
+- [ ] Add user PATCH and DELETE routes
 
 ### API
 
@@ -44,3 +45,4 @@
 - [ ] Dockerfile
 - [ ] Kubernetes manifests
 - [ ] Update README with project details/acknowledgements
+- [ ] Add Husky and lint-staged support
