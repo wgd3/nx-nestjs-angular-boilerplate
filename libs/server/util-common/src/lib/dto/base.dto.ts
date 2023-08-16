@@ -1,7 +1,11 @@
 import { IBaseEntity } from '@libs/shared/util-types';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class BaseDto implements IBaseEntity {
+import { AbstractOrmEntity } from '../database';
+
+export type AbstractDtoOptions = Partial<{ excludeFields?: string[] }>;
+
+export class AbstractDto implements IBaseEntity {
   @ApiProperty()
   id!: string;
 
@@ -11,9 +15,18 @@ export class BaseDto implements IBaseEntity {
   @ApiProperty()
   updatedAt!: Date;
 
-  constructor(entity: IBaseEntity, opts?: any) {
+  @ApiProperty({
+    type: Date,
+    nullable: true,
+  })
+  deletedAt!: Date | null;
+
+  constructor(entity: AbstractOrmEntity, opts?: AbstractDtoOptions) {
     this.id = entity.id;
     this.createdAt = entity.createdAt;
     this.updatedAt = entity.updatedAt;
+    if (opts) {
+      // do stuff!
+    }
   }
 }

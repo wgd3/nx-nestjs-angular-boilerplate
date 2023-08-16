@@ -15,6 +15,9 @@ export class ServerUtilMailerModule {
    * NOTE: Potentially use `register()` to handle Mailer service configuration?
    */
   static register(opts: Record<string, unknown>): DynamicModule {
+    if (opts) {
+      // dynamic config?
+    }
     return {
       module: ServerUtilMailerModule,
     };
