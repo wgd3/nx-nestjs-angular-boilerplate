@@ -1,7 +1,28 @@
 {
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-  extends: ['config:recommended'],
+  extends: [
+    'config:recommended',
+    'group:monorepos',
+    ':semanticCommits',
+    ':enablePreCommit',
+    'helpers:pinGitHubActionDigests',
+    ':disableRateLimiting',
+    'monorepo:nrwl',
+    'monorepo:nest',
+    'monorepo:angular',
+    'monorepo:angular-cli',
+    'monorepo:angular-eslint',
+    'monorepo:jest',
+  ],
   assignees: ['wgd3'],
   dependencyDashboard: true,
   dependencyDashboardTitle: 'Renovate Dashboard 🤖',
+  packageRules: [
+    {
+      description: 'Automatically merge minor and patch-level updates',
+      matchUpdateTypes: ['minor', 'patch', 'digest'],
+      automerge: true,
+      automergeType: 'branch',
+    },
+  ],
 }
