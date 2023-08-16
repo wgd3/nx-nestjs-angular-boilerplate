@@ -172,4 +172,15 @@ export class ServerFeatUserService {
     user.verificationHash = null;
     await user.save();
   }
+
+  async deleteUser(userId: Uuid): Promise<void> {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user) {
+      this.logger.log(
+        `Request received to delete user ${userId} - but user does not exist!`
+      );
+      throw new UnprocessableEntityException(`Error deleting user`);
+    }
+    await user.remove();
+  }
 }

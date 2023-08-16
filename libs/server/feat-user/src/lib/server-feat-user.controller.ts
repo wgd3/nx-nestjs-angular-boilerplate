@@ -4,6 +4,7 @@ import { RoleType, Uuid } from '@libs/shared/util-types';
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseUUIDPipe,
@@ -40,5 +41,11 @@ export class ServerFeatUserController {
     @Body() dto: UpdateUserDto
   ) {
     return this.userService.updateUser(id, dto);
+  }
+
+  @Delete(':id')
+  @Auth([RoleType.ADMIN, RoleType.USER])
+  async deleteUser(@Param('id', new ParseUUIDPipe()) id: string) {
+    return this.userService.deleteUser(id);
   }
 }
