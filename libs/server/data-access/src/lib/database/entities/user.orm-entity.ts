@@ -1,19 +1,19 @@
 import { Exclude } from 'class-transformer';
 import { Column, Entity, VirtualColumn } from 'typeorm';
 
-import { BaseOrmEntity } from '@libs/server/util-common';
+import { AbstractOrmEntity } from '@libs/server/util-common';
 import {
   AuthProviderType,
   IUserEntity,
   RoleType,
 } from '@libs/shared/util-types';
 
-import { UserDto } from '../../dtos';
+import { UserDto, UserDtoOptions } from '../../dtos';
 
 @Entity({ name: 'users' })
 // @UseDto(UserDto)
 export class UserOrmEntity
-  extends BaseOrmEntity<UserDto, object>
+  extends AbstractOrmEntity<UserDto, UserDtoOptions>
   implements IUserEntity
 {
   @Column({ unique: true, type: String })

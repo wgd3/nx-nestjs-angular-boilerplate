@@ -1,6 +1,7 @@
-import { ConfigService } from '@nestjs/config';
-import { Logger as NestLogger } from '@nestjs/common';
 import { Logger as TypeOrmLogger } from 'typeorm';
+
+import { Logger as NestLogger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 /**
  * Initially copied from https://wanago.io/2021/10/04/api-nestjs-logging-typeorm/
@@ -11,6 +12,9 @@ export class DatabaseLogger implements TypeOrmLogger {
   constructor(private readonly configService: ConfigService) {}
 
   logQuery(query: string, parameters?: unknown[]) {
+    if (query || parameters) {
+      // do stuff!
+    }
     // this.logger.debug(
     //   `${query} -- Parameters: ${this.stringifyParameters(parameters)}`
     // );
@@ -35,7 +39,7 @@ export class DatabaseLogger implements TypeOrmLogger {
   }
 
   logMigration(message: string) {
-    // this.logger.debug(message);
+    this.logger.debug(message);
   }
 
   logSchemaBuild(message: string) {

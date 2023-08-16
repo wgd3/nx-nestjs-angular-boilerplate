@@ -2,13 +2,14 @@ import { instanceToPlain } from 'class-transformer';
 import {
   BaseEntity as BaseTypeormEntity,
   CreateDateColumn,
+  DeleteDateColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { IBaseEntity, Uuid } from '@libs/shared/util-types';
 
-import { BaseDto } from '../dto/base.dto';
+import { AbstractDto } from '../dto/base.dto';
 import { Constructor } from '../types';
 
 /**
@@ -16,7 +17,10 @@ import { Constructor } from '../types';
  *
  * Credit to https://github.com/NarHakobyan/awesome-nest-boilerplate/blob/e70667eac4421fb462ca2d0ad4ddb670242293f7/src/common/abstract.entity.ts
  */
-export class BaseOrmEntity<DTO extends BaseDto = BaseDto, Options = never>
+export abstract class AbstractOrmEntity<
+    DTO extends AbstractDto = AbstractDto,
+    Options = never
+  >
   extends BaseTypeormEntity
   implements IBaseEntity
 {
@@ -33,7 +37,12 @@ export class BaseOrmEntity<DTO extends BaseDto = BaseDto, Options = never>
   })
   updatedAt!: Date;
 
-  private dtoClass?: Constructor<DTO, [BaseOrmEntity]>;
+  @DeleteDateColumn({
+    type: 'timestamp',
+  })
+  deletedAt!: Date | null;
+
+  protected dtoClass?: Constructor<DTO, [AbstractOrmEntity, Options?]>;
 
   toJSON() {
     return instanceToPlain(this);
@@ -45,6 +54,13 @@ export class BaseOrmEntity<DTO extends BaseDto = BaseDto, Options = never>
         `You need to use @UseDto on class (${this.constructor.name}) be able to call toDto function`
       );
     }
-    return new this.dtoClass(this);
+    return new this.dtoClass(this, options);
+  }
+
+  constructor(entity: AbstractOrmEntity, opts?: unknown) {
+    super();
+    if (entity && opts) {
+      // just here to avoid unused vars linting errors
+    }
   }
 }
