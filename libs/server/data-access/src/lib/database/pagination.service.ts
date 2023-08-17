@@ -114,6 +114,9 @@ export class PaginationService<OrmEntity extends AbstractOrmEntity> {
       take = perPage;
     } else if (limit && limit <= PAGINATION_DEFAULT_LIMIT) {
       take = limit;
+    } else {
+      // neither defined
+      take = Math.min(PAGINATION_DEFAULT_LIMIT, PAGINATION_DEFAULT_PER_PAGE);
     }
     return take;
   }
