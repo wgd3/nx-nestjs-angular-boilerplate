@@ -1,0 +1,16 @@
+{
+  "name": "server-util-testing",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/server/util-testing/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/server/util-testing/**/*.ts"]
+      }
+    }
+  },
+  "tags": ["type:util", "scope:server"]
+}

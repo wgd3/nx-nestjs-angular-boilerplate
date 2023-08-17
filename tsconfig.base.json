@@ -21,6 +21,10 @@
       "@libs/server/feat-user": ["libs/server/feat-user/src/index.ts"],
       "@libs/server/util-common": ["libs/server/util-common/src/index.ts"],
       "@libs/server/util-mailer": ["libs/server/util-mailer/src/index.ts"],
+      "@libs/server/util-mailer/testing": [
+        "libs/server/util-mailer/src/testing/index.ts"
+      ],
+      "@libs/server/util-testing": ["libs/server/util-testing/src/index.ts"],
       "@libs/shared/util-constants": [
         "libs/shared/util-constants/src/index.ts"
       ],
