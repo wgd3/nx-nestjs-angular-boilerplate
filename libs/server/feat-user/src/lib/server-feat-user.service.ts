@@ -1,11 +1,10 @@
 import * as crypto from 'crypto';
-import { FindOptionsWhere, Repository, SelectQueryBuilder } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 
 import {
   CreateUserDto,
-  PaginationMetaDto,
   PaginationOptionsDto,
-  PaginationResponseDto,
+  PaginationService,
   UserOrmEntity,
 } from '@libs/server/data-access';
 import {
@@ -13,11 +12,6 @@ import {
   IVerifyEmailContext,
   ServerUtilMailerService,
 } from '@libs/server/util-mailer';
-import {
-  PAGINATION_DEFAULT_ORDER,
-  PAGINATION_DEFAULT_PER_PAGE,
-  PAGINATION_DEFAULT_SKIP,
-} from '@libs/shared/util-constants';
 import {
   AuthProviderType,
   IForgotPasswordPayload,
@@ -38,14 +32,16 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class ServerFeatUserService {
+export class ServerFeatUserService extends PaginationService<UserOrmEntity> {
   private readonly logger = new Logger(ServerFeatUserService.name);
 
   constructor(
     @InjectRepository(UserOrmEntity)
     private userRepo: Repository<UserOrmEntity>,
     private emailService: ServerUtilMailerService
-  ) {}
+  ) {
+    super(UserOrmEntity.prototype, userRepo);
+  }
 
   async findUser(
     find: FindOptionsWhere<UserOrmEntity>
@@ -113,8 +109,7 @@ export class ServerFeatUserService {
   async getUsers(
     paginationOptions?: PaginationOptionsDto
   ): Promise<IPaginatedResponse<IUser>> {
-    const qb = this.userRepo.createQueryBuilder(this.alias);
-    return await this.paginate(qb, paginationOptions);
+    return this.paginate<IUser>(paginationOptions, (entity) => entity.toJSON());
   }
 
   async getUserByEmail(email: string): Promise<UserOrmEntity> {
@@ -198,51 +193,5 @@ export class ServerFeatUserService {
       throw new UnprocessableEntityException(`Error deleting user`);
     }
     await user.remove();
-  }
-
-  async paginate(
-    queryBuilder: SelectQueryBuilder<UserOrmEntity>,
-    paginationOptions?: PaginationOptionsDto
-  ): Promise<PaginationResponseDto<IUser>> {
-    const perPage = paginationOptions?.perPage ?? PAGINATION_DEFAULT_PER_PAGE;
-    const skip = this.getSkip(paginationOptions) ?? PAGINATION_DEFAULT_SKIP;
-    const order = paginationOptions?.order ?? PAGINATION_DEFAULT_ORDER;
-
-    queryBuilder.take(perPage);
-    queryBuilder.skip(skip);
-    queryBuilder.orderBy(`${this.alias}.createdAt`, order);
-
-    const [users, count] = await queryBuilder.getManyAndCount();
-    const data: IUser[] = users.map((u) => u.toJSON());
-
-    const meta = this.generatePaginationMeta(count, perPage, skip);
-    return new PaginationResponseDto(data, meta);
-  }
-
-  private get alias(): string {
-    return this.userRepo.metadata.tableName;
-  }
-
-  private generatePaginationMeta(
-    total: number,
-    perPage: number,
-    skip: number
-  ): PaginationMetaDto {
-    const totalPages = Math.ceil(total / perPage);
-    const page = totalPages > 1 && perPage ? Math.floor(skip / perPage) + 1 : 1;
-    return new PaginationMetaDto({
-      page,
-      totalPages,
-      totalItems: total,
-      perPage: perPage,
-      hasNextPage: page < totalPages,
-      hasPreviousPage: page > 1,
-    });
-  }
-
-  private getSkip(pagination?: PaginationOptionsDto): number | null {
-    return pagination?.page && pagination?.perPage
-      ? pagination.perPage * (pagination.page - 1)
-      : null;
   }
 }
