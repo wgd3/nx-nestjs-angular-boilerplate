@@ -1,6 +1,6 @@
 export interface IPaginationMeta {
   page: number;
-  take: number;
+  perPage: number;
   totalItems: number;
   totalPages: number;
   hasNextPage: boolean;

@@ -1,4 +1,4 @@
-import { instanceToPlain } from 'class-transformer';
+import { Exclude, instanceToPlain } from 'class-transformer';
 import {
   BaseEntity as BaseTypeormEntity,
   CreateDateColumn,
@@ -40,6 +40,7 @@ export abstract class AbstractOrmEntity<
   @DeleteDateColumn({
     type: 'timestamp',
   })
+  @Exclude({ toPlainOnly: true })
   deletedAt!: Date | null;
 
   protected dtoClass?: Constructor<DTO, [AbstractOrmEntity, Options?]>;

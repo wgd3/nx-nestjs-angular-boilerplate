@@ -1,4 +1,9 @@
-import { UpdateUserDto } from '@libs/server/data-access';
+import {
+  ApiPageOkResponse,
+  PaginationOptionsDto,
+  UpdateUserDto,
+  UserDto,
+} from '@libs/server/data-access';
 import { Auth, UUIDParam } from '@libs/server/util-common';
 import { RoleType, Uuid } from '@libs/shared/util-types';
 import {
@@ -9,6 +14,7 @@ import {
   Param,
   ParseUUIDPipe,
   Patch,
+  Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -20,8 +26,10 @@ export class ServerFeatUserController {
   constructor(private userService: ServerFeatUserService) {}
 
   @Get('')
-  async getUsers() {
-    return this.userService.getUsers();
+  @Auth([RoleType.ADMIN])
+  @ApiPageOkResponse({ type: UserDto })
+  async getUsers(@Query() paginationOptions: PaginationOptionsDto) {
+    return this.userService.getUsers(paginationOptions);
   }
 
   /**

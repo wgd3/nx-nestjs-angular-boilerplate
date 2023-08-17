@@ -23,7 +23,7 @@ export function ApiPageOkResponse<T extends Type>(options: {
           { $ref: getSchemaPath(PaginationResponseDto) },
           {
             properties: {
-              results: {
+              data: {
                 type: 'array',
                 items: { $ref: getSchemaPath(options.type) },
               },

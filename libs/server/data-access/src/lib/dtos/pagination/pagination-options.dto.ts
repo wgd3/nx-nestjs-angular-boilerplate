@@ -1,3 +1,10 @@
+import { Type } from 'class-transformer';
+import { IsEnum, IsInt, IsOptional, Min } from 'class-validator';
+
+import {
+  PAGINATION_DEFAULT_PAGE,
+  PAGINATION_DEFAULT_PER_PAGE,
+} from '@libs/shared/util-constants';
 import { IPaginationOptions, SortOrderType } from '@libs/shared/util-types';
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 
@@ -7,27 +14,39 @@ export class PaginationOptionsDto implements IPaginationOptions {
     default: SortOrderType.ASC,
     required: false,
   })
-  readonly order!: SortOrderType;
+  @IsEnum(SortOrderType)
+  @IsOptional()
+  readonly order?: SortOrderType;
 
   @ApiProperty({
     type: Number,
     minimum: 1,
-    default: 1,
+    default: PAGINATION_DEFAULT_PAGE,
     required: false,
   })
-  readonly page!: number;
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  @IsOptional()
+  readonly page?: number;
 
   @ApiProperty({
     type: Number,
     minimum: 1,
-    default: 10,
+    default: PAGINATION_DEFAULT_PER_PAGE,
     maximum: 50,
     required: false,
   })
-  readonly take!: number;
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  @IsOptional()
+  readonly perPage?: number;
 
   @ApiHideProperty()
-  get skip(): number {
-    return (this.page - 1) * this.take;
+  get skip(): number | undefined {
+    return this.page && this.perPage
+      ? (this.page - 1) * this.perPage
+      : undefined;
   }
 }

@@ -25,11 +25,15 @@ export interface IUserEntity extends IBaseEntity {
  * Allows for strong typing of user instances when returned from the API. Date objects
  * can not be sent over the network (serialized to strings), and we want to exclude certain
  * properties from the response.
+ *
+ * TODO: figure out how to best strongly type serialization methods on the back end to match
+ * this schema
  */
 export type IUser = Omit<
   IUserEntity,
   | 'createdAt'
   | 'updatedAt'
+  | 'deletedAt'
   | 'password'
   | 'refreshToken'
   | 'socialProvider'
