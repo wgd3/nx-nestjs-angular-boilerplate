@@ -1,9 +1,10 @@
-import { Exclude } from 'class-transformer';
+import { Exclude, instanceToPlain } from 'class-transformer';
 import { Column, Entity, VirtualColumn } from 'typeorm';
 
 import { AbstractOrmEntity } from '@libs/server/util-common';
 import {
   AuthProviderType,
+  IUser,
   IUserEntity,
   RoleType,
 } from '@libs/shared/util-types';
@@ -85,4 +86,9 @@ export class UserOrmEntity
   })
   @Exclude({ toPlainOnly: true })
   emailVerifiedOn!: Date | null;
+
+  // TODO figure out how to make this type-safe!
+  public override toJSON(): IUser {
+    return instanceToPlain(this) as IUser;
+  }
 }

@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "copy:templates": "cp -r libs/server/util-mailer/src/templates apps/server/src/assets/",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "seed-database": "TS_NODE_PROJECT=libs/server/data-access/tsconfig.lib.json npx ts-node -r tsconfig-paths/register libs/server/data-access/src/lib/database/seeds/seed-database.ts"
   },
   "private": true,
   "dependencies": {

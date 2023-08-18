@@ -1,7 +1,12 @@
 import * as crypto from 'crypto';
 import { FindOptionsWhere, Repository } from 'typeorm';
 
-import { CreateUserDto, UserOrmEntity } from '@libs/server/data-access';
+import {
+  CreateUserDto,
+  PaginationOptionsDto,
+  PaginationService,
+  UserOrmEntity,
+} from '@libs/server/data-access';
 import {
   IResetPasswordEmailContext,
   IVerifyEmailContext,
@@ -10,7 +15,9 @@ import {
 import {
   AuthProviderType,
   IForgotPasswordPayload,
+  IPaginatedResponse,
   IResetPasswordPayload,
+  IUser,
   IUserEntity,
   RoleType,
   Uuid,
@@ -25,14 +32,16 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class ServerFeatUserService {
+export class ServerFeatUserService extends PaginationService<UserOrmEntity> {
   private readonly logger = new Logger(ServerFeatUserService.name);
 
   constructor(
     @InjectRepository(UserOrmEntity)
     private userRepo: Repository<UserOrmEntity>,
     private emailService: ServerUtilMailerService
-  ) {}
+  ) {
+    super(UserOrmEntity.prototype, userRepo);
+  }
 
   async findUser(
     find: FindOptionsWhere<UserOrmEntity>
@@ -97,8 +106,10 @@ export class ServerFeatUserService {
     return await this.userRepo.findOneOrFail({ where: { id: userId } });
   }
 
-  async getUsers() {
-    return this.userRepo.find();
+  async getUsers(
+    paginationOptions?: PaginationOptionsDto
+  ): Promise<IPaginatedResponse<IUser>> {
+    return this.paginate<IUser>(paginationOptions, (entity) => entity.toJSON());
   }
 
   async getUserByEmail(email: string): Promise<UserOrmEntity> {

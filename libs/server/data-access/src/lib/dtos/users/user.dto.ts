@@ -14,13 +14,13 @@ export class UserDto extends AbstractDto {
   @ApiProperty()
   email!: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   firstName!: string | null;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   lastName!: string | null;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   avatar!: string | null;
 
   @ApiProperty({ enum: RoleType })

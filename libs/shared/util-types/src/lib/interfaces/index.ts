@@ -5,3 +5,4 @@ export * from './token-response.interface';
 export * from './jwt-payload.interface';
 export * from './request-user.interface';
 export * from './auth';
+export * from './pagination';
