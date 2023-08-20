@@ -2467,9 +2467,9 @@
     uuid "9.0.0"
 
 "@ngneat/falso@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@ngneat/falso/-/falso-7.0.1.tgz#8e5f9dcc70594a6a36608c86949db11a907fe7fd"
-  integrity sha512-ngiUBnDQfohetsGz7fkgokQJKdbJBezi6fWMiBMyB7AUEgKGo4TfPzn1EGswyVtMW69NNMuxKdEXbLbF8af3oA==
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/falso/-/falso-7.1.0.tgz#5ccd9f1299d75873c7f3c8ac948c425129f2b6da"
+  integrity sha512-ihJZmLxLYjiJA6QdW1S+DyDP61EH9/76oaFRGziT7uiAQDWg8SfBit0M0coLPps8x+8v1y+bs+mrX95zZBuW6A==
   dependencies:
     seedrandom "3.0.5"
     uuid "8.3.2"
