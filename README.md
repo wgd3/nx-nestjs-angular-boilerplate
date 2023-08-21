@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/wgd3/nx-nestjs-angular-boilerplate">
-    <img src="assets/logo.svg" alt="Logo">
+    <img src="./assets/logo.svg" alt="Logo">
   </a>
 
 <h3 align="center">Nx NestJS Angular Boilerplate</h3>

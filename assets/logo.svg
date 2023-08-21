@@ -1,4 +1,4 @@
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg331747" viewBox="0 0 1024 768" height="768px" width="1024px" version="1.1">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg331747" viewBox="0 0 1024 384" height="384px" width="1024px" version="1.1">
   <metadata id="metadata331753">
     <rdf:rdf>
       <cc:work rdf:about="">
@@ -19,7 +19,7 @@
   </linearGradient>
   <g id="logo-group">
     <image xlink:href="" id="container" x="272" y="144" width="480" height="480" transform="translate(0 0)" style="display: none;"></image>
-    <g id="logo-center" transform="translate(35.03715999999997 0)">
+    <g id="logo-center" transform="translate(35.03715999999997 -200)">
       <image xlink:href="" id="icon_container" x="0" y="0" style="display: none;"></image>
       <g id="slogan" style="font-style:normal;font-weight:700;font-size:32px;line-height:1;font-family:Comfortaa;font-variant-ligatures:none;text-align:center;text-anchor:middle" transform="translate(0 0)"></g>
       <g id="title" style="font-style:normal;font-weight:700;font-size:72px;line-height:1;font-family:Comfortaa;font-variant-ligatures:none;text-align:center;text-anchor:middle" transform="translate(0 0)">
