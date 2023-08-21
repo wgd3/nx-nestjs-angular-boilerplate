@@ -44,5 +44,5 @@
 
 - [ ] Dockerfile
 - [ ] Kubernetes manifests
-- [ ] Update README with project details/acknowledgements
+- [x] Update README with project details/acknowledgements
 - [x] Add Husky and lint-staged support
