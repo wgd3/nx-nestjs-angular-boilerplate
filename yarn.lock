@@ -8532,19 +8532,7 @@ jest-environment-jsdom@^29.0.0, jest-environment-jsdom@^29.4.1:
     jest-util "^29.6.3"
     jsdom "^20.0.0"
 
-jest-environment-node@^29.4.1, jest-environment-node@^29.6.2:
-  version "29.6.2"
-  resolved "https://registry.yarnpkg.com/jest-environment-node/-/jest-environment-node-29.6.2.tgz#a9ea2cabff39b08eca14ccb32c8ceb924c8bb1ad"
-  integrity sha512-YGdFeZ3T9a+/612c5mTQIllvWkddPbYcN2v95ZH24oWMbGA4GGS2XdIF92QMhUhvrjjuQWYgUGW2zawOyH63MQ==
-  dependencies:
-    "@jest/environment" "^29.6.2"
-    "@jest/fake-timers" "^29.6.2"
-    "@jest/types" "^29.6.1"
-    "@types/node" "*"
-    jest-mock "^29.6.2"
-    jest-util "^29.6.2"
-
-jest-environment-node@^29.6.3:
+jest-environment-node@^29.4.1, jest-environment-node@^29.6.2, jest-environment-node@^29.6.3:
   version "29.6.3"
   resolved "https://registry.yarnpkg.com/jest-environment-node/-/jest-environment-node-29.6.3.tgz#72217a00db2c26755406241c70ad73c334917e28"
   integrity sha512-PKl7upfPJXMYbWpD+60o4HP86KvFO2c9dZ+Zr6wUzsG5xcPx/65o3ArNgHW5M0RFvLYdW4/aieR4JSooD0a2ew==
