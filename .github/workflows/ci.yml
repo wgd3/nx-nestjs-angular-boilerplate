@@ -1,5 +1,8 @@
 name: CI
 
+env:
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
 on:
   push:
     branches:
@@ -22,9 +25,13 @@ jobs:
         yarn nx affected --target=lint --parallel=3
         yarn nx affected --target=build --parallel=3
         yarn nx affected --target=test --parallel=3 --ci --code-coverage
+    secrets:
+      NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
 
   agents:
     name: Nx Cloud - Agents
     uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@38a347b12be6ab4369904678dd9ae6fbb1b52002 # v0.13.0
     with:
       number-of-agents: 3
+    secrets:
+      NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
