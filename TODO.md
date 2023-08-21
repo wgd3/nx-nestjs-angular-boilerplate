@@ -19,16 +19,16 @@
   - [x] account verification
   - [x] password reset
 - [ ] Switch to true RBAC
-- [ ] Add user PATCH and DELETE routes
+- [x] Add user PATCH and DELETE routes
 
 ### API
 
-- [ ] Add pagination support
+- [x] Add pagination support
 
 ### Database
 
 - [ ] Database migrations
-- [ ] Database seeding (creating random users)
+- [x] Database seeding (creating random users)
 
 ### Miscellaneous
 
