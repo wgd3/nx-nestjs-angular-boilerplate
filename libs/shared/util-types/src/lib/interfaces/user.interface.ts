@@ -43,6 +43,7 @@ export type IUser = Omit<
 > & {
   createdAt: string;
   updatedAt: string;
+  fullName: string;
 };
 
 /**

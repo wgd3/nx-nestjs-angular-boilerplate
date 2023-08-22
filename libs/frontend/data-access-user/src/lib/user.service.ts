@@ -30,6 +30,11 @@ export class UserService {
   authState$ = this.userData$$.asObservable();
   isLoggedIn$ = this.authState$.pipe(map((data) => !!data));
 
+  constructor() {
+    this.accessToken = localStorage.getItem(LOCAL_STORAGE_KEY_ACCESS_TOKEN);
+    this.refreshToken = localStorage.getItem(LOCAL_STORAGE_KEY_REFRESH_TOKEN);
+  }
+
   get accessToken(): AccessToken | null {
     return this._accessToken;
   }

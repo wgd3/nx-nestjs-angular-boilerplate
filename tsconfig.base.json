@@ -21,6 +21,9 @@
       "@libs/frontend/data-access-user": [
         "libs/frontend/data-access-user/src/index.ts"
       ],
+      "@libs/frontend/feature-admin-uers": [
+        "libs/frontend/feature-admin-users/src/index.ts"
+      ],
       "@libs/frontend/feature-login": [
         "libs/frontend/feature-login/src/index.ts"
       ],

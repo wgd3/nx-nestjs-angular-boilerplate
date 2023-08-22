@@ -3,3 +3,9 @@
 @tailwind utilities;
 
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}

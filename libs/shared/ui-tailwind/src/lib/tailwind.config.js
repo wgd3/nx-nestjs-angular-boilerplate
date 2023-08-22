@@ -5,5 +5,5 @@ export default module.exports = {
   theme: {
     ...defaultTheme,
   },
-  // plugins: [],
+  plugins: ['@tailwindcss/forms'],
 };

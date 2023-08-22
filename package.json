@@ -32,6 +32,7 @@
     "@nx/angular": "16.7.3",
     "@nx/nest": "16.7.3",
     "@sentry/node": "^7.62.0",
+    "@tailwindcss/forms": "^0.5.4",
     "axios": "^1.0.0",
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
