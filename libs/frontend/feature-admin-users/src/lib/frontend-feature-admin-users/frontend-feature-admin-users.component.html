@@ -1,25 +1,28 @@
-<div class="container mx-auto">
-  <table class="min-w-full text-left text-sm font-light">
-    <thead class="border-b font-medium dark:border-neutral-500">
-      <tr>
-        <th scope="col" class="px-6 py-4">Name</th>
-        <th scope="col" class="px-6 py-4">Email</th>
-        <th scope="col" class="px-6 py-4">Is Admin</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        class="border-b dark:border-neutral-500"
-        *ngFor="let user of users$ | async"
-      >
-        <td class="whitespace-nowrap px-6 py-4 font-medium">
+<ul role="list" class="divide-y divide-gray-300">
+  <li
+    class="flex justify-between gap-x-6 py-5"
+    *ngFor="let user of users$ | async"
+  >
+    <div class="flex min-w-0 gap-x-4">
+      <img
+        class="h-12 w-12 flex-none rounded-full bg-gray-50"
+        [src]="user.avatar"
+        alt=""
+      />
+      <div class="min-w-0 flex-auto">
+        <p class="text-sm font-semibold leading-6 text-gray-900">
           {{ user.fullName }}
-        </td>
-        <td class="whitespace-nowrap px-6 py-4">{{ user.email }}</td>
-        <td class="whitespace-nowrap px-6 py-4">
-          <span *ngIf="user.role === 'admin'">Yes</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+        </p>
+        <p class="mt-1 truncate text-xs leading-5 text-gray-500">
+          {{ user.email }}
+        </p>
+      </div>
+    </div>
+    <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
+      <p class="text-sm leading-6 text-gray-900">Co-Founder / CEO</p>
+      <p class="mt-1 text-xs leading-5 text-gray-500">
+        Joined {{ user.createdAt | date : 'medium' }}
+      </p>
+    </div>
+  </li>
+</ul>

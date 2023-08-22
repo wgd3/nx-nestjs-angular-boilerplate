@@ -11,6 +11,8 @@ module.exports = {
     // https://github.com/nrwl/nx/issues/9784
     join(__dirname, '../admin/src/**/!(*.stories|*.spec).{ts,html}'),
     join(__dirname, '../login/src/**/!(*.stories|*.spec).{ts,html}'),
+    // don't forget the libraries!
+    join(__dirname, '../../libs/frontend/**/!(*.stories|*.spec).{ts,html}'),
   ],
   // theme: {
   //   extend: {},

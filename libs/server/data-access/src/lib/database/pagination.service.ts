@@ -66,6 +66,9 @@ export class PaginationService<OrmEntity extends AbstractOrmEntity> {
     opts?: PaginationOptionsDto
   ): SelectQueryBuilder<OrmEntity> {
     const builder = this.repo.createQueryBuilder(this.alias);
+    this._logger.debug(
+      `Creating pagination builder with opts:\n${JSON.stringify(opts, null, 2)}`
+    );
 
     // NOTE this code currently defaults to using pre-defined pagination defaults,
     // but this could be updated to not return paginated data if `page` or `limit`
@@ -108,16 +111,39 @@ export class PaginationService<OrmEntity extends AbstractOrmEntity> {
 
   private calculateTake(limit?: number, perPage?: number): number | null {
     let take = null;
+    this._logger.debug(
+      `Calculating take from options:\n${JSON.stringify(
+        { limit, perPage },
+        null,
+        2
+      )}`
+    );
     if (limit && perPage) {
+      this._logger.debug(
+        `Using the lesser of two values:\n${JSON.stringify(
+          { limit, perPage },
+          null,
+          2
+        )}`
+      );
       take = Math.min(limit, perPage);
     } else if (perPage && perPage <= PAGINATION_DEFAULT_PER_PAGE) {
+      this._logger.debug(`Using specified perPage of ${perPage}`);
       take = perPage;
     } else if (limit && limit <= PAGINATION_DEFAULT_LIMIT) {
       take = limit;
-    } else {
+    } else if (!limit && !perPage) {
       // neither defined
       take = Math.min(PAGINATION_DEFAULT_LIMIT, PAGINATION_DEFAULT_PER_PAGE);
+      this._logger.debug(
+        `Using the lesser of 2 defaults:\n${JSON.stringify(
+          { PAGINATION_DEFAULT_LIMIT, PAGINATION_DEFAULT_PER_PAGE },
+          null,
+          2
+        )}`
+      );
     }
+    this._logger.debug(`Using take: ${take}`);
     return take;
   }
 

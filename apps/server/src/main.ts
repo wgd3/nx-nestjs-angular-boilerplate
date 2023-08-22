@@ -33,6 +33,9 @@ async function bootstrap() {
     defaultVersion: '1',
   });
 
+  // works around 304s
+  app.getHttpAdapter().getInstance().set('etag', false);
+
   const reflector = app.get(Reflector);
 
   app.useGlobalFilters(new QueryFailedFilter(reflector));
