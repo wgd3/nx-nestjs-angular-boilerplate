@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@libs/frontend/data-access-common": [
+        "libs/frontend/data-access-common/src/index.ts"
+      ],
       "@libs/frontend/data-access-user": [
         "libs/frontend/data-access-user/src/index.ts"
       ],

@@ -59,6 +59,25 @@ export class UserService {
     localStorage.setItem(LOCAL_STORAGE_KEY_REFRESH_TOKEN, String(val));
   }
 
+  get tokenExpired(): boolean {
+    if (!this.accessToken) {
+      return true;
+    }
+
+    const expiryTime = this.userData$$.value?.exp;
+    if (expiryTime) {
+      const expireTs = 1000 * +expiryTime;
+      const now = new Date().getTime();
+      console.log(
+        `[AuthService] Time left to expiration: ${Math.round(
+          (expireTs - now) / 1000
+        )} seconds`
+      );
+      return expireTs - now <= 0;
+    }
+    return true;
+  }
+
   loginUser(dto: IUserLogin): Observable<ITokenResponse> {
     return this.http.post<ITokenResponse>(`/api/v1/auth/email/login`, dto).pipe(
       tap((tokens) => {

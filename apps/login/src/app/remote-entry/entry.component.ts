@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { UserService } from '@libs/frontend/data-access-user';
 import { PASSWORD_MIN_LENGTH } from '@libs/shared/util-constants';
 import { IUserLogin } from '@libs/shared/util-types';
@@ -15,12 +16,15 @@ type LoginFormType = Record<keyof IUserLogin, FormControl<string>>;
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   selector: 'nx-nestjs-angular-boilerplate-login-entry',
   templateUrl: `entry.component.html`,
+  providers: [],
 })
 export class RemoteEntryComponent {
   private userService = inject(UserService);
+  // private route = inject(ActivatedRouteSnapshot);
+  private router = inject(Router);
 
   authState$ = this.userService.authState$;
 
@@ -53,7 +57,17 @@ export class RemoteEntryComponent {
     if (this.loginForm.dirty && this.loginForm.valid) {
       this.userService
         .loginUser({ ...this.loginForm.getRawValue() })
-        .subscribe();
+        .subscribe({
+          next: () => {
+            // const redirectUrl = this.route.queryParamMap.get('redirectUrl');
+            // if (redirectUrl) {
+            //   this.router.navigate([redirectUrl]);
+            // } else {
+            //   this.router.navigate(['/']);
+            // }
+            this.router.navigate(['/admin']);
+          },
+        });
     } else {
       alert(`Form is invalid!`);
     }
