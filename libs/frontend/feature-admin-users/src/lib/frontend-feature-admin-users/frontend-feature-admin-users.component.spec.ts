@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { FrontendFeatureAdminUsersComponent } from './frontend-feature-admin-users.component';
 
 describe('FrontendFeatureAdminUsersComponent', () => {
@@ -7,7 +9,7 @@ describe('FrontendFeatureAdminUsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FrontendFeatureAdminUsersComponent],
+      imports: [FrontendFeatureAdminUsersComponent, HttpClientModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FrontendFeatureAdminUsersComponent);

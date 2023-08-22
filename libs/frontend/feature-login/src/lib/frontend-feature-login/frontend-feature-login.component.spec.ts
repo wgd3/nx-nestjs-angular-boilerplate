@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+
 import { FrontendFeatureLoginComponent } from './frontend-feature-login.component';
 
 describe('FrontendFeatureLoginComponent', () => {
@@ -7,7 +10,8 @@ describe('FrontendFeatureLoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FrontendFeatureLoginComponent],
+      imports: [FrontendFeatureLoginComponent, HttpClientModule, RouterModule],
+      providers: [{ provide: ActivatedRoute, useValue: {} }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FrontendFeatureLoginComponent);
