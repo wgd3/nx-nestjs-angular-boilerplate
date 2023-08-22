@@ -54,7 +54,8 @@
       "options": {
         "port": 4200,
         "proxyConfig": "apps/shell/proxy.conf.json",
-        "publicHost": "http://localhost:4200"
+        "publicHost": "http://localhost:4200",
+        "devRemotes": ["admin", "login"]
       },
       "configurations": {
         "production": {
