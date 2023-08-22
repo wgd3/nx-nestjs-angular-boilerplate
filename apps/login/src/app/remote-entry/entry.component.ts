@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { UserService } from '@libs/frontend/data-access-user';
 import { PASSWORD_MIN_LENGTH } from '@libs/shared/util-constants';
 import { IUserLogin } from '@libs/shared/util-types';
 
@@ -19,6 +20,10 @@ type LoginFormType = Record<keyof IUserLogin, FormControl<string>>;
   templateUrl: `entry.component.html`,
 })
 export class RemoteEntryComponent {
+  private userService = inject(UserService);
+
+  authState$ = this.userService.authState$;
+
   loginForm = new FormGroup<LoginFormType>({
     email: new FormControl<string>('', {
       nonNullable: true,
@@ -46,7 +51,9 @@ export class RemoteEntryComponent {
   // TODO add login logic
   login() {
     if (this.loginForm.dirty && this.loginForm.valid) {
-      console.log(`Logged In!`);
+      this.userService
+        .loginUser({ ...this.loginForm.getRawValue() })
+        .subscribe();
     } else {
       alert(`Form is invalid!`);
     }
