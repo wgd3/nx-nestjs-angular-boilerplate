@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -7,7 +7,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { REDIRECT_URL_QUERY_PARAM } from '@libs/frontend/data-access-common';
 import { UserService } from '@libs/frontend/data-access-user';
 import { PASSWORD_MIN_LENGTH } from '@libs/shared/util-constants';
 import { IUserLogin } from '@libs/shared/util-types';
@@ -15,13 +16,14 @@ import { IUserLogin } from '@libs/shared/util-types';
 type LoginFormType = Record<keyof IUserLogin, FormControl<string>>;
 
 @Component({
+  selector: 'nx-nestjs-angular-boilerplate-frontend-feature-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
-  selector: 'nx-nestjs-angular-boilerplate-login-entry',
-  templateUrl: `entry.component.html`,
-  providers: [],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  templateUrl: './frontend-feature-login.component.html',
+  styleUrls: ['./frontend-feature-login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RemoteEntryComponent {
+export class FrontendFeatureLoginComponent {
   private userService = inject(UserService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -59,8 +61,9 @@ export class RemoteEntryComponent {
         .loginUser({ ...this.loginForm.getRawValue() })
         .subscribe({
           next: () => {
-            const redirectUrl =
-              this.route.snapshot.queryParamMap.get('redirectUrl');
+            const redirectUrl = this.route.snapshot.queryParamMap.get(
+              REDIRECT_URL_QUERY_PARAM
+            );
             if (redirectUrl) {
               this.router.navigate([redirectUrl]);
             } else {
