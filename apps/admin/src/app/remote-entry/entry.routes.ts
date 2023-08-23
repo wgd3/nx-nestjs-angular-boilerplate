@@ -8,7 +8,7 @@ export const remoteRoutes: Route[] = [
     canActivateChild: [authGuard],
     loadChildren: () =>
       import('@libs/frontend/feature-admin-uers').then(
-        (m) => m.frontendFeatureAdminUsersRoutes
+        (m) => m.frontendFeatureAdminUsersRoutes,
       ),
   },
   // { path: '', canActivate: [authGuard], component: RemoteEntryComponent },

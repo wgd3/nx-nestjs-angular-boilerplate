@@ -38,10 +38,10 @@ export class PaginationService<OrmEntity extends AbstractOrmEntity> {
    */
   async paginate<SerializedEntityType>(
     opts?: PaginationOptionsDto,
-    serializeFn?: (entity: OrmEntity) => SerializedEntityType
+    serializeFn?: (entity: OrmEntity) => SerializedEntityType,
   ): Promise<PaginationResponseDto<SerializedEntityType>> {
     this._logger.debug(
-      `Paginating response for entities in table ${this.alias}`
+      `Paginating response for entities in table ${this.alias}`,
     );
     const qb = this.createBuilder(opts);
 
@@ -63,11 +63,15 @@ export class PaginationService<OrmEntity extends AbstractOrmEntity> {
    * @param builder
    */
   private createBuilder(
-    opts?: PaginationOptionsDto
+    opts?: PaginationOptionsDto,
   ): SelectQueryBuilder<OrmEntity> {
     const builder = this.repo.createQueryBuilder(this.alias);
     this._logger.debug(
-      `Creating pagination builder with opts:\n${JSON.stringify(opts, null, 2)}`
+      `Creating pagination builder with opts:\n${JSON.stringify(
+        opts,
+        null,
+        2,
+      )}`,
     );
 
     // NOTE this code currently defaults to using pre-defined pagination defaults,
@@ -95,7 +99,7 @@ export class PaginationService<OrmEntity extends AbstractOrmEntity> {
   private createPaginationMeta(
     total: number,
     limit: number,
-    offset: number
+    offset: number,
   ): PaginationMetaDto {
     const totalPages = limit && total ? Math.ceil(total / limit) : 1;
     const page = totalPages > 1 && limit ? Math.floor(offset / limit) + 1 : 1;

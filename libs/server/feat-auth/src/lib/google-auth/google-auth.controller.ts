@@ -15,7 +15,7 @@ import { GoogleAuthLoginDto } from './google-login.dto';
 export class GoogleAuthController {
   constructor(
     private authService: ServerFeatAuthService,
-    private googleService: GoogleAuthService
+    private googleService: GoogleAuthService,
   ) {}
 
   @Post('login')
@@ -24,7 +24,7 @@ export class GoogleAuthController {
     const user = await this.googleService.getProfileByToken(dto);
     return await this.authService.validateSocialUser(
       AuthProviderType.GOOGLE,
-      user
+      user,
     );
   }
 }

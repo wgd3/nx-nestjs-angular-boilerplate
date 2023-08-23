@@ -19,7 +19,7 @@ import { Constructor } from '../types';
  */
 export abstract class AbstractOrmEntity<
     DTO extends AbstractDto = AbstractDto,
-    Options = never
+    Options = never,
   >
   extends BaseTypeormEntity
   implements IBaseEntity
@@ -52,7 +52,7 @@ export abstract class AbstractOrmEntity<
   toDto(options?: Options): DTO {
     if (!this.dtoClass) {
       throw new Error(
-        `You need to use @UseDto on class (${this.constructor.name}) be able to call toDto function`
+        `You need to use @UseDto on class (${this.constructor.name}) be able to call toDto function`,
       );
     }
     return new this.dtoClass(this, options);

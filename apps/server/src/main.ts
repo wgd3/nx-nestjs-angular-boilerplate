@@ -47,7 +47,7 @@ async function bootstrap() {
       whitelist: true,
       errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
       transform: true,
-    })
+    }),
   );
 
   const globalPrefix = configService.get(ENV_API_PREFIX);
@@ -61,7 +61,7 @@ async function bootstrap() {
 
   await app.listen(port);
   Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}/v1`
+    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}/v1`,
   );
 }
 

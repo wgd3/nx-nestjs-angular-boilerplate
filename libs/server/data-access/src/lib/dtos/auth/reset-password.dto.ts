@@ -34,7 +34,7 @@ export class ResetPasswordDto implements IResetPasswordPayload {
     },
     {
       message: `Password is not strong enough. Must contain: 8 characters, 1 number, 1 uppercase letter, 1 symbol`,
-    }
+    },
   )
   @MaxLength(PASSWORD_MAX_LENGTH)
   password!: string;

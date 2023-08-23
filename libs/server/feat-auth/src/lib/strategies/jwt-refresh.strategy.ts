@@ -12,12 +12,12 @@ import { PassportStrategy } from '@nestjs/passport';
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(
   Strategy,
-  STRATEGY_JWT_REFRESH
+  STRATEGY_JWT_REFRESH,
 ) {
   private logger = new Logger(JwtRefreshStrategy.name);
   constructor(
     private configService: ConfigService,
-    private userService: ServerFeatUserService
+    private userService: ServerFeatUserService,
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -28,12 +28,12 @@ export class JwtRefreshStrategy extends PassportStrategy(
 
   async validate(
     req: Request,
-    payload: IJwtPayload
+    payload: IJwtPayload,
   ): Promise<IRequestUserData & { refreshToken: string }> {
     const refreshToken =
       req.get('Authorization')?.replace('Bearer', '').trim() ?? '';
     this.logger.debug(
-      `Validating refresh token for ${payload.email}\n${refreshToken}`
+      `Validating refresh token for ${payload.email}\n${refreshToken}`,
     );
     const user = await this.userService.findUser({
       id: payload.sub,

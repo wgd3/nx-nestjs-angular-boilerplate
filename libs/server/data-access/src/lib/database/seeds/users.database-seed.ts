@@ -16,7 +16,7 @@ export class UserDatabaseSeedService {
   private logger = new Logger(UserDatabaseSeedService.name);
   constructor(
     @InjectRepository(UserOrmEntity)
-    private repo: Repository<UserOrmEntity>
+    private repo: Repository<UserOrmEntity>,
   ) {}
 
   /**
@@ -71,13 +71,13 @@ export class UserDatabaseSeedService {
         socialProvider: AuthProviderType.EMAIL,
         socialId: null,
         avatar: u.img,
-      })
+      }),
     );
     await this.repo.save(users.map((u) => this.repo.create(u)));
     this.logger.log(
       `Created the following ${count} users:\n${users
         .map((u) => `${u.email} - ${u.password}`)
-        .join('\n')}`
+        .join('\n')}`,
     );
   }
 }

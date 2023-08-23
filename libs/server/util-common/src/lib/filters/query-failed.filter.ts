@@ -6,7 +6,7 @@ import { ArgumentsHost, Catch, HttpStatus, Logger } from '@nestjs/common';
 import { BaseExceptionFilter, Reflector } from '@nestjs/core';
 
 export function isQueryFailedError(
-  thrownValue: unknown
+  thrownValue: unknown,
 ): thrownValue is QueryFailedError {
   return thrownValue instanceof QueryFailedError;
 }
@@ -24,7 +24,7 @@ export class QueryFailedFilter extends BaseExceptionFilter {
 
   public override catch(
     exception: QueryFailedError & { constraint?: string },
-    host: ArgumentsHost
+    host: ArgumentsHost,
   ) {
     Logger.debug(JSON.stringify(exception, null, 2));
     Logger.error(exception.message);

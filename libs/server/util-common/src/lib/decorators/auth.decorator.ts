@@ -17,7 +17,7 @@ import { JwtAccessTokenGuard } from '../guards/jwt-access.guard';
  */
 export function Auth(
   roles: RoleType[] = [],
-  opts?: Partial<{ public: boolean }>
+  opts?: Partial<{ public: boolean }>,
 ): MethodDecorator {
   return applyDecorators(
     SetMetadata(ROLES_REQUEST_KEY, roles),
@@ -26,6 +26,6 @@ export function Auth(
     ApiBearerAuth(),
     ApiUnauthorizedResponse({ description: 'Unauthorized' }),
     ApiForbiddenResponse({ description: `Forbidden` }),
-    ApiInternalServerErrorResponse({ description: 'Unknown server error' })
+    ApiInternalServerErrorResponse({ description: 'Unknown server error' }),
   );
 }

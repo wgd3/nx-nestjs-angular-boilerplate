@@ -11,7 +11,7 @@ export function UTCDateColumn(
     | ((type?: any) => Function)
     | ColumnType
     | (ColumnOptions & ColumnEmbeddedOptions),
-  options?: ColumnOptions & ColumnEmbeddedOptions
+  options?: ColumnOptions & ColumnEmbeddedOptions,
 ): Function {
   return function (object: Object, propertyName: string) {
     // normalize parameters

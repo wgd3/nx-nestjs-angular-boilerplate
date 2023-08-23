@@ -62,7 +62,7 @@ export class FrontendFeatureLoginComponent {
         .subscribe({
           next: () => {
             const redirectUrl = this.route.snapshot.queryParamMap.get(
-              REDIRECT_URL_QUERY_PARAM
+              REDIRECT_URL_QUERY_PARAM,
             );
             if (redirectUrl) {
               this.router.navigate([redirectUrl]);

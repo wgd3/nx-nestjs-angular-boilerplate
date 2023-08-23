@@ -66,7 +66,7 @@ export class FrontendFeatureAdminUsersComponent implements OnInit {
 
   openUpsertUserDialog(
     action: UpsertDialogData<IUser>['action'],
-    currentValue?: UpsertDialogData<IUser>['currentValue']
+    currentValue?: UpsertDialogData<IUser>['currentValue'],
   ) {
     // TODO - find out why this has to be manually cast instead of `open()`
     // accepting the component
@@ -80,7 +80,7 @@ export class FrontendFeatureAdminUsersComponent implements OnInit {
             add: (user: ICreateUser) => this.usersService.addUser(user),
             edit: (user: IUpdateUser, userId: string) =>
               this.usersService.editUser(userId, user).pipe(
-                tap(() => this.refreshUsers())
+                tap(() => this.refreshUsers()),
                 // catchError((err) => {
                 //   if (err instanceof HttpErrorResponse) {
                 //     if (err.status >= 400) {
@@ -91,7 +91,7 @@ export class FrontendFeatureAdminUsersComponent implements OnInit {
               ),
           },
         },
-      }
+      },
     );
   }
 
@@ -100,7 +100,7 @@ export class FrontendFeatureAdminUsersComponent implements OnInit {
       .get<IPaginatedResponse<IUser>>(`/api/v1/users?perPage=50`)
       .pipe(
         map(({ data }) => data),
-        this.store.track()
+        this.store.track(),
       )
       .subscribe();
   }

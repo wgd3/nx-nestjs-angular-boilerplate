@@ -11,11 +11,11 @@ import { PassportStrategy } from '@nestjs/passport';
 @Injectable()
 export class JwtAccessStrategy extends PassportStrategy(
   Strategy,
-  STRATEGY_JWT_ACCESS
+  STRATEGY_JWT_ACCESS,
 ) {
   constructor(
     private configService: ConfigService,
-    private userService: ServerFeatUserService
+    private userService: ServerFeatUserService,
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

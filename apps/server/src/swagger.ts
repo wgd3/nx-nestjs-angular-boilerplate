@@ -20,7 +20,7 @@ export function setupSwagger(app: INestApplication): void {
 
   const document = SwaggerModule.createDocument(app, documentBuilder);
   const documentEndpoint = `${configService.get(
-    ENV_API_PREFIX
+    ENV_API_PREFIX,
   )}/${configService.get(ENV_API_VERSION)}`;
   Logger.debug(`Using documentation endpoint: ${documentEndpoint}`);
 
@@ -33,7 +33,7 @@ export function setupSwagger(app: INestApplication): void {
 
   Logger.log(
     `🚀 Swagger API Documentation: http://${configService.get(
-      ENV_SERVER_HOST
-    )}:${configService.get(ENV_SERVER_PORT)}/${documentEndpoint}`
+      ENV_SERVER_HOST,
+    )}:${configService.get(ENV_SERVER_PORT)}/${documentEndpoint}`,
   );
 }

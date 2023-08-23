@@ -33,7 +33,7 @@ export class UserOrmEntitySubscriber
   async beforeInsert(event: InsertEvent<UserOrmEntity>) {
     if (event.entity.password) {
       event.entity.password = await this.hashUserPassword(
-        event.entity.password
+        event.entity.password,
       );
     }
 

@@ -25,16 +25,16 @@ export class DatabaseLogger implements TypeOrmLogger {
       `${query
         .split(',')
         .join(',\n')} -- Parameters: ${this.stringifyParameters(
-        parameters
-      )} -- ${error}`
+        parameters,
+      )} -- ${error}`,
     );
   }
 
   logQuerySlow(time: number, query: string, parameters?: unknown[]) {
     this.logger.warn(
       `Time: ${time} -- Parameters: ${this.stringifyParameters(
-        parameters
-      )} -- ${query}`
+        parameters,
+      )} -- ${query}`,
     );
   }
 

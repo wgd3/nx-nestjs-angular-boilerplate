@@ -12,7 +12,7 @@ import {
 export class ServerFeatureHealthController {
   constructor(
     private health: HealthCheckService,
-    private db: TypeOrmHealthIndicator
+    private db: TypeOrmHealthIndicator,
   ) {}
 
   @Get()

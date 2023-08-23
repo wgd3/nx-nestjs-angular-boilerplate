@@ -10,7 +10,7 @@ export const LOADING_FOR_UPSERT = 'upsert';
 
 @Directive()
 export abstract class UpsertDialogComponent<
-  Entity extends Record<string, unknown>
+  Entity extends Record<string, unknown>,
 > implements OnInit
 {
   private toast = inject(HotToastService);
@@ -31,7 +31,7 @@ export abstract class UpsertDialogComponent<
         this.form.patchValue(this.ref.data.currentValue);
       } else {
         throw new Error(
-          `Upsert action was set to 'edit' but no currentValue was provided!`
+          `Upsert action was set to 'edit' but no currentValue was provided!`,
         );
       }
     }

@@ -12,8 +12,8 @@ export class TypeormConfigService implements TypeOrmOptionsFactory {
     const dbConfig = this.configService.get('db');
     this.logger.debug(
       `Database Config for env ${this.configService.get(
-        ENV_ENVIRONMENT
-      )}:\n\n${JSON.stringify(dbConfig, null, 2)}\n\n`
+        ENV_ENVIRONMENT,
+      )}:\n\n${JSON.stringify(dbConfig, null, 2)}\n\n`,
     );
     return {
       type: dbConfig.type,

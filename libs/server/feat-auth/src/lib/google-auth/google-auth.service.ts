@@ -13,12 +13,12 @@ export class GoogleAuthService {
   constructor(private configService: ConfigService) {
     this.google = new OAuth2Client(
       configService.get('google.clientId', { infer: true }),
-      configService.get('google.clientSecret', { infer: true })
+      configService.get('google.clientSecret', { infer: true }),
     );
   }
 
   async getProfileByToken(
-    loginDto: GoogleAuthLoginDto
+    loginDto: GoogleAuthLoginDto,
   ): Promise<ISocialPayload> {
     const ticket = await this.google.verifyIdToken({
       idToken: loginDto.idToken,
@@ -37,7 +37,7 @@ export class GoogleAuthService {
             user: 'wrongToken',
           },
         },
-        HttpStatus.UNPROCESSABLE_ENTITY
+        HttpStatus.UNPROCESSABLE_ENTITY,
       );
     }
 

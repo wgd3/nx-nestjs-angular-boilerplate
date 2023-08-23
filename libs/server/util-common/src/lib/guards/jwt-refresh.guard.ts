@@ -21,7 +21,7 @@ export class JwtRefreshTokenGuard extends AuthGuard(STRATEGY_JWT_REFRESH) {
   }
 
   override canActivate(
-    context: ExecutionContext
+    context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     // Add your custom authentication logic here
     // for example, call super.logIn(request) to establish a session.

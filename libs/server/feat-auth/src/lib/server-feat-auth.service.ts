@@ -41,11 +41,11 @@ export class ServerFeatAuthService {
   constructor(
     private jwtService: JwtService,
     private userService: ServerFeatUserService,
-    private configService: ConfigService
+    private configService: ConfigService,
   ) {}
 
   async generateAccessToken(
-    data: Pick<IUserEntity, 'id' | 'email' | 'role'>
+    data: Pick<IUserEntity, 'id' | 'email' | 'role'>,
   ): Promise<string> {
     const payload = {
       email: data.email,
@@ -59,7 +59,7 @@ export class ServerFeatAuthService {
   }
 
   async generateRefreshToken(
-    data: Pick<IUserEntity, 'id' | 'email' | 'role'>
+    data: Pick<IUserEntity, 'id' | 'email' | 'role'>,
   ): Promise<string> {
     const token = await this.jwtService.signAsync(
       {
@@ -70,14 +70,14 @@ export class ServerFeatAuthService {
         expiresIn: this.configService.get(ENV_JWT_REFRESH_EXPIRATION_TIME),
         subject: data.id,
         secret: this.configService.get(ENV_JWT_REFRESH_SECRET),
-      }
+      },
     );
     await this.updateUserRefreshToken(data.id, token);
     return token;
   }
 
   async getTokens(
-    data: Pick<IUserEntity, 'id' | 'email' | 'role'>
+    data: Pick<IUserEntity, 'id' | 'email' | 'role'>,
   ): Promise<TokenResponseDto> {
     const [accessToken, refreshToken] = await Promise.all([
       await this.generateAccessToken(data),
@@ -92,7 +92,7 @@ export class ServerFeatAuthService {
 
     const isPasswordValid = await bcrypt.compare(
       userLoginDto.password,
-      user.password ?? ''
+      user.password ?? '',
     );
 
     if (!isPasswordValid) {
@@ -122,7 +122,7 @@ export class ServerFeatAuthService {
     const user = await this.userService.getUser(userId);
     const tokensMatch = await bcrypt.compare(
       refreshToken,
-      user.refreshToken ?? ''
+      user.refreshToken ?? '',
     );
     if (!tokensMatch) {
       throw new ForbiddenException(`Invalid refresh token`);
@@ -137,11 +137,11 @@ export class ServerFeatAuthService {
 
   async validateSocialUser(
     provider: AuthProviderType,
-    data: ISocialPayload
+    data: ISocialPayload,
   ): Promise<ITokenResponse> {
     if (!data.email) {
       throw new UnprocessableEntityException(
-        `Profile from ${provider} does not include an email. An email address is required in order to create an account!`
+        `Profile from ${provider} does not include an email. An email address is required in order to create an account!`,
       );
     }
     let user = await this.userService.findByUsernameOrEmail({
@@ -152,7 +152,7 @@ export class ServerFeatAuthService {
       return this.getTokens(user);
     }
     this.logger.debug(
-      `No user found! Creating new user based on profile from ${provider}`
+      `No user found! Creating new user based on profile from ${provider}`,
     );
 
     user = await this.userService.createUser({

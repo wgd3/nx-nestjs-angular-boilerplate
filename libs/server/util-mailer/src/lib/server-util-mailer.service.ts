@@ -17,7 +17,7 @@ export class ServerUtilMailerService {
 
   constructor(
     @Inject(mailerConfig.KEY)
-    private readonly cfgService: ConfigType<typeof mailerConfig>
+    private readonly cfgService: ConfigType<typeof mailerConfig>,
   ) {
     if (cfgService.enabled) {
       this.logger.debug(`Configuring nodemailer`);
@@ -90,7 +90,7 @@ export class ServerUtilMailerService {
       }, {});
 
     this.logger.debug(
-      `Registering all found partials: ${Object.keys(partials).join(', ')}`
+      `Registering all found partials: ${Object.keys(partials).join(', ')}`,
     );
     Handlebars.registerPartial(partials);
   }

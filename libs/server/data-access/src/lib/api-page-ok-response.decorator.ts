@@ -31,6 +31,6 @@ export function ApiPageOkResponse<T extends Type>(options: {
           },
         ],
       },
-    })
+    }),
   );
 }

@@ -48,7 +48,7 @@ export class ServerFeatUserController {
   @Auth([RoleType.ADMIN, RoleType.USER])
   async updateUser(
     @Param('id', new ParseUUIDPipe()) id: Uuid,
-    @Body() dto: UpdateUserDto
+    @Body() dto: UpdateUserDto,
   ) {
     this.logger.debug(`Updating user ${id}`);
     return this.userService.updateUser(id, dto);

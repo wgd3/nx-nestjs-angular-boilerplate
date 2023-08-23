@@ -73,7 +73,7 @@ export class ServerFeatAuthController {
   @HttpCode(HttpStatus.NO_CONTENT)
   async verifyEmail(
     @Query('code') code: string,
-    @Query('email') email: string
+    @Query('email') email: string,
   ): Promise<void> {
     return await this.authService.verifyUserEmail(email, code);
   }
@@ -107,7 +107,7 @@ export class ServerFeatAuthController {
   @SkipAuth()
   async resetPassword(
     @Body() dto: ResetPasswordDto,
-    @Query('code') code: string
+    @Query('code') code: string,
   ): Promise<void> {
     this.logger.debug(`Updating password for ${dto.email}`);
     return this, this.authService.resetPassword({ ...dto, code });

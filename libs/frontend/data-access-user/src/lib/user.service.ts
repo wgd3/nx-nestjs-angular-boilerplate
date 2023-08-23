@@ -78,8 +78,8 @@ export class UserService {
       const now = new Date().getTime();
       console.log(
         `[AuthService] Time left to expiration: ${Math.round(
-          (expireTs - now) / 1000
-        )} seconds`
+          (expireTs - now) / 1000,
+        )} seconds`,
       );
       return expireTs - now <= 0;
     }
@@ -92,7 +92,7 @@ export class UserService {
         console.log(`Got Tokens!`, tokens);
         this.accessToken = tokens.accessToken;
         this.refreshToken = tokens.refreshToken;
-      })
+      }),
     );
   }
 

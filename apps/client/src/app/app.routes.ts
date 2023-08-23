@@ -5,7 +5,7 @@ export const appRoutes: Route[] = [
     path: 'login',
     loadChildren: () =>
       import('@libs/frontend/feature-login').then(
-        (m) => m.frontendFeatureLoginRoutes
+        (m) => m.frontendFeatureLoginRoutes,
       ),
   },
 ];

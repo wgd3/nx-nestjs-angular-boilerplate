@@ -38,19 +38,19 @@ export class ServerFeatUserService extends PaginationService<UserOrmEntity> {
   constructor(
     @InjectRepository(UserOrmEntity)
     private userRepo: Repository<UserOrmEntity>,
-    private emailService: ServerUtilMailerService
+    private emailService: ServerUtilMailerService,
   ) {
     super(UserOrmEntity.prototype, userRepo);
   }
 
   async findUser(
-    find: FindOptionsWhere<UserOrmEntity>
+    find: FindOptionsWhere<UserOrmEntity>,
   ): Promise<UserOrmEntity | null> {
     return this.userRepo.findOneBy(find);
   }
 
   async findByUsernameOrEmail(
-    options: Partial<{ username: string; email: string }>
+    options: Partial<{ username: string; email: string }>,
   ): Promise<UserOrmEntity | null> {
     const queryBuilder = this.userRepo.createQueryBuilder('user');
 
@@ -72,7 +72,7 @@ export class ServerFeatUserService extends PaginationService<UserOrmEntity> {
   async createUser(dto: CreateUserDto): Promise<UserOrmEntity> {
     if (dto.socialProvider === AuthProviderType.EMAIL && dto.socialId) {
       throw new BadRequestException(
-        `User can not provide a social ID while registering with an email address!`
+        `User can not provide a social ID while registering with an email address!`,
       );
     }
 
@@ -107,7 +107,7 @@ export class ServerFeatUserService extends PaginationService<UserOrmEntity> {
   }
 
   async getUsers(
-    paginationOptions?: PaginationOptionsDto
+    paginationOptions?: PaginationOptionsDto,
   ): Promise<IPaginatedResponse<IUser>> {
     return this.paginate<IUser>(paginationOptions, (entity) => entity.toJSON());
   }
@@ -135,13 +135,13 @@ export class ServerFeatUserService extends PaginationService<UserOrmEntity> {
     const user = await this.userRepo.findOne({ where: { email: dto.email } });
     if (!user) {
       this.logger.debug(
-        `User ${dto.email} does not exist, skipping Forgot Password email`
+        `User ${dto.email} does not exist, skipping Forgot Password email`,
       );
       return;
     }
     if (!user.password && user.socialProvider !== AuthProviderType.EMAIL) {
       throw new UnprocessableEntityException(
-        `User was created via social login, unable to reset password!`
+        `User was created via social login, unable to reset password!`,
       );
     }
     const hash = crypto.randomBytes(64).toString('hex');
@@ -169,13 +169,13 @@ export class ServerFeatUserService extends PaginationService<UserOrmEntity> {
     });
     if (!user) {
       this.logger.debug(
-        `User ${dto.email} does not exist, no password to reset!`
+        `User ${dto.email} does not exist, no password to reset!`,
       );
       throw new UnprocessableEntityException(`Unable to reset password`);
     }
     if (user.verificationHash !== dto.code) {
       this.logger.error(
-        `User ${dto.email} is trying to reset their password with an invalid verification code!`
+        `User ${dto.email} is trying to reset their password with an invalid verification code!`,
       );
       throw new UnprocessableEntityException(`Verification code is not valid`);
     }
@@ -189,7 +189,7 @@ export class ServerFeatUserService extends PaginationService<UserOrmEntity> {
     const user = await this.userRepo.findOne({ where: { id: userId } });
     if (!user) {
       this.logger.log(
-        `Request received to delete user ${userId} - but user does not exist!`
+        `Request received to delete user ${userId} - but user does not exist!`,
       );
       throw new UnprocessableEntityException(`Error deleting user`);
     }
