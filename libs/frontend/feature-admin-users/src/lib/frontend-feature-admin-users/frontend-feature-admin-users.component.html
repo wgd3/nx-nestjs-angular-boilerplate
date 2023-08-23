@@ -1,0 +1,103 @@
+<ng-container *ngIf="store.value$ | async as store">
+  <div
+    *ngIf="store.loading"
+    role="status"
+    class="w-full p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700"
+  >
+    <div class="flex items-center justify-between">
+      <div>
+        <div
+          class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"
+        ></div>
+        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+      </div>
+      <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    </div>
+    <div class="flex items-center justify-between pt-4">
+      <div>
+        <div
+          class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"
+        ></div>
+        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+      </div>
+      <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    </div>
+    <div class="flex items-center justify-between pt-4">
+      <div>
+        <div
+          class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"
+        ></div>
+        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+      </div>
+      <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    </div>
+    <div class="flex items-center justify-between pt-4">
+      <div>
+        <div
+          class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"
+        ></div>
+        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+      </div>
+      <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    </div>
+    <div class="flex items-center justify-between pt-4">
+      <div>
+        <div
+          class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"
+        ></div>
+        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+      </div>
+      <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    </div>
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  <ul
+    role="list"
+    class="divide-y divide-gray-300"
+    *ngIf="store.complete && store.success"
+  >
+    <li
+      class="flex justify-between gap-x-6 py-5"
+      *ngFor="let user of users$ | async"
+    >
+      <div class="flex min-w-0 gap-x-4">
+        <img
+          *ngIf="user.avatar"
+          class="h-12 w-12 flex-none rounded-full bg-gray-50"
+          [src]="user.avatar"
+          alt=""
+        />
+        <svg
+          class="h-12 w-12 text-gray-300 rounded-full bg-gray-50"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          *ngIf="!user.avatar"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <div class="min-w-0 flex-auto">
+          <p
+            class="text-sm font-semibold leading-6 text-gray-900 hover:underline cursor-pointer"
+            (click)="openUpsertUserDialog('edit', user)"
+          >
+            {{ user.fullName }}
+          </p>
+          <p class="mt-1 truncate text-xs leading-5 text-gray-500">
+            {{ user.email }}
+          </p>
+        </div>
+      </div>
+      <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
+        <p class="text-sm leading-6 text-gray-900">Co-Founder / CEO</p>
+        <p class="mt-1 text-xs leading-5 text-gray-500">
+          Joined {{ user.createdAt | date : 'medium' }}
+        </p>
+      </div>
+    </li>
+  </ul>
+</ng-container>

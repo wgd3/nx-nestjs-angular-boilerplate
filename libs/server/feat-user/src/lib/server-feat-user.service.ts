@@ -128,6 +128,7 @@ export class ServerFeatUserService extends PaginationService<UserOrmEntity> {
 
   async updateUser(userId: Uuid, data: Partial<IUserEntity>) {
     await this.userRepo.save({ id: userId, ...data });
+    return await this.userRepo.findOneOrFail({ where: { id: userId } });
   }
 
   async forgotPassword(dto: IForgotPasswordPayload) {

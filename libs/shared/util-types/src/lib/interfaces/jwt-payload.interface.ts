@@ -11,4 +11,6 @@ export interface IJwtPayload {
   role: RoleType;
 
   iat: string;
+
+  exp: number;
 }

@@ -11,6 +11,7 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   ParseUUIDPipe,
   Patch,
@@ -23,6 +24,7 @@ import { ServerFeatUserService } from './server-feat-user.service';
 @Controller({ path: 'users', version: '1' })
 @ApiTags('Users')
 export class ServerFeatUserController {
+  private readonly logger = new Logger(ServerFeatUserController.name);
   constructor(private userService: ServerFeatUserService) {}
 
   @Get('')
@@ -48,6 +50,7 @@ export class ServerFeatUserController {
     @Param('id', new ParseUUIDPipe()) id: Uuid,
     @Body() dto: UpdateUserDto
   ) {
+    this.logger.debug(`Updating user ${id}`);
     return this.userService.updateUser(id, dto);
   }
 
