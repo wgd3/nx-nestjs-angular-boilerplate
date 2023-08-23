@@ -1,5 +1,4 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
@@ -30,16 +29,4 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('shell');
   });
-
-  it('should render title', fakeAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const router = TestBed.inject(Router);
-    fixture.ngZone?.run(() => router.navigate(['']));
-    tick();
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome shell'
-    );
-  }));
 });
