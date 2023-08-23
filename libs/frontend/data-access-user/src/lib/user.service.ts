@@ -5,8 +5,11 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import {
   AccessToken,
+  ICreateUser,
   IJwtPayload,
   ITokenResponse,
+  IUpdateUser,
+  IUser,
   IUserLogin,
   RefreshToken,
 } from '@libs/shared/util-types';
@@ -96,5 +99,17 @@ export class UserService {
   logoutUser() {
     this.accessToken = null;
     this.refreshToken = null;
+  }
+
+  addUser(user: ICreateUser): Observable<IUser> {
+    return this.http
+      .post<IUser>(`/api/v1/auth/email/register`, user)
+      .pipe(tap((user) => console.log(`User created successfully!`, user)));
+  }
+
+  editUser(userId: string, user: IUpdateUser) {
+    return this.http
+      .patch<IUser>(`/api/v1/users/${userId}`, user)
+      .pipe(tap((user) => console.log(`User updated successfully`, user)));
   }
 }

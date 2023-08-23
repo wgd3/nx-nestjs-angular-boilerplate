@@ -16,7 +16,10 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/admin/tsconfig.app.json",
         "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
-        "styles": ["apps/admin/src/styles.css"],
+        "styles": [
+          "apps/admin/src/styles.css",
+          "node_modules/@ngneat/hot-toast/src/styles/styles.css"
+        ],
         "scripts": [],
         "customWebpackConfig": {
           "path": "apps/admin/webpack.config.js"
