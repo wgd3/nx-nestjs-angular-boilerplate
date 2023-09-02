@@ -3800,9 +3800,9 @@
   integrity sha512-+yno3ItTEwGxXiS/75Q/aHaa5srkpnJaH+kdkTVJ3DtJEwv92itpKbxU+FjPoh2m/5G9zmUQfrL4A4C13c+iGA==
 
 "@types/node@~18.17.0":
-  version "18.17.13"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.17.13.tgz#d99cb351ff2e51a192fe8903b658c4f85fbcb58c"
-  integrity sha512-SlLPDDe6YQl1JnQQy4hgsuJeo5q5c1TBU4be4jeBLXsqpjoDbfb0HesSfhMwnaxfSJ4txtfzJzW5/x/43fkkfQ==
+  version "18.17.14"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.17.14.tgz#a621ad26e7eb076d6846dd3d39557ddf9d89f04b"
+  integrity sha512-ZE/5aB73CyGqgQULkLG87N9GnyGe5TcQjv34pwS8tfBs1IkCh0ASM69mydb2znqd6v0eX+9Ytvk6oQRqu8T1Vw==
 
 "@types/nodemailer@^6.4.9":
   version "6.4.9"
