@@ -96,7 +96,7 @@
     "commitizen": "^4.3.0",
     "commitlint": "^17.7.1",
     "cypress": "^12.16.0",
-    "eslint": "~8.48.0",
+    "eslint": "~8.49.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-cypress": "^2.13.4",
     "husky": "^8.0.3",
