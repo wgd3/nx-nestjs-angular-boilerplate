@@ -2862,9 +2862,9 @@
     uuid "9.0.0"
 
 "@ngneat/dialog@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@ngneat/dialog/-/dialog-4.1.0.tgz#92342c2f1de72aa345e2459dc5ca83a7f1d1e174"
-  integrity sha512-hv3GhgdoVEcQIAzaVnNz/B3VOKTLnhMe2YHAssHJPzKZwZ6q2SoEUn4xThHDDmzDk99nwRCZUlW35KEpTrJtzg==
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@ngneat/dialog/-/dialog-4.1.1.tgz#1b90ed0ff9e6403d19c98e0a241076230ceb8141"
+  integrity sha512-wYtkXGXparx8XEeJ5dLmN/+Q/6EMTHV9btXkWIeZFQbS/y3HYZZinMJ6+qqbCh7N0Y3yPAFLjJ1jXoIsZNeWww==
   dependencies:
     tslib "2.3.1"
 
