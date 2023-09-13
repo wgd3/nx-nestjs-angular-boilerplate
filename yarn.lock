@@ -2735,9 +2735,9 @@
     tslib "2.6.2"
 
 "@nestjs/config@^3.0.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/config/-/config-3.1.0.tgz#d6e36122fefd3155651386405557b1adf1c8dbd3"
-  integrity sha512-yaAM30odymAD1d85QJreb0MXEu8AaHmTDl0q4jJTIKnjUnypjF1uO34/6ayYG2eY6jByBAtoRTxo8NCrlwBLUw==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/config/-/config-3.1.1.tgz#51e23ed84debd08afb86acf7b92bc4bf341797da"
+  integrity sha512-qu5QlNiJdqQtOsnB6lx4JCXPQ96jkKUsOGd+JXfXwqJqZcOSAq6heNFg0opW4pq4J/VZoNwoo87TNnx9wthnqQ==
   dependencies:
     dotenv "16.3.1"
     dotenv-expand "10.0.0"
