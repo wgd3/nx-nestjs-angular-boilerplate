@@ -14,6 +14,7 @@
     'monorepo:angular-eslint',
     'monorepo:jest',
   ],
+  schedule: ['every saturday'],
   assignees: ['wgd3'],
   dependencyDashboard: true,
   dependencyDashboardTitle: 'Renovate Dashboard 🤖',
