@@ -104,7 +104,7 @@
     "jest-environment-jsdom": "^29.4.1",
     "jest-environment-node": "^29.4.1",
     "jest-preset-angular": "~13.1.0",
-    "lint-staged": "^14.0.0",
+    "lint-staged": "^15.0.0",
     "nx": "16.10.0",
     "nx-cloud": "16.5.2",
     "postcss": "^8.4.5",
