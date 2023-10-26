@@ -2913,10 +2913,10 @@
     seedrandom "3.0.5"
     uuid "8.3.2"
 
-"@ngneat/hot-toast@^5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@ngneat/hot-toast/-/hot-toast-5.0.2.tgz#71ae481eaae71ee4555269d7c16dfd6bb6bee205"
-  integrity sha512-gtPGDq9o++0TOTWJT62HSyBpwc6jWnLb+kCo5kwteDefiM2LdLACTONV9fBXK/eWp1NKsHW1FU+2ENrOoq56WQ==
+"@ngneat/hot-toast@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/hot-toast/-/hot-toast-6.0.0.tgz#9c6e14afb356b8a23ed75466b84be768dfbf4870"
+  integrity sha512-Fnpg/qL6wGa7DCLACCEK5Qj+OoDoYmFykfW1q/Ep5TUAJ6wQh3ex2cqn4LYWtDlFP3KXcNUYFC4yfXg8OOPuMA==
   dependencies:
     tslib "^2.3.0"
 
