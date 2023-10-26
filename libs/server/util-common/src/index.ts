@@ -8,3 +8,4 @@ export * from './lib/filters';
 export * from './lib/config';
 export * from './lib/exceptions';
 export * from './lib/guards';
+export * from './lib/interceptors';

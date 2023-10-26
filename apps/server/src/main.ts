@@ -3,7 +3,10 @@
  * This is only a minimal backend to get started.
  */
 
-import { QueryFailedFilter } from '@libs/server/util-common';
+import {
+  LoggingInterceptor,
+  QueryFailedFilter,
+} from '@libs/server/util-common';
 import {
   ENV_API_PREFIX,
   ENV_ENABLE_SWAGGER,
@@ -40,7 +43,10 @@ async function bootstrap() {
 
   app.useGlobalFilters(new QueryFailedFilter(reflector));
 
-  app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
+  app.useGlobalInterceptors(
+    new ClassSerializerInterceptor(reflector),
+    new LoggingInterceptor(),
+  );
 
   app.useGlobalPipes(
     new ValidationPipe({
