@@ -4,3 +4,4 @@
 .angular
 .yarn
 *.hbs
+/.nx/cache

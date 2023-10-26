@@ -44,3 +44,4 @@ Thumbs.db
 
 .vuepress/.cache
 .vuepress/.temp
+.nx/cache
