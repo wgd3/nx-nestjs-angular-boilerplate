@@ -37,7 +37,7 @@
     "@nx/angular": "17.0.3",
     "@nx/nest": "17.0.3",
     "@sentry/node": "7.77.0",
-    "@tailwindcss/forms": "0.5.6",
+    "@tailwindcss/forms": "0.5.7",
     "@types/uuid": "^9.0.6",
     "axios": "1.6.0",
     "bcrypt": "5.1.1",
