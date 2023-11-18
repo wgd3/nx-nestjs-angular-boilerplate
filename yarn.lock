@@ -2915,10 +2915,10 @@
   dependencies:
     tslib "2.3.1"
 
-"@ngneat/error-tailor@4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@ngneat/error-tailor/-/error-tailor-4.1.1.tgz#12387001764999e9c9d2fd9e90b2416f08e96b27"
-  integrity sha512-vMmehzVeDz3EHlyvmkYEgIaY6UN8eRyJzyripEJcrhwAONbLQvNUIqhBLGDoBiNQCMmBB434jYaw1iYZhX0hZw==
+"@ngneat/error-tailor@4.1.2":
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@ngneat/error-tailor/-/error-tailor-4.1.2.tgz#faa075a124b83d6e7ad7e16f4cecdd34d04a48a3"
+  integrity sha512-7IKaQbRgAgGCEmdNP0ARJTcOEpYnzuWF97WCE1DqvP/2Ttc06Y4NV5DnN5n7/k2Dwaoi4KyUmGgEf7MQcJFjSQ==
   dependencies:
     tslib "2.5.0"
 
