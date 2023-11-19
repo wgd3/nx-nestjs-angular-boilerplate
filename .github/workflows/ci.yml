@@ -13,7 +13,7 @@ on:
 jobs:
   main:
     name: Nx Cloud - Main Job
-    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@40ef06cab594c04b9731f7184b2e92fce59fd4f5 # v0.13.1
+    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@81f119483401ffde8275edf4c089b42e24b92cf4 # v0.14.0
     with:
       main-branch-name: main
       number-of-agents: 3
@@ -30,7 +30,7 @@ jobs:
 
   agents:
     name: Nx Cloud - Agents
-    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@40ef06cab594c04b9731f7184b2e92fce59fd4f5 # v0.13.1
+    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@81f119483401ffde8275edf4c089b42e24b92cf4 # v0.14.0
     with:
       number-of-agents: 3
     secrets:
