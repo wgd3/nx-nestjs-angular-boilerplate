@@ -2908,10 +2908,10 @@
   dependencies:
     uuid "9.0.1"
 
-"@ngneat/dialog@4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@ngneat/dialog/-/dialog-4.1.1.tgz#1b90ed0ff9e6403d19c98e0a241076230ceb8141"
-  integrity sha512-wYtkXGXparx8XEeJ5dLmN/+Q/6EMTHV9btXkWIeZFQbS/y3HYZZinMJ6+qqbCh7N0Y3yPAFLjJ1jXoIsZNeWww==
+"@ngneat/dialog@4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/dialog/-/dialog-4.2.0.tgz#ace521cb0ab1ee9de4624addc2f925a3ba557fbe"
+  integrity sha512-VgVV74HpKrmjAPPUAfY1KWt5GErfT1/g21B6GFv0qOWUhmU2X5ruvJ+/DXVWki2sS66bK7z41EjI5KSySk/kLQ==
   dependencies:
     tslib "2.3.1"
 
