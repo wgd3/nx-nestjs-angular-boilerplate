@@ -2946,10 +2946,10 @@
     seedrandom "3.0.5"
     uuid "8.3.2"
 
-"@ngneat/hot-toast@6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@ngneat/hot-toast/-/hot-toast-6.0.1.tgz#381d935c94e4fe03918243d0a7d8af57f1605d43"
-  integrity sha512-a074V0BcqDojKWsd5Tuczd3+ZefUVejzGP6rBWEseTeAsz2JxZYh96G7JwJKQ0sBY+ho8GC9Mn96AJjXmz8u+w==
+"@ngneat/hot-toast@6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@ngneat/hot-toast/-/hot-toast-6.0.2.tgz#8c7e4de9a7c864c45a52e1e8e9ff353179d8da0c"
+  integrity sha512-tW57o/p2lDy2LzOIKvvajI+r51VEwr7nnIn6Reg/hN/evSlHDmsq8+UHirnB4dgP/xhY55LxOEjJt2tPZUh94A==
   dependencies:
     tslib "^2.3.0"
 

@@ -30,7 +30,7 @@
     "@nestjs/typeorm": "10.0.1",
     "@ngneat/dialog": "4.2.0",
     "@ngneat/error-tailor": "4.1.2",
-    "@ngneat/hot-toast": "6.0.1",
+    "@ngneat/hot-toast": "6.0.2",
     "@ngneat/loadoff": "2.1.0",
     "@ngneat/overview": "5.1.1",
     "@ntegral/nestjs-sentry": "4.0.0",
