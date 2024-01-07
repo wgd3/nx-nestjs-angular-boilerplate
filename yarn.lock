@@ -3051,10 +3051,10 @@
     seedrandom "3.0.5"
     uuid "8.3.2"
 
-"@ngneat/hot-toast@6.0.2":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@ngneat/hot-toast/-/hot-toast-6.0.2.tgz#8c7e4de9a7c864c45a52e1e8e9ff353179d8da0c"
-  integrity sha512-tW57o/p2lDy2LzOIKvvajI+r51VEwr7nnIn6Reg/hN/evSlHDmsq8+UHirnB4dgP/xhY55LxOEjJt2tPZUh94A==
+"@ngneat/hot-toast@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/hot-toast/-/hot-toast-6.1.0.tgz#24b7f4d794b7dc0c365fb053d5ab6f530492a965"
+  integrity sha512-jF9LwuPG3N1EDwSkwPsmB0CqiwI94zbJBo5oSwj3dsTftmTo8hJw9Hr5spAQOa7mhoy4pbgACWOx8xspwSAXQA==
   dependencies:
     tslib "^2.3.0"
 
