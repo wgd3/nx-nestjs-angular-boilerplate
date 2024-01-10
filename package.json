@@ -61,13 +61,13 @@
     "zone.js": "~0.14.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "16.2.8",
-    "@angular-devkit/core": "16.2.8",
-    "@angular-devkit/schematics": "16.2.8",
+    "@angular-devkit/build-angular": "16.2.11",
+    "@angular-devkit/core": "16.2.11",
+    "@angular-devkit/schematics": "16.2.11",
     "@angular-eslint/eslint-plugin": "16.3.1",
     "@angular-eslint/eslint-plugin-template": "16.3.1",
     "@angular-eslint/template-parser": "16.3.1",
-    "@angular/cli": "16.2.8",
+    "@angular/cli": "16.2.11",
     "@angular/compiler-cli": "16.2.11",
     "@angular/language-service": "16.2.11",
     "@commitlint/config-conventional": "^18.1.0",
