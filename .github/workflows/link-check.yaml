@@ -22,7 +22,7 @@ jobs:
           restore-keys: cache-lychee-
 
       - name: Link Checker
-        uses: lycheeverse/lychee-action@c3089c702fbb949e3f7a8122be0c33c017904f9b # v1.9.1
+        uses: lycheeverse/lychee-action@eeb9cb63fe093e4d17e5853314dbf862bb35f28d # v1.9.2
         id: lychee
         with:
           args: --exclude thefullstack.engineer --exclude localhost --cache --max-cache-age 1d --verbose --no-progress './**/*.md'
