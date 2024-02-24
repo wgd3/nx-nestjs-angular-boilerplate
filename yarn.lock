@@ -3744,9 +3744,9 @@
     tslib "2.5.0"
 
 "@ngneat/falso@^7.1.1":
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/@ngneat/falso/-/falso-7.1.1.tgz#ee48cbd968dbf21b507004f2f190803526777401"
-  integrity sha512-/5HuJDaZHXl3WVdgvYBAM52OSYbSKfiNazVOZOw/3KjeZ6dQW9F0QCG+W6z52lUu5MZvp/TkPGaVRtoz6h9T1w==
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/falso/-/falso-7.2.0.tgz#0683a643a1ab0ea99d0d461cb2333f108b2329bb"
+  integrity sha512-283EXBFd05kCbGuGSXgmvhCsQYEYzvD/eJaE7lxd05qRB0tgREvZX7TRlJ1KSp8nHxoK6Ws029G1Y30mt4IVAA==
   dependencies:
     seedrandom "3.0.5"
     uuid "8.3.2"
