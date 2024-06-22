@@ -115,7 +115,7 @@
     "ts-jest": "^29.1.1",
     "ts-node": "10.9.2",
     "typescript": "<5.2.0",
-    "vuepress": "2.0.0-rc.13"
+    "vuepress": "2.0.0-rc.14"
   },
   "config": {
     "commitizen": {
