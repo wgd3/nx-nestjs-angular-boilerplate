@@ -131,6 +131,18 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
+"@angular-devkit/core@16.2.16":
+  version "16.2.16"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-16.2.16.tgz#078c48790c7b2b87eb5f78c6b724c4d28cbe26a1"
+  integrity sha512-5xHs9JFmp78sydrOAg0UGErxfMVv5c2f3RXoikS7eBOOXTWEi5pmnOkOvSJ3loQFGVs3Y7i+u02G3VrF5ZxOrA==
+  dependencies:
+    ajv "8.12.0"
+    ajv-formats "2.1.1"
+    jsonc-parser "3.2.0"
+    picomatch "2.3.1"
+    rxjs "7.8.1"
+    source-map "0.7.4"
+
 "@angular-devkit/core@17.3.8":
   version "17.3.8"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-17.3.8.tgz#8679cacf84cf79764f027811020e235ab32016d2"
@@ -160,6 +172,17 @@
   integrity sha512-C/j2EwapdBMf1HWDuH89bA9B2e511iEYImkyZ+vCSXRwGiWUaZCrhl18bvztpErTrdOLM3mCwNXWEAMXI4zUXA==
   dependencies:
     "@angular-devkit/core" "16.2.15"
+    jsonc-parser "3.2.0"
+    magic-string "0.30.1"
+    ora "5.4.1"
+    rxjs "7.8.1"
+
+"@angular-devkit/schematics@16.2.16":
+  version "16.2.16"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-16.2.16.tgz#7f8dbf16fe440f0a9d2b5b25d0dbe16b73356216"
+  integrity sha512-pF6fdtJh6yLmgA7Gs45JIdxPl2MsTAhYcZIMrX1a6ID64dfwtF0MP8fDE6vrWInV1zXbzzf7l7PeKuqVtTSzKg==
+  dependencies:
+    "@angular-devkit/core" "16.2.16"
     jsonc-parser "3.2.0"
     magic-string "0.30.1"
     ora "5.4.1"
@@ -4381,13 +4404,22 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@schematics/angular@16.2.15", "@schematics/angular@~16.2.8":
+"@schematics/angular@16.2.15":
   version "16.2.15"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-16.2.15.tgz#f3b810842959808f0d65ce816f4f0c1a7463c176"
   integrity sha512-T7wEGYxidpLAkis+hO5nsVfnWsy6sXf1T9GS8uztC8IYYsnqB9jTVfjVyfhASugZasdmx7+jWv3oCGy6Z5ZehA==
   dependencies:
     "@angular-devkit/core" "16.2.15"
     "@angular-devkit/schematics" "16.2.15"
+    jsonc-parser "3.2.0"
+
+"@schematics/angular@~16.2.8":
+  version "16.2.16"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-16.2.16.tgz#3f077f398fc7ff88654fd477790af8270585c3af"
+  integrity sha512-V4cE4R5MbusKaNW9DWsisiSRUoQzbAaBIeJh42yCkg5H/lUdf18hUB7DG6Pl7yH6/tjzzz4SqIVD7N64uCDC2A==
+  dependencies:
+    "@angular-devkit/core" "16.2.16"
+    "@angular-devkit/schematics" "16.2.16"
     jsonc-parser "3.2.0"
 
 "@sentry-internal/tracing@7.120.3":
