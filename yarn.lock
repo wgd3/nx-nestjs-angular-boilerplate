@@ -3853,10 +3853,10 @@
   dependencies:
     tslib "2.5.0"
 
-"@ngneat/falso@^7.1.1":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@ngneat/falso/-/falso-7.4.0.tgz#d9fec3ca24f85aa68ae3071a18cfbdea8cae7198"
-  integrity sha512-7MzPP0YGNHDrohf/epmz6SVIjHGhKyHbh0bm+iZ1z/7KVW4xZi9Dx6Tl9NMPy6a4lWh/t3WXSsCGkgkuJ/eroQ==
+"@ngneat/falso@^8.0.0":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@ngneat/falso/-/falso-8.0.1.tgz#f5be4d42ac81f055aef6e33e045b17858685b219"
+  integrity sha512-C6NHC+4LaxIwJ4ARO/03ckBjt7eZB45Enj2EN5FtDYezZ6tDfvH1rIQ3P4hwWZlQpcMTRPKwBEXi3NCTyUV/zw==
   dependencies:
     seedrandom "3.0.5"
     uuid "8.3.2"
