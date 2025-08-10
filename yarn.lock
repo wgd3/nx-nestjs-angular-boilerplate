@@ -20,23 +20,23 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@angular-devkit/architect@0.1602.15":
-  version "0.1602.15"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1602.15.tgz#b70f2456677f6859d4dac4ad80c6b13d00108797"
-  integrity sha512-+yPlUG5c8l7Z/A6dyeV7NQjj4WDWnWWQt+8eW/KInwVwoYiM32ntTJ0M4uU/aDdHuwKQnMLly28AcSWPWKYf2Q==
+"@angular-devkit/architect@0.1602.16":
+  version "0.1602.16"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1602.16.tgz#7ffcaa5840037682d8205054c2c3bb84a053aeb7"
+  integrity sha512-aWEeGU4UlbrSKpcAZsldVNxNXAWEeu9hM2BPk77GftbRC8PBMWpgYyrJWTz2ryn8aSmGKT3T8OyBH4gZA/667w==
   dependencies:
-    "@angular-devkit/core" "16.2.15"
+    "@angular-devkit/core" "16.2.16"
     rxjs "7.8.1"
 
-"@angular-devkit/build-angular@16.2.15":
-  version "16.2.15"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-16.2.15.tgz#5499c1692385f990be198b33d8d8871606ea021c"
-  integrity sha512-gw9wQENYVNUCB2bnzk0yKd6YGlemDwuwKnrPnSm4myyMuScZpW+e+zliGW+JXRuVWZqiTJNcdd58e4CrrreILg==
+"@angular-devkit/build-angular@16.2.16":
+  version "16.2.16"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-16.2.16.tgz#8055710725e2cdf3c57a53d93a1c49eb3d41caf5"
+  integrity sha512-gEni21kza41xaRnVWP1sMuiWHS/rdoym5FEEGDo9PG60LwRC4lekIgT09GpTlmMu007UEfo0ccQnGroD6+MqWg==
   dependencies:
     "@ampproject/remapping" "2.2.1"
-    "@angular-devkit/architect" "0.1602.15"
-    "@angular-devkit/build-webpack" "0.1602.15"
-    "@angular-devkit/core" "16.2.15"
+    "@angular-devkit/architect" "0.1602.16"
+    "@angular-devkit/build-webpack" "0.1602.16"
+    "@angular-devkit/core" "16.2.16"
     "@babel/core" "7.22.9"
     "@babel/generator" "7.22.9"
     "@babel/helper-annotate-as-pure" "7.22.5"
@@ -48,7 +48,7 @@
     "@babel/runtime" "7.22.6"
     "@babel/template" "7.22.5"
     "@discoveryjs/json-ext" "0.5.7"
-    "@ngtools/webpack" "16.2.15"
+    "@ngtools/webpack" "16.2.16"
     "@vitejs/plugin-basic-ssl" "1.0.1"
     ansi-colors "4.1.3"
     autoprefixer "10.4.14"
@@ -91,7 +91,7 @@
     text-table "0.2.0"
     tree-kill "1.2.2"
     tslib "2.6.1"
-    vite "4.5.3"
+    vite "4.5.5"
     webpack "5.94.0"
     webpack-dev-middleware "6.1.2"
     webpack-dev-server "4.15.1"
@@ -100,12 +100,12 @@
   optionalDependencies:
     esbuild "0.18.17"
 
-"@angular-devkit/build-webpack@0.1602.15":
-  version "0.1602.15"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.1602.15.tgz#c866b57e618ed3bbb95900c078e3f6c274e787a1"
-  integrity sha512-ms1+vCDdV0KX8BplJ7JoKH3wKjWHxxZTOX+mSPIjt4wS1uAk5DnezXHIjpBiJ3HY9XVHFI9C0HT4n7o6kFIOEQ==
+"@angular-devkit/build-webpack@0.1602.16":
+  version "0.1602.16"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.1602.16.tgz#0276782df0484b0d976d4913d798b78419e848f1"
+  integrity sha512-b99Sj0btI0C2GIfzoyP8epDMIOLqSTqXOxw6klGtBLaGZfM5KAxqFzekXh8cAnHxWCj20WdNhezS1eUTLOkaIA==
   dependencies:
-    "@angular-devkit/architect" "0.1602.15"
+    "@angular-devkit/architect" "0.1602.16"
     rxjs "7.8.1"
 
 "@angular-devkit/core@16.0.1":
@@ -119,10 +119,10 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
-"@angular-devkit/core@16.2.15":
-  version "16.2.15"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-16.2.15.tgz#44ef98cda82ef82435a2a41507f8c24720d372df"
-  integrity sha512-68BgPWpcjNKz++uvLFG8IZaOH3ti2BWQVqaE3yTIYaMoNt0y0A0X2MUVd7EGbAGUk2JdloWJv5LTPVZMzCuK4w==
+"@angular-devkit/core@16.2.16":
+  version "16.2.16"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-16.2.16.tgz#078c48790c7b2b87eb5f78c6b724c4d28cbe26a1"
+  integrity sha512-5xHs9JFmp78sydrOAg0UGErxfMVv5c2f3RXoikS7eBOOXTWEi5pmnOkOvSJ3loQFGVs3Y7i+u02G3VrF5ZxOrA==
   dependencies:
     ajv "8.12.0"
     ajv-formats "2.1.1"
@@ -154,12 +154,12 @@
     ora "5.4.1"
     rxjs "7.8.1"
 
-"@angular-devkit/schematics@16.2.15":
-  version "16.2.15"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-16.2.15.tgz#cedcb48fdd240db0a779674cf52455a78a4098bb"
-  integrity sha512-C/j2EwapdBMf1HWDuH89bA9B2e511iEYImkyZ+vCSXRwGiWUaZCrhl18bvztpErTrdOLM3mCwNXWEAMXI4zUXA==
+"@angular-devkit/schematics@16.2.16":
+  version "16.2.16"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-16.2.16.tgz#7f8dbf16fe440f0a9d2b5b25d0dbe16b73356216"
+  integrity sha512-pF6fdtJh6yLmgA7Gs45JIdxPl2MsTAhYcZIMrX1a6ID64dfwtF0MP8fDE6vrWInV1zXbzzf7l7PeKuqVtTSzKg==
   dependencies:
-    "@angular-devkit/core" "16.2.15"
+    "@angular-devkit/core" "16.2.16"
     jsonc-parser "3.2.0"
     magic-string "0.30.1"
     ora "5.4.1"
@@ -224,15 +224,15 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/cli@16.2.15":
-  version "16.2.15"
-  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-16.2.15.tgz#951d84ef9a7113242b10fe89be1adfa3a94dd6aa"
-  integrity sha512-nNUmt0ZRj2xHH8tGXSJUiusP5rmakAz0f6cc6T4p03OyeShOKdvs9+/F4hzzsM79/ylZofBlFfwYVCBTbOtMqw==
+"@angular/cli@16.2.16":
+  version "16.2.16"
+  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-16.2.16.tgz#8886e63c75bbce91c5a550eeaf3b283eaef89533"
+  integrity sha512-aqfNYZ45ndrf36i+7AhQ9R8BCm025j7TtYaUmvvjT4LwiUg6f6KtlZPB/ivBlXmd1g9oXqW4advL0AIi8A/Ozg==
   dependencies:
-    "@angular-devkit/architect" "0.1602.15"
-    "@angular-devkit/core" "16.2.15"
-    "@angular-devkit/schematics" "16.2.15"
-    "@schematics/angular" "16.2.15"
+    "@angular-devkit/architect" "0.1602.16"
+    "@angular-devkit/core" "16.2.16"
+    "@angular-devkit/schematics" "16.2.16"
+    "@schematics/angular" "16.2.16"
     "@yarnpkg/lockfile" "1.1.0"
     ansi-colors "4.1.3"
     ini "4.1.1"
@@ -3557,7 +3557,7 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@jridgewell/sourcemap-codec@^1.4.10", "@jridgewell/sourcemap-codec@^1.4.15", "@jridgewell/sourcemap-codec@^1.5.0":
+"@jridgewell/sourcemap-codec@^1.4.10", "@jridgewell/sourcemap-codec@^1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.0.tgz#3188bcb273a414b0d215fd22a58540b989b9409a"
   integrity sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==
@@ -3566,6 +3566,11 @@
   version "1.4.15"
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
   integrity sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==
+
+"@jridgewell/sourcemap-codec@^1.4.15":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.4.tgz#7358043433b2e5da569aa02cbc4c121da3af27d7"
+  integrity sha512-VT2+G1VQs/9oz078bLrYbecdZKs912zQlkelYpuf+SXF+QvZDYJlbx/LSx+meSAwdDFnF8FVXW92AVjjkVmgFw==
 
 "@jridgewell/trace-mapping@0.3.9":
   version "0.3.9"
@@ -3882,10 +3887,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@ngtools/webpack@16.2.15":
-  version "16.2.15"
-  resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-16.2.15.tgz#5c5c7b123b1e1d7e972a8d13d9ea2d6fc628b909"
-  integrity sha512-rD4IHt3nS6PdIKvmoqwIadMIGKsemBSz412kD8Deetl0TiCVhD/Tn1M00dxXzMSHSFCQcOKxdZAeD53yRwTOOA==
+"@ngtools/webpack@16.2.16":
+  version "16.2.16"
+  resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-16.2.16.tgz#512da8f3459faafd0cc1f7f7cbec96b678377be6"
+  integrity sha512-4gm2allK0Pjy/Lxb9IGRnhEZNEOJSOTWwy09VOdHouV2ODRK7Tto2LgteaFJUUSLkuvWRsI7pfuA6yrz8KDfHw==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -4380,13 +4385,13 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@schematics/angular@16.2.15", "@schematics/angular@~16.2.8":
-  version "16.2.15"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-16.2.15.tgz#f3b810842959808f0d65ce816f4f0c1a7463c176"
-  integrity sha512-T7wEGYxidpLAkis+hO5nsVfnWsy6sXf1T9GS8uztC8IYYsnqB9jTVfjVyfhASugZasdmx7+jWv3oCGy6Z5ZehA==
+"@schematics/angular@16.2.16", "@schematics/angular@~16.2.8":
+  version "16.2.16"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-16.2.16.tgz#3f077f398fc7ff88654fd477790af8270585c3af"
+  integrity sha512-V4cE4R5MbusKaNW9DWsisiSRUoQzbAaBIeJh42yCkg5H/lUdf18hUB7DG6Pl7yH6/tjzzz4SqIVD7N64uCDC2A==
   dependencies:
-    "@angular-devkit/core" "16.2.15"
-    "@angular-devkit/schematics" "16.2.15"
+    "@angular-devkit/core" "16.2.16"
+    "@angular-devkit/schematics" "16.2.16"
     jsonc-parser "3.2.0"
 
 "@sentry-internal/tracing@7.120.4":
@@ -8973,9 +8978,9 @@ fast-safe-stringify@2.1.1, fast-safe-stringify@^2.1.1:
   integrity sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==
 
 fast-uri@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/fast-uri/-/fast-uri-3.0.1.tgz#cddd2eecfc83a71c1be2cc2ef2061331be8a7134"
-  integrity sha512-MWipKbbYiYI0UC7cl8m/i/IWTqfC8YXsqjzybjddLsFjStroQzsHXkc73JutMvBiXmOvapk+axIl79ig5t55Bw==
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/fast-uri/-/fast-uri-3.0.6.tgz#88f130b77cfaea2378d56bf970dea21257a68748"
+  integrity sha512-Atfo14OibSv5wAp4VWNsFYE1AchQRTv9cBGWET4pZWHzYshFSS9NQI6I57rdKn9croWVMbYFbLhJ+yJvmZIIHw==
 
 fastq@^1.6.0:
   version "1.17.1"
@@ -15908,10 +15913,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite@4.5.3:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-4.5.3.tgz#d88a4529ea58bae97294c7e2e6f0eab39a50fb1a"
-  integrity sha512-kQL23kMeX92v3ph7IauVkXkikdDRsYMGTVl5KY2E9OY4ONLvkHf04MDTbnfo6NKxZiDLWzVpP5oTa8hQD8U3dg==
+vite@4.5.5:
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-4.5.5.tgz#639b9feca5c0a3bfe3c60cb630ef28bf219d742e"
+  integrity sha512-ifW3Lb2sMdX+WU91s3R0FyQlAyLxOzCSCP37ujw0+r5POeHPwe6udWVIElKQq8gk3t7b8rkmvqC6IHBpCff4GQ==
   dependencies:
     esbuild "^0.18.10"
     postcss "^8.4.27"
