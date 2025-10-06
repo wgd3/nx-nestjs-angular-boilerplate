@@ -32,7 +32,7 @@
     "@ngneat/error-tailor": "4.1.2",
     "@ngneat/hot-toast": "6.1.0",
     "@ngneat/loadoff": "2.1.0",
-    "@ngneat/overview": "5.1.1",
+    "@ngneat/overview": "6.2.0",
     "@ntegral/nestjs-sentry": "4.0.1",
     "@nx/angular": "17.3.2",
     "@nx/nest": "17.3.2",

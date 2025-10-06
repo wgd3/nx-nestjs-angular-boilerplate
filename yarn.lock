@@ -4314,10 +4314,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@ngneat/overview@5.1.1":
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/@ngneat/overview/-/overview-5.1.1.tgz#0b7ff659c62078153dce0a300d47c65a233e0828"
-  integrity sha512-Dz7yylhS08Mo+A8SXo7KyJBJMxD18Oq/G5v/ndvd5C8Gi3uOrAiXUjxvqRCPMxrg03FlkvEsD5/4TvMKtrUfAQ==
+"@ngneat/overview@6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/overview/-/overview-6.2.0.tgz#aff9ffdd43b6f7d1d0aa91d777a83f2ccc141dfb"
+  integrity sha512-znbBg7KsXUSx/5wIQui1dT5LlCP81T9lMH714RFToZj0KhaudJQEmBuDRmipE77x/zRFPVcPZfvh1m+F2bWMBw==
   dependencies:
     tslib "^2.0.0"
 
