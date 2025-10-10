@@ -4189,12 +4189,12 @@
     uuid "9.0.1"
     ws "8.14.2"
 
-"@nestjs/jwt@10.2.0":
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/jwt/-/jwt-10.2.0.tgz#6aa35a04922d19c6426efced4671620f92e6dbd0"
-  integrity sha512-x8cG90SURkEiLOehNaN2aRlotxT0KZESUliOPKKnjWiyJOcWurkF3w345WOX0P4MgFzUjGoZ1Sy0aZnxeihT0g==
+"@nestjs/jwt@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/jwt/-/jwt-11.0.1.tgz#3109ba23932330f4001db9e41e4374f2e41342df"
+  integrity sha512-HXSsc7SAnCnjA98TsZqrE7trGtHDnYXWp4Ffy6LwSmck1QvbGYdMzBquXofX5l6tIRpeY4Qidl2Ti2CVG77Pdw==
   dependencies:
-    "@types/jsonwebtoken" "9.0.5"
+    "@types/jsonwebtoken" "9.0.10"
     jsonwebtoken "9.0.2"
 
 "@nestjs/mapped-types@2.0.2":
@@ -5674,11 +5674,19 @@
   dependencies:
     "@types/node" "*"
 
-"@types/jsonwebtoken@*", "@types/jsonwebtoken@9.0.5":
+"@types/jsonwebtoken@*":
   version "9.0.5"
   resolved "https://registry.yarnpkg.com/@types/jsonwebtoken/-/jsonwebtoken-9.0.5.tgz#0bd9b841c9e6c5a937c17656e2368f65da025588"
   integrity sha512-VRLSGzik+Unrup6BsouBeHsf4d1hOEgYWTm/7Nmw1sXoN1+tRly/Gy/po3yeahnP4jfnQWWAhQAqcNfH7ngOkA==
   dependencies:
+    "@types/node" "*"
+
+"@types/jsonwebtoken@9.0.10":
+  version "9.0.10"
+  resolved "https://registry.yarnpkg.com/@types/jsonwebtoken/-/jsonwebtoken-9.0.10.tgz#a7932a47177dcd4283b6146f3bd5c26d82647f09"
+  integrity sha512-asx5hIG9Qmf/1oStypjanR7iKTv0gXQ1Ov/jfrX6kS/EO0OFni8orbmGCn0672NHR3kXHwpAwR+B368ZGN/2rA==
+  dependencies:
+    "@types/ms" "*"
     "@types/node" "*"
 
 "@types/linkify-it@^5":
