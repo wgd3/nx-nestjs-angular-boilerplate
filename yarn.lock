@@ -359,10 +359,10 @@
     "@smithy/util-utf8" "^2.0.0"
     tslib "^2.6.2"
 
-"@aws-sdk/client-ses@^3.731.1":
+"@aws-sdk/client-sesv2@^3.839.0":
   version "3.917.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-ses/-/client-ses-3.917.0.tgz#5cee2e81808e6f780dcff028085260ed8cdb8fed"
-  integrity sha512-6koN6wERmY5mTgK/yQ8sPH72jrHBD4BiYKhKHGg+hK5yn700iK5keoWK60CfQM4JJkhx49cHraO4dSW//3WiyA==
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-sesv2/-/client-sesv2-3.917.0.tgz#2532495639576e649dd864ed03ff6a17d16f7293"
+  integrity sha512-Jwz+3rO9fc2H8JyF4ainL5x06tiQ0n4ewKIpdUeGIauKdndMItYP1aeM0Y8wJQPTF1XEpWFC36cTSDgk/eypxA==
   dependencies:
     "@aws-crypto/sha256-browser" "5.2.0"
     "@aws-crypto/sha256-js" "5.2.0"
@@ -373,6 +373,7 @@
     "@aws-sdk/middleware-recursion-detection" "3.914.0"
     "@aws-sdk/middleware-user-agent" "3.916.0"
     "@aws-sdk/region-config-resolver" "3.914.0"
+    "@aws-sdk/signature-v4-multi-region" "3.916.0"
     "@aws-sdk/types" "3.914.0"
     "@aws-sdk/util-endpoints" "3.916.0"
     "@aws-sdk/util-user-agent-browser" "3.914.0"
@@ -402,7 +403,6 @@
     "@smithy/util-middleware" "^4.2.3"
     "@smithy/util-retry" "^4.2.3"
     "@smithy/util-utf8" "^4.2.0"
-    "@smithy/util-waiter" "^4.2.3"
     tslib "^2.6.2"
 
 "@aws-sdk/client-sso@3.916.0":
@@ -601,6 +601,26 @@
     "@smithy/types" "^4.8.0"
     tslib "^2.6.2"
 
+"@aws-sdk/middleware-sdk-s3@3.916.0":
+  version "3.916.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/middleware-sdk-s3/-/middleware-sdk-s3-3.916.0.tgz#5c1cc4645186b3c0f7ac5f6a897885af0b62198e"
+  integrity sha512-pjmzzjkEkpJObzmTthqJPq/P13KoNFuEi/x5PISlzJtHofCNcyXeVAQ90yvY2dQ6UXHf511Rh1/ytiKy2A8M0g==
+  dependencies:
+    "@aws-sdk/core" "3.916.0"
+    "@aws-sdk/types" "3.914.0"
+    "@aws-sdk/util-arn-parser" "3.893.0"
+    "@smithy/core" "^3.17.1"
+    "@smithy/node-config-provider" "^4.3.3"
+    "@smithy/protocol-http" "^5.3.3"
+    "@smithy/signature-v4" "^5.3.3"
+    "@smithy/smithy-client" "^4.9.1"
+    "@smithy/types" "^4.8.0"
+    "@smithy/util-config-provider" "^4.2.0"
+    "@smithy/util-middleware" "^4.2.3"
+    "@smithy/util-stream" "^4.5.4"
+    "@smithy/util-utf8" "^4.2.0"
+    tslib "^2.6.2"
+
 "@aws-sdk/middleware-user-agent@3.916.0":
   version "3.916.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/middleware-user-agent/-/middleware-user-agent-3.916.0.tgz#a0894ae6d70d7a81b2572ee69ed0d3049d39dfce"
@@ -668,6 +688,18 @@
     "@smithy/types" "^4.8.0"
     tslib "^2.6.2"
 
+"@aws-sdk/signature-v4-multi-region@3.916.0":
+  version "3.916.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/signature-v4-multi-region/-/signature-v4-multi-region-3.916.0.tgz#d70e3dc9ca2cb3f65923283600a0a6e9a6c4ec7f"
+  integrity sha512-fuzUMo6xU7e0NBzBA6TQ4FUf1gqNbg4woBSvYfxRRsIfKmSMn9/elXXn4sAE5UKvlwVQmYnb6p7dpVRPyFvnQA==
+  dependencies:
+    "@aws-sdk/middleware-sdk-s3" "3.916.0"
+    "@aws-sdk/types" "3.914.0"
+    "@smithy/protocol-http" "^5.3.3"
+    "@smithy/signature-v4" "^5.3.3"
+    "@smithy/types" "^4.8.0"
+    tslib "^2.6.2"
+
 "@aws-sdk/token-providers@3.916.0":
   version "3.916.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/token-providers/-/token-providers-3.916.0.tgz#e824fd44a553c4047b769caf22a94fd2705c9f1d"
@@ -687,6 +719,13 @@
   integrity sha512-kQWPsRDmom4yvAfyG6L1lMmlwnTzm1XwMHOU+G5IFlsP4YEaMtXidDzW/wiivY0QFrhfCz/4TVmu0a2aPU57ug==
   dependencies:
     "@smithy/types" "^4.8.0"
+    tslib "^2.6.2"
+
+"@aws-sdk/util-arn-parser@3.893.0":
+  version "3.893.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-arn-parser/-/util-arn-parser-3.893.0.tgz#fcc9b792744b9da597662891c2422dda83881d8d"
+  integrity sha512-u8H4f2Zsi19DGnwj5FSZzDMhytYF/bCh37vAtBsn3cNDL3YG578X5oc+wSX54pM3tOxS+NY7tvOAo52SW7koUA==
+  dependencies:
     tslib "^2.6.2"
 
 "@aws-sdk/util-endpoints@3.916.0":
@@ -5337,15 +5376,6 @@
     "@smithy/util-buffer-from" "^4.2.0"
     tslib "^2.6.2"
 
-"@smithy/util-waiter@^4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@smithy/util-waiter/-/util-waiter-4.2.3.tgz#4c662009db101bc60aed07815d359e90904caef2"
-  integrity sha512-5+nU///E5sAdD7t3hs4uwvCTWQtTR8JwKwOCSJtBRx0bY1isDo1QwH87vRK86vlFLBTISqoDA2V6xvP6nF1isQ==
-  dependencies:
-    "@smithy/abort-controller" "^4.2.3"
-    "@smithy/types" "^4.8.0"
-    tslib "^2.6.2"
-
 "@smithy/uuid@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@smithy/uuid/-/uuid-1.1.0.tgz#9fd09d3f91375eab94f478858123387df1cda987"
@@ -5746,12 +5776,12 @@
   dependencies:
     undici-types "~6.21.0"
 
-"@types/nodemailer@^6.4.13":
-  version "6.4.21"
-  resolved "https://registry.yarnpkg.com/@types/nodemailer/-/nodemailer-6.4.21.tgz#a87634864592e4d8fca8eb8f168cbe0db32c76f7"
-  integrity sha512-Eix+sb/Nj28MNnWvO2X1OLrk5vuD4C9SMnb2Vf4itWnxphYeSceqkFX7IdmxTzn+dvmnNz7paMbg4Uc60wSfJg==
+"@types/nodemailer@^7.0.0":
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/@types/nodemailer/-/nodemailer-7.0.3.tgz#2199f9512415059dba06fb1b9384b073fc8ef9e7"
+  integrity sha512-fC8w49YQ868IuPWRXqPfLf+MuTRex5Z1qxMoG8rr70riqqbOp2F5xgOKE9fODEBPzpnvjkJXFgK6IL2xgMSTnA==
   dependencies:
-    "@aws-sdk/client-ses" "^3.731.1"
+    "@aws-sdk/client-sesv2" "^3.839.0"
     "@types/node" "*"
 
 "@types/normalize-package-data@^2.4.0":
@@ -13531,10 +13561,10 @@ node-releases@^2.0.18, node-releases@^2.0.19:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.19.tgz#9e445a52950951ec4d177d843af370b411caf314"
   integrity sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==
 
-nodemailer@6.10.1:
-  version "6.10.1"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.10.1.tgz#cbc434c54238f83a51c07eabd04e2b3e832da623"
-  integrity sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA==
+nodemailer@7.0.10:
+  version "7.0.10"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-7.0.10.tgz#540062dbbe574220b42e79d2d949956d3eac5a46"
+  integrity sha512-Us/Se1WtT0ylXgNFfyFSx4LElllVLJXQjWi2Xz17xWw7amDKO2MLtFnVp1WACy7GkVGs+oBlRopVNUzlrGSw1w==
 
 nopt@^5.0.0:
   version "5.0.0"
