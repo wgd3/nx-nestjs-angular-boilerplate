@@ -27,7 +27,7 @@
     "@nestjs/platform-express": "10.4.22",
     "@nestjs/swagger": "7.4.2",
     "@nestjs/terminus": "10.3.0",
-    "@nestjs/typeorm": "10.0.2",
+    "@nestjs/typeorm": "11.0.0",
     "@ngneat/dialog": "4.2.0",
     "@ngneat/error-tailor": "4.1.2",
     "@ngneat/hot-toast": "6.1.0",
