@@ -46,7 +46,7 @@
     "crypto-js": "4.2.0",
     "google-auth-library": "9.15.1",
     "handlebars": "4.7.8",
-    "joi": "17.13.3",
+    "joi": "18.0.2",
     "jwt-decode": "3.1.2",
     "nodemailer": "6.10.1",
     "passport": "0.7.0",
