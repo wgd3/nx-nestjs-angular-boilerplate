@@ -25,7 +25,7 @@
     "@nestjs/jwt": "10.2.0",
     "@nestjs/passport": "10.0.3",
     "@nestjs/platform-express": "10.4.22",
-    "@nestjs/swagger": "7.4.2",
+    "@nestjs/swagger": "11.2.6",
     "@nestjs/terminus": "10.3.0",
     "@nestjs/typeorm": "10.0.2",
     "@ngneat/dialog": "4.2.0",
