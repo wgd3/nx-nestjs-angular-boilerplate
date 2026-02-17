@@ -3868,10 +3868,10 @@
   dependencies:
     tslib "2.3.1"
 
-"@ngneat/error-tailor@4.1.2":
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/@ngneat/error-tailor/-/error-tailor-4.1.2.tgz#faa075a124b83d6e7ad7e16f4cecdd34d04a48a3"
-  integrity sha512-7IKaQbRgAgGCEmdNP0ARJTcOEpYnzuWF97WCE1DqvP/2Ttc06Y4NV5DnN5n7/k2Dwaoi4KyUmGgEf7MQcJFjSQ==
+"@ngneat/error-tailor@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@ngneat/error-tailor/-/error-tailor-5.0.1.tgz#94e4bdc80fbf67549c6a88e87904c4589e5f3bc7"
+  integrity sha512-7+07v9QNlV+OVCYTlJwuXpghr5oi/fjbkRpiV+BzfrDmpK8RBXYkQVwY38URfDdIlRe2EZW5Vie7phjIg8mvhg==
   dependencies:
     tslib "2.5.0"
 
