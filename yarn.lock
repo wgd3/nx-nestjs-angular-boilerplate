@@ -3861,10 +3861,10 @@
   dependencies:
     uuid "9.0.1"
 
-"@ngneat/dialog@4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@ngneat/dialog/-/dialog-4.2.0.tgz#ace521cb0ab1ee9de4624addc2f925a3ba557fbe"
-  integrity sha512-VgVV74HpKrmjAPPUAfY1KWt5GErfT1/g21B6GFv0qOWUhmU2X5ruvJ+/DXVWki2sS66bK7z41EjI5KSySk/kLQ==
+"@ngneat/dialog@5.2.1":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@ngneat/dialog/-/dialog-5.2.1.tgz#5c2e2cdeff8cfebe14eb56d1bad262d600de1b66"
+  integrity sha512-8EAmr6K6pNb8HSjc1mROjRbXpiaf1nQJXflZKCBuKlKeAfJKjWWlY39N/tquBLRf8gzAq8u8wNQBydvLUmGLbA==
   dependencies:
     tslib "2.3.1"
 
