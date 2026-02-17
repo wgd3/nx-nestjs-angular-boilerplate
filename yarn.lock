@@ -3875,10 +3875,10 @@
   dependencies:
     tslib "2.5.0"
 
-"@ngneat/falso@^7.1.1":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@ngneat/falso/-/falso-7.4.0.tgz#d9fec3ca24f85aa68ae3071a18cfbdea8cae7198"
-  integrity sha512-7MzPP0YGNHDrohf/epmz6SVIjHGhKyHbh0bm+iZ1z/7KVW4xZi9Dx6Tl9NMPy6a4lWh/t3WXSsCGkgkuJ/eroQ==
+"@ngneat/falso@^8.0.0":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@ngneat/falso/-/falso-8.0.2.tgz#2313f705529ddb936d6bb3ac65fcf11b9eb36812"
+  integrity sha512-vhPtuoHoxE5JGWPSPBqEyTXcjI4MAn8GllR+Vs8FfpAQu2sQRd4PJc3e8kc9vdbdhYHx1C9HmbECgtGLK30z4w==
   dependencies:
     seedrandom "3.0.5"
     uuid "8.3.2"
