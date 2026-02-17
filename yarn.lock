@@ -3897,10 +3897,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@ngneat/overview@5.1.1":
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/@ngneat/overview/-/overview-5.1.1.tgz#0b7ff659c62078153dce0a300d47c65a233e0828"
-  integrity sha512-Dz7yylhS08Mo+A8SXo7KyJBJMxD18Oq/G5v/ndvd5C8Gi3uOrAiXUjxvqRCPMxrg03FlkvEsD5/4TvMKtrUfAQ==
+"@ngneat/overview@7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/overview/-/overview-7.0.0.tgz#9325a826f0e92571b9c9e99a22bece2ead8421fd"
+  integrity sha512-nWSyoWHYGTyE6miNQ1AV2Or9yB+JcEwfQlCPhigq39HUd/Y40J28dAslIN2FCpAONBu2hm4XpYMb+Ya1DUgR2g==
   dependencies:
     tslib "^2.0.0"
 
