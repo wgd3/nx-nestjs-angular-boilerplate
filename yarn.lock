@@ -3820,12 +3820,10 @@
   dependencies:
     tslib "2.8.1"
 
-"@nestjs/typeorm@10.0.2":
-  version "10.0.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/typeorm/-/typeorm-10.0.2.tgz#25e3ec3c9a127b085c06fd7ea25f8690dba145c2"
-  integrity sha512-H738bJyydK4SQkRCTeh1aFBxoO1E9xdL/HaLGThwrqN95os5mEyAtK7BLADOS+vldP4jDZ2VQPLj4epWwRqCeQ==
-  dependencies:
-    uuid "9.0.1"
+"@nestjs/typeorm@11.0.3":
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/typeorm/-/typeorm-11.0.3.tgz#7b1da806fa23c5e2f222d25088334e2bf3d0aad5"
+  integrity sha512-zJ+E5l7auVVA7c0PsvcMdyvRPKTUqU5s2ToYmOA2QEsXQ42qbUGtK4+1HlRfpHqBkCSXP+phiH4luvf9DyJNog==
 
 "@ngneat/dialog@4.2.0":
   version "4.2.0"
