@@ -75,7 +75,7 @@
     "@commitlint/cz-commitlint": "^18.2.0",
     "@nestjs/schematics": "^10.0.2",
     "@nestjs/testing": "^10.2.7",
-    "@ngneat/falso": "^7.1.1",
+    "@ngneat/falso": "^8.0.0",
     "@nx/cypress": "17.3.2",
     "@nx/eslint": "17.3.2",
     "@nx/eslint-plugin": "17.3.2",
