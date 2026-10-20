@@ -1,4 +1,6 @@
 {
+  // Renovate disabled 2026-10-20 at repo owner's request
+  enabled: false,
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
     'config:recommended',
